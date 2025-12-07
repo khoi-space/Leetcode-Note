@@ -76,6 +76,8 @@ int main(int argc, char* argv[]) {
         test.test29();
     #elif TEST_TO_RUN == 30
         test.test30();
+    #elif TEST_TO_RUN == 1523
+        test.test1523();
     #elif TEST_TO_RUN == 2211
         test.test2211();
     #elif TEST_TO_RUN == 3432

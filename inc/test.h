@@ -34,6 +34,7 @@ public:
 	void test28();
 	void test29();
 	void test30();
+	void test1523();
 	void test2211();
 	void test3432();
 };

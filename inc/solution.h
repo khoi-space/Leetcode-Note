@@ -25,6 +25,7 @@ public:
     string longestCommonPrefix(vector<string>& strs); // Problem 14
     bool isValidParentheses(string s); // Problem 20
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2); // Problem 21
+    int countOdds(int low, int high); // Problem 1523
     int countCollisions(string directions); // Problem 2211
     int countPartitions(vector<int>& nums); // Problem 3432
 };
