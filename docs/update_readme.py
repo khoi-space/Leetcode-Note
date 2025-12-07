@@ -65,12 +65,20 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
         leetcode_url = f"https://leetcode.com/problems/{slug}/"
 
-        entry_lines = [
-            f"* {name} [[{number_str}]({leetcode_url})]",
-            f"    * [C++](../src/cpp/{number_str}.cpp)",
-            f"    * [Python](../src/py/{number_str}.py)",
-            "",
-        ]
+        lang_input = input("Languages (cpp/python/java/all): ").strip().lower()
+        valid_langs = {"cpp", "python", "java", "all"}
+        if lang_input not in valid_langs:
+            print("Alert: Language must be cpp, python, java, or all")
+            return False
+
+        entry_lines = [f"* {name} [[{number_str}]({leetcode_url})]"]
+        if lang_input == "cpp" or lang_input == "all":
+            entry_lines.append(f"    * [C++](../src/cpp/{number_str}.cpp)")
+        if lang_input == "python" or lang_input == "all":
+            entry_lines.append(f"    * [Python](../src/py/{number_str}.py)")
+        if lang_input == "java" or lang_input == "all":
+            entry_lines.append(f"    * [Java](../src/java/{number_str}.java)")
+        entry_lines.append("")
 
         insert_idx = section_end
         while insert_idx > header_idx + 1 and not lines[insert_idx - 1].strip():
@@ -145,7 +153,66 @@ def main():
     choice = input("Add new problem entry? (y/n): ").strip().lower()
     if choice == "y":
         add_problem_entry(markdown_file_path)
-    update_problem_count(markdown_file_path)
+        update_problem_count(markdown_file_path)
+    else:
+        lang_choice = input("Add new language for a problem? (y/n): ").strip().lower()
+        if lang_choice == "y":
+            number_str = input("Problem number: ").strip()
+            if not number_str.isdigit():
+                print("Alert: Problem number must be numeric")
+                return
+            lang_input = input("Language (cpp/python/java): ").strip().lower()
+            valid_langs = {"cpp", "python", "java"}
+            if lang_input not in valid_langs:
+                print("Alert: Language must be cpp, python, or java")
+                return
+                # Find and add language path to problem
+            try:
+                with open(markdown_file_path, "r", encoding="utf-8") as f:
+                    lines = f.read().splitlines()
+                identifier = f"[{number_str}]"
+                entry_idx = None
+                for i, line in enumerate(lines):
+                    if identifier in line:
+                        entry_idx = i
+                        break
+                if entry_idx is None:
+                    print(f"Alert: Problem {number_str} not found")
+                    return
+                # Prepare language link
+                lang_map = {
+                    "cpp": f"    * [C++](../src/cpp/{number_str}.cpp)",
+                    "python": f"    * [Python](../src/py/{number_str}.py)",
+                    "java": f"    * [Java](../src/java/{number_str}.java)"
+                }
+                lang_line = lang_map[lang_input]
+                # Identify the entry region for the problem
+                entry_end = entry_idx + 1
+                while entry_end < len(lines) and (lines[entry_end].startswith("    * ") or not lines[entry_end].strip()):
+                    entry_end += 1
+                # Check for duplicates in the entry region
+                found = False
+                lang_line_normalized = lang_line.replace(' ', '').lower()
+                for j in range(entry_idx+1, entry_end):
+                    line_j = lines[j].replace(' ', '').lower()
+                    # Check both normal and commented-out links
+                    if line_j == lang_line_normalized or line_j == f'<!--{lang_line_normalized}-->':
+                        found = True
+                        break
+                if found:
+                    print(f"Alert: {lang_input} link already exists for problem {number_str}")
+                    return
+                # Add the language line after the entry, before the blank line if present
+                insert_idx = entry_end
+                if insert_idx > entry_idx+1 and not lines[insert_idx-1].strip():
+                    insert_idx -= 1
+                lines.insert(insert_idx, lang_line)
+                with open(markdown_file_path, "w", encoding="utf-8") as f:
+                    f.write("\n".join(lines) + "\n")
+                print(f"Added {lang_input} link for problem {number_str}")
+            except Exception as e:
+                print(f"Error: {e}")
+    # update_problem_count(markdown_file_path)
 
 
 if __name__ == "__main__":
