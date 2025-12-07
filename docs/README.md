@@ -1,3 +1,4 @@
+# [Click here to view problem list](PROBLEM_LIST.md)
 # 📂 STRUCTURE
 ```
 Leetcode/  
@@ -20,25 +21,9 @@ Leetcode/
 ```
 # 📝 NOTE 
 File [update_list.md](update_list.py) will help to automatically update file [PROBLEM_LIST.md](PROBLEM_LIST.md):
-* Add a new problem that you have just solved. The terminal will request you as follows:
-```
-Add new problem entry? (y/n): y
-Problem name: Reverse Integer
-Problem number: 15
-Difficulty (easy/medium/hard): medium
-Languages (cpp/python/java/all): cpp
-Added problem 7 to ## 🟡Medium
-Total problem: ...
-Updated to file ...
-```
-* Add new languages if you need to solve a problem again. The terminal will request you as follows:
-```
-Add new problem entry? (y/n): n
-Add new language for a problem? (y/n): y
-Problem number: 7 
-Language (cpp/python/java): python
-Added python link for problem 7
-```
+* Update a new problem section that you have just solved.
+* Update a link to a new language if you need to solve a problem again.
+* Update numbers of solved problems.
 
 # 🚀 FUTURE PLANS:
 1. Handle with other languages (such as python, java,...)
