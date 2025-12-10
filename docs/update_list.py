@@ -148,7 +148,26 @@ def add_problem_entry(md_filepath: Path) -> bool:
         if lang_input is None:
             return False
 
-        entry_lines = [f"* [{number_str}] {name} [[{leetcode_url}]({leetcode_url})]", lang_map[lang_input], ""]
+        # Kiểm tra và tạo file code nếu chưa tồn tại
+        code_link = lang_map[lang_input]
+        # Lấy đường dẫn file từ link markdown
+        import os
+        import re
+        m = re.search(r'\((\.\./src/[^)]+)\)', code_link)
+        file_created = False
+        code_path = None
+        if m:
+            rel_path = m.group(1).replace('/', os.sep)
+            workspace_root = DOCS_DIR
+            code_path = (workspace_root / rel_path).resolve()
+            if not code_path.exists():
+                code_path.parent.mkdir(parents=True, exist_ok=True)
+                code_path.touch()
+                file_created = True
+
+        # Thêm dấu * nếu file vừa được tạo
+        number_display = f"{number_str}*" if file_created else number_str
+        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link, ""]
 
         # Find the idx for problem to insert sortedly
         insert_idx = section_end
@@ -168,6 +187,8 @@ def add_problem_entry(md_filepath: Path) -> bool:
             lines.insert(insert_idx + offset, entry_line)
         with open(md_filepath, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
+        if file_created:
+            print(f"Created code file: {code_path}")
         print(f"Added problem {number_str} to {header}")
         return True
 
