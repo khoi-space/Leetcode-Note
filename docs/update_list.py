@@ -95,14 +95,22 @@ def add_problem_entry(md_filepath: Path) -> bool:
     }
 
     try:
-        name = input("Problem name: ").strip()
-        if not name:
-            print("Alert: Problem name is required")
-            return False
-
         number_str = input("Problem number: ").strip()
         if not number_str.isdigit():
             print("Alert: Problem number must be numeric")
+            return False
+
+        # Check existence in list
+        with open(md_filepath, "r", encoding="utf-8") as f:
+            lines = f.read().splitlines()
+        identifier = f"[{number_str}]"
+        if any(identifier in line for line in lines if line.strip().startswith("* [")):
+            print(f"Alert: Problem {number_str} already listed")
+            return False
+
+        name = input("Problem name: ").strip()
+        if not name:
+            print("Alert: Problem name is required")
             return False
 
         difficulty_key = input("Difficulty (easy/medium/hard): ").strip().lower()
@@ -111,9 +119,6 @@ def add_problem_entry(md_filepath: Path) -> bool:
             return False
 
         header = difficulties[difficulty_key]
-
-        with open(md_filepath, "r", encoding="utf-8") as f:
-            lines = f.read().splitlines()
 
         header_idx = None
         for i, line in enumerate(lines):
@@ -131,12 +136,6 @@ def add_problem_entry(md_filepath: Path) -> bool:
                 section_end = j
                 break
 
-        section_slice = lines[header_idx + 1:section_end]
-        identifier = f"[{number_str}]"
-        if any(identifier in line for line in section_slice):
-            print(f"Alert: Problem {number_str} already listed")
-            return False
-
         slug = _slugify(name)
         if not slug:
             print("Error: Unable to derive LeetCode slug from problem name")
@@ -144,14 +143,25 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
         leetcode_url = f"https://leetcode.com/problems/{slug}/"
 
-
         lang_map = {k: v.format(num=number_str) for k, v in LANG_MAP.items()}
         lang_input = get_language_input(lang_map)
         if lang_input is None:
             return False
 
         entry_lines = [f"* [{number_str}] {name} [[{leetcode_url}]({leetcode_url})]", lang_map[lang_input], ""]
+
+        # Find the idx for problem to insert sortedly
         insert_idx = section_end
+        new_num = int(number_str)
+        for j in range(header_idx + 1, section_end):
+            line = lines[j]
+            m = re.match(r"\* \[(\d+)\]", line.strip())
+            if m:
+                cur_num = int(m.group(1))
+                if cur_num > new_num:
+                    insert_idx = j
+                    break
+        # Insert to the tail if not found any gap to insert
         while insert_idx > header_idx + 1 and not lines[insert_idx - 1].strip():
             insert_idx -= 1
         for offset, entry_line in enumerate(entry_lines):
