@@ -24,14 +24,14 @@ def _slugify(title: str) -> str:
     return slug
 
 def find_problem_entry(lines, number_str):
-    """Find the index of the problem entry line."""
+    """Find the index of the problem entry line in the markdown file."""
     for i, line in enumerate(lines):
         if line.strip().startswith(f"* [{number_str}]"):
             return i
     return None
 
 def check_duplicate_link(lines, entry_idx, lang_line):
-    """Check if the language link already exists in the entry block."""
+    """Check if the language link already exists in the entry block for a problem."""
     entry_end = entry_idx + 1
     while entry_end < len(lines) and (lines[entry_end].startswith("    * ") or lines[entry_end].strip() == ""):
         entry_end += 1
@@ -43,7 +43,7 @@ def check_duplicate_link(lines, entry_idx, lang_line):
     return False
 
 def add_language_link_to_problem(number_str, lang_key, lang_map, markdown_file_path):
-    """Add a language link to the problem entry in the markdown file."""
+    """Add a language link to the problem entry in the markdown file. Avoid duplicates."""
     try:
         with open(markdown_file_path, "r", encoding="utf-8") as f:
             lines = f.read().splitlines()
@@ -88,6 +88,7 @@ def get_language_input(lang_map, prompt=None):
 
 def add_problem_entry(md_filepath: Path) -> bool:
     md_filepath = Path(md_filepath)
+    # Mapping for difficulty headers in the markdown file
     difficulties = {
         "easy": "## 🟢Easy",
         "medium": "## 🟡Medium",
@@ -95,12 +96,13 @@ def add_problem_entry(md_filepath: Path) -> bool:
     }
 
     try:
+        # Prompt for problem number and check if it is numeric
         number_str = input("Problem number: ").strip()
         if not number_str.isdigit():
             print("Alert: Problem number must be numeric")
             return False
 
-        # Check existence in list
+        # Check if the problem number already exists in any section
         with open(md_filepath, "r", encoding="utf-8") as f:
             lines = f.read().splitlines()
         identifier = f"[{number_str}]"
@@ -108,11 +110,13 @@ def add_problem_entry(md_filepath: Path) -> bool:
             print(f"Alert: Problem {number_str} already listed")
             return False
 
+        # Prompt for problem name
         name = input("Problem name: ").strip()
         if not name:
             print("Alert: Problem name is required")
             return False
 
+        # Prompt for difficulty and validate
         difficulty_key = input("Difficulty (easy/medium/hard): ").strip().lower()
         if difficulty_key not in difficulties:
             print("Alert: Difficulty must be easy, medium, or hard")
@@ -120,6 +124,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
         header = difficulties[difficulty_key]
 
+        # Find the index of the section header for the selected difficulty
         header_idx = None
         for i, line in enumerate(lines):
             if line.strip() == header:
@@ -130,12 +135,14 @@ def add_problem_entry(md_filepath: Path) -> bool:
             print(f"Error: Not found section {header}")
             return False
 
+        # Find the end of the section (next header or end of file)
         section_end = len(lines)
         for j in range(header_idx + 1, len(lines)):
             if lines[j].startswith("## "):
                 section_end = j
                 break
 
+        # Generate the LeetCode URL slug from the problem name
         slug = _slugify(name)
         if not slug:
             print("Error: Unable to derive LeetCode slug from problem name")
@@ -143,14 +150,15 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
         leetcode_url = f"https://leetcode.com/problems/{slug}/"
 
+        # Prompt for language and build the language map for the selected problem number
         lang_map = {k: v.format(num=number_str) for k, v in LANG_MAP.items()}
         lang_input = get_language_input(lang_map)
         if lang_input is None:
             return False
 
-        # Kiểm tra và tạo file code nếu chưa tồn tại
+        # Check and create the code file if it does not exist
         code_link = lang_map[lang_input]
-        # Lấy đường dẫn file từ link markdown
+        # Extract the relative file path from the markdown link
         import os
         import re
         m = re.search(r'\((\.\./src/[^)]+)\)', code_link)
@@ -161,16 +169,18 @@ def add_problem_entry(md_filepath: Path) -> bool:
             workspace_root = DOCS_DIR
             code_path = (workspace_root / rel_path).resolve()
             if not code_path.exists():
+                # Create parent directories if needed and write default content for C++
                 code_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(code_path, "w", encoding="utf-8") as fcode:
                     fcode.write('#include "solution.h"\n#include "test.h"\nusing namespace std;\n')
                 file_created = True
 
-        # Thêm dấu * nếu file vừa được tạo
+        # Add a * to the problem number if the code file was just created
         number_display = f"{number_str}*" if file_created else number_str
-        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link, ""]
+        # Prepare the entry lines for the markdown file (problem and code link)
+        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
 
-        # Find the idx for problem to insert sortedly
+        # Find the correct index to insert the new problem so the list stays sorted by problem number
         insert_idx = section_end
         new_num = int(number_str)
         for j in range(header_idx + 1, section_end):
@@ -181,11 +191,13 @@ def add_problem_entry(md_filepath: Path) -> bool:
                 if cur_num > new_num:
                     insert_idx = j
                     break
-        # Insert to the tail if not found any gap to insert
+        # Avoid inserting extra blank lines before the new entry
         while insert_idx > header_idx + 1 and not lines[insert_idx - 1].strip():
             insert_idx -= 1
+        # Insert the new entry lines into the markdown file
         for offset, entry_line in enumerate(entry_lines):
             lines.insert(insert_idx + offset, entry_line)
+        # Write the updated lines back to the markdown file
         with open(md_filepath, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
         if file_created:
@@ -202,24 +214,25 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
 
 def update_problem_count(md_filepath: Path):
-    """Update the total solved problems count based on README links."""
+    """Update the total solved problems count based on code links in the markdown file."""
     md_filepath = Path(md_filepath)
+    # Regex to match code file links and extract problem numbers
     link_pattern = re.compile(r'(?:\./|\.\./)*src/(?:[^/]+/)?(\d+)\.[^\s)]+', re.IGNORECASE)
 
+    # Regex to match the placeholder for the total problem count
     placeholder_pattern = re.compile(r'(\s*)(\d+)(\s*)', re.DOTALL)
 
     try:
         with open(md_filepath, 'r', encoding='utf-8') as f:
             content = f.read()
 
+        # Remove HTML comments and count unique problem numbers from code links
         content_no_comments = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)
         matches = link_pattern.findall(content_no_comments)
         total_problems = len(set(matches))
 
         def replacement_function(match):
-            """
-            Replace the placeholder digits with the current problem count while preserving surrounding whitespace.
-            """
+            """Replace the placeholder digits with the current problem count while preserving surrounding whitespace."""
             return match.group(1) + str(total_problems) + match.group(3)
         
         new_content = placeholder_pattern.sub(replacement_function, content, count=1)
