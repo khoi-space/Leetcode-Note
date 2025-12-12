@@ -27,7 +27,7 @@ string Solution::longestPalindrome(string s) {
         // Approach 2: Dynamic Programming - O(n^2)
         int n = s.size();
         vector<vector<bool>> dp(n, vector<bool>(n));
-        array<int, 2> ans = {0, 0};
+        pair<int, int> ans = {0, 0};
 
         for (int i = 0; i < n; ++i) {
             dp[i][i] = true;
@@ -50,9 +50,8 @@ string Solution::longestPalindrome(string s) {
             }
         }
 
-        int i = ans[0];
-        int j = ans[1];
-
+        int i = ans.first;
+        int j = ans.second;
         return s.substr(i, j - i + 1);
     } else if (appr == 3) {
         // Approach 3: Expand From Centers - O(n^2)
