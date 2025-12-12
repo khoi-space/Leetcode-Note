@@ -64,10 +64,12 @@ void Test::test7() {
     extern Solution sol;
     bool allPassed = true;
     for (auto& c : cases) {
+        static int i = 0;
+        ++i;
         int res = sol.reverse(c.x);
         if (res != c.exp) {
             allPassed = false;
-            cout << "\033[31mFAILED\033[0m: x=" << c.x << " res=" << res << " exp=" << c.exp << endl;
+            cout << "\033[31mFAILED\033[0m case " << i << ": exp=" << c.exp << " got=" << res << endl;
         }
     }
     

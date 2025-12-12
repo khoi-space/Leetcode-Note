@@ -50,16 +50,10 @@ void Test::test1523() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
-    for (auto& c : cases) {
+    int i = 0;
+    for (const auto& c : cases) {
+        ++i;
         int res = sol.countOdds(c.low, c.high);
-        if (res != c.exp) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: res=" << res << ", exp=" << c.exp << ", low=" << c.low << ", high=" << c.high << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

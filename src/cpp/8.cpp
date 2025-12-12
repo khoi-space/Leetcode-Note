@@ -61,16 +61,10 @@ void Test::test8() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-    for (auto& c : cases) {
+    int i = 0;
+    for (const auto& c : cases) {
+        ++i;
         int res = sol.myAtoi(c.s);
-        if (res != c.exp) {
-            cout << "\033[31mFAILED\033[0m: s=" << c.s << " res=" << res << " exp=" << c.exp << endl;
-            allPassed = false;
-        }
-    }
-
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

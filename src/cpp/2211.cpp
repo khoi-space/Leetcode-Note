@@ -104,19 +104,11 @@ void Test::test2211() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         int res = sol.countCollisions(c.directions);
-        if (res != c.exp) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: ";
-            cout << c.directions << " | res= " << res << ", exp= " << c.exp;
-            cout << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }
 

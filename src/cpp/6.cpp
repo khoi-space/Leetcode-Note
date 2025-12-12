@@ -1,6 +1,5 @@
 #include "solution.h"
 #include "test.h"
-#include "print.h"
 #include <iostream>
 using namespace std;
 
@@ -57,7 +56,7 @@ void Test::test6() {
     cout << "1. Row-wise Simulation\n";
     cout << "2. Row-by-row Traversal\n";
     cout << ">>> "; cin >> approach;
-    
+
     struct Case {
         string s;
         int numRows;
@@ -75,16 +74,10 @@ void Test::test6() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
-    for (auto& c : cases) {
+    int i = 0;
+    for (const auto& c : cases) {
+        ++i;
         string res = sol.convertZigzag(c.s, c.numRows);
-        if (res != c.exp) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: res=\"" << res << "\", exp=\"" << c.exp << "\", s=\"" << c.s << "\", numRows=" << c.numRows << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

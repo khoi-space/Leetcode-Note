@@ -163,15 +163,15 @@ void Test::test5() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
     cout << "Approach:\n";
     cout << "1. Check all substrings\n";
     cout << "2. Dynamic programming\n";
     cout << "3. Expand from centers\n";
     cout << "4. Manacher's Algorithm\n";
     cout << ">>> "; cin >> approach;
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         string res = sol.longestPalindrome(c.s);
         bool match = false;
         for (const auto& e : c.exp) {
@@ -180,14 +180,13 @@ void Test::test5() {
                 break;
             }
         }
-        if (!match) {
-            allPassed = false;
-            printf("\033[31mFAILED\033[0m: s=%s, res=%s, exp=", c.s.c_str(), res.c_str());
+        if (match) {
+            Test::assertTest(1, 1, i); // Pass
+        } else {
+            Test::assertTest(0, 1, i); // Fail, will print details
+            printf("res=%s exp=", res.c_str());
             for (const auto& e : c.exp) printf("%s ", e.c_str());
             printf("\n");
         }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
     }
 }

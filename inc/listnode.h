@@ -48,16 +48,6 @@ struct ListNode
             cur = cur->next;
         }
     }
-
-    static bool compareList(ListNode* lhs, ListNode* rhs) {
-        while (lhs != nullptr || rhs != nullptr) {
-            if (lhs == nullptr || rhs == nullptr) return false;
-            if (lhs->val != rhs->val) return false;
-            lhs = lhs->next;
-            rhs = rhs->next;
-        }
-        return true;
-    }
 };
 
 #endif // LISTNODE_H

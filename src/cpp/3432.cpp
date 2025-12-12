@@ -1,6 +1,5 @@
 #include "solution.h"
 #include "test.h"
-#include "print.h"
 #include <iostream>
 using namespace std;
 
@@ -88,20 +87,11 @@ void Test::test3432() {
         {{8, 1, 1, 8}, 3},
     };
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         vector<int> numsCopy = c.nums;
         int res = sol.countPartitions(numsCopy);
-        if (res != c.exp) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: input=";
-            printVector(c.nums);
-            cout << " | res=" << res << " | exp=" << c.exp << '\n';
-        }
-    }
-
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

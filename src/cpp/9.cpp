@@ -37,17 +37,10 @@ void Test::test9() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         bool res = sol.isPalindrome(c.x);
-        if (res != c.exp) {
-            allPassed = false;
-            printf("\033[31mFAILED\033[0m: x=%d, res=%d, exp=%d\n", c.x, res, c.exp);
-        }
-    }
-
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

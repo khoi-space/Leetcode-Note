@@ -40,18 +40,10 @@ void Test::test14() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         string res = sol.longestCommonPrefix(const_cast<vector<string>&>(c.strs));
-        if (res != c.exp) {
-            allPassed = false;
-            printf("\033[31mFAILED\033[0m: res=\"%s\", exp=\"%s\"\n",
-                   res.c_str(), c.exp.c_str());
-        }
-    }
-
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

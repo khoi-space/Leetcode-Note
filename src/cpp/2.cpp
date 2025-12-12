@@ -1,8 +1,6 @@
 
 #include "solution.h"
 #include "test.h"
-#include "print.h"
-// #include "listnode.h"
 using namespace std;
 
 /**
@@ -43,24 +41,13 @@ void Test::test2() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         ListNode* l1 = ListNode::createList(c.arr1.data(), c.arr1.size());
         ListNode* l2 = ListNode::createList(c.arr2.data(), c.arr2.size());
         ListNode* exp = ListNode::createList(c.exp.data(), c.exp.size());
         ListNode* res = sol.addTwoNumber(l1, l2);
-        if (!ListNode::compareList(res, exp)) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: ";
-            cout << "res="; if(res) res->printList(); else cout << "nullptr";
-            cout << ", exp="; if(exp) exp->printList(); else cout << "nullptr";
-            cout << ", arr1="; printVector(c.arr1);
-            cout << ", arr2="; printVector(c.arr2);
-            cout << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, exp, i);
     }
 }

@@ -82,6 +82,8 @@ int main(int argc, char* argv[]) {
         test.test2211();
     #elif TEST_TO_RUN == 3432
         test.test3432();
+    #elif TEST_TO_RUN == 3433
+        test.test3433();
     #else
     #error "Unknown TEST_TO_RUN value"
     #endif

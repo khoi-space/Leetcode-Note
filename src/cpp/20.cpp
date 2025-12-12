@@ -2,6 +2,8 @@
 #include "test.h"
 using namespace std;
 
+bool isPair(char last, char cur);
+
 /**
  * Problem 20: is Valid Parentheses
  * @input: a string s containing just the characters '(', ')', '{', '}', '[' and ']'
@@ -34,7 +36,7 @@ void Test::test20() {
         string s;
         bool exp;
     };
-    
+
     vector<Case> cases = {
         {"()", true},
         {"()[]{}", true},
@@ -48,20 +50,12 @@ void Test::test20() {
         {"[", false},
         {"]", false}
     };
-    
+
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         bool res = sol.isValidParentheses(c.s);
-        if (res != c.exp) {
-            allPassed = false;
-            printf("\033[31mFAILED\033[0m: s=\"%s\", res=%d, exp=%d\n",
-                   c.s.c_str(), res, c.exp);
-        }
-    }
-
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

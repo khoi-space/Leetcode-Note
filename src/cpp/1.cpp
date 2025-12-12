@@ -1,7 +1,6 @@
 
 #include "solution.h"
 #include "test.h"
-#include "print.h"
 #include <iostream>
 using namespace std;
 
@@ -41,6 +40,12 @@ vector<int> Solution::twoSum(vector<int>& nums, int target) {
 }
 
 void Test::test1() {
+    extern Solution sol;
+    cout << "Approach:\n";
+    cout << "1. Using hash map (*)\n";
+    cout << "2. Brute-force\n";
+    cout << ">>> "; cin >> approach;
+
     struct Case {
         vector<int> nums;
         int target;
@@ -54,24 +59,10 @@ void Test::test1() {
         {{1,2,3}, 7, {}}, // no solution
     };
 
-    extern Solution sol;
-    bool allPassed = true;
-
-    cout << "Approach:\n";
-    cout << "1. Using hash map (*)\n";
-    cout << "2. Brute-force\n";
-    cout << ">>> "; cin >> approach;
+    int i = 0;
     for (auto& c : cases) {
+        ++i;
         vector<int> res = sol.twoSum(c.nums, c.target);
-        if (res != c.exp) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: res="; printVector(res);
-            cout << ", exp="; printVector(c.exp);
-            cout << ", input="; printVector(c.nums);
-            cout << ", target=" << c.target << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

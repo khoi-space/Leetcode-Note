@@ -1,6 +1,5 @@
 #include "solution.h"
 #include "test.h"
-#include "print.h"
 using namespace std;
 
 int approach = 0;
@@ -55,7 +54,7 @@ void Test::test21() {
     cout << "1. Recursion\n";
     cout << "2. Dummy node\n";
     cout << ">>> "; cin >> approach;
-    
+
     struct Case {
         vector<int> list1;
         vector<int> list2;
@@ -75,24 +74,14 @@ void Test::test21() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         ListNode* l1 = ListNode::createList(c.list1.data(), c.list1.size());
         ListNode* l2 = ListNode::createList(c.list2.data(), c.list2.size());
         ListNode* exp = ListNode::createList(c.exp.data(), c.exp.size());
         ListNode* res = sol.mergeTwoLists(l1, l2);
-        if (!ListNode::compareList(res, exp)) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: ";
-            cout << "res="; if(res) res->printList(); else cout << "nullptr";
-            cout << ", exp="; if(exp) exp->printList(); else cout << "nullptr";
-            cout << ", list1="; printVector(c.list1);
-            cout << ", list2="; printVector(c.list2);
-            cout << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        bool ok = isEqual(res, exp);
+        Test::assertTest(ok, true, i);
     }
 }

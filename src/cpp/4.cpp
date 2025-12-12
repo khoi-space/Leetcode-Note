@@ -114,23 +114,14 @@ void Test::test4() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
     cout << "Approach:\n";
     cout << "1. Merge Sort\n";
     cout << "2. Binary Search + Recursive (*)\n";
-    cout <<">>> "; cin >> approach;
+    cout << ">>> "; cin >> approach;
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         double res = sol.findMedianSortedArrays(const_cast<vector<int>&>(c.nums1), const_cast<vector<int>&>(c.nums2));
-            if (std::fabs(res - c.exp) > 1e-6) {
-            allPassed = false;
-            cout << "\033[31mFAILED\033[0m: res=" << res << ", exp=" << c.exp;
-            cout << ", nums1="; for (int x : c.nums1) cout << x << ' ';
-            cout << ", nums2="; for (int x : c.nums2) cout << x << ' ';
-            cout << endl;
-        }
-    }
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }

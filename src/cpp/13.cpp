@@ -86,21 +86,14 @@ void Test::test13() {
     };
 
     extern Solution sol;
-    bool allPassed = true;
-
     cout << "Approach:\n";
     cout << "1. Righ-to-left & int array (*)\n";
     cout << "2. Left-to-right & hash map\n";
     cout << ">>> "; cin >> approach;
+    int i = 0;
     for (const auto& c : cases) {
+        ++i;
         int res = sol.romanToInt(c.s);
-        if (res != c.exp) {
-            allPassed = false;
-            printf("\033[31mFAILED\033[0m: s=%s, res=%d, exp=%d\n", c.s.c_str(), res, c.exp);
-        }
-    }
-
-    if (allPassed) {
-        cout << "\033[32mPASSED\033[0m\n";
+        Test::assertTest(res, c.exp, i);
     }
 }
