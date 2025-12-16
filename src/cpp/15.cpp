@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -9,7 +9,7 @@ int approach = 0;
  * @input: an integer array nums
  * @output: all the triplet that have sum == 0
  */
-vector<vector<int>> Solution::threeSum(vector<int>& nums) {
+vector<vector<int>> threeSum(vector<int>& nums) {
     if (approach == 1) {
         // Approach 1: 3 nested loops
         vector<vector<int>> ans;
@@ -72,7 +72,7 @@ vector<vector<int>> Solution::threeSum(vector<int>& nums) {
     return {};
 }
 
-void Test::test15() {
+void test15() {
     cout << "Approach:\n";
     cout << "1. 3 nested loops - O(n^3)\n";
     cout << "2*. Two pointer - O(n^2)\n";
@@ -116,9 +116,8 @@ void Test::test15() {
       {{0,0,0,0,0}, {{0,0,0}}},
     };
 
-    extern Solution sol;
     for (int i = 0; i < (int)cases.size(); ++i) {
-        vector<vector<int>> res = sol.threeSum(cases[i].nums);
-        Test::assertTest(res, cases[i].exp, i);
+        vector<vector<int>> res = threeSum(cases[i].nums);
+        assertTest(res, cases[i].exp, i);
     }
 }

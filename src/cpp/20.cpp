@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 bool isPair(char last, char cur);
@@ -9,7 +9,7 @@ bool isPair(char last, char cur);
  * @input: a string s containing just the characters '(', ')', '{', '}', '[' and ']'
  * @output: determine if the input string is valid.
  */
-bool Solution::isValidParentheses(string s) {
+bool isValidParentheses(string s) {
     stack<char> st;
     for (char c : s) {
         if(!st.empty()) {

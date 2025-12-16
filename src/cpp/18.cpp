@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 /**
@@ -7,7 +7,7 @@ using namespace std;
  * @input: array nums of n integers
  * @output: an array of all unique quadruplets that have sum equal to target
  */
-vector<vector<int>> Solution::fourSum(vector<int>& nums, int target) {
+vector<vector<int>> fourSum(vector<int>& nums, int target) {
     vector<vector<int>> ans;
     int n = nums.size();
     sort(nums.begin(), nums.end());
@@ -45,7 +45,7 @@ vector<vector<int>> Solution::fourSum(vector<int>& nums, int target) {
     return ans;
 }
 
-void Test::test18() {
+void test18() {
     struct Case {
         vector<int> nums;
         int target;
@@ -61,10 +61,9 @@ void Test::test18() {
         {{1000000000,1000000000,1000000000,1000000000}, 0, {}}
     };
 
-    extern Solution sol;
     int i = 0;
     for (auto& c : cases) {
-        vector<vector<int>> res = sol.fourSum(c.nums, c.target);
-        Test::assertTest(res, c.exp, i);
+        vector<vector<int>> res = fourSum(c.nums, c.target);
+        assertTest(res, c.exp, i);
     }
 }

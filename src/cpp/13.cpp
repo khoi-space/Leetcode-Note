@@ -1,6 +1,6 @@
 
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -10,7 +10,7 @@ int approach = 0;
  * @input: a roman numeral string (I=1, V=5, X=10, L=50, C=100, D=500, M=1000)
  * @output: int of roman numeral string
  */
-int Solution::romanToInt(string s) {
+int romanToInt(string s) {
     if (approach == 1) {
         // Option 1(optimal): right-left & int array
         static int val[256] = {};

@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 #include <sstream>
 using namespace std;
 
@@ -8,7 +8,7 @@ using namespace std;
  * @input: an array of strings
  * @output: the longest common prefix string amongst them
  */
-string Solution::longestCommonPrefix(vector<string>& strs) {
+string longestCommonPrefix(vector<string>& strs) {
     stringstream result;
     if (strs.empty()) return "";
     for (size_t i = 0; i < strs[0].size(); ++i) {

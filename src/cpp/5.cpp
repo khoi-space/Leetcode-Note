@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -11,7 +11,7 @@ string expand(string s, int i, int j); // Use in approach 3 to expand the substr
  * @input: string s
  * @output: the longest palindromic substring of s
  */
-string Solution::longestPalindrome(string s) {
+string longestPalindrome(string s) {
     int appr = 1;
     if (appr == 1) {
         // Approach 1: Check All Substrings - O(n^3)
@@ -146,7 +146,7 @@ string expand(string s, int i, int j) {
     return s.substr(l + 1, r - l - 1);
 }
 
-void Test::test5() {
+void test5() {
     struct Case {
         string s;
         vector<string> exp; // Accept multiple correct answers
@@ -162,7 +162,6 @@ void Test::test5() {
         {"abb", {"bb"}},
     };
 
-    extern Solution sol;
     cout << "Approach:\n";
     cout << "1. Check all substrings\n";
     cout << "2. Dynamic programming\n";
@@ -172,7 +171,7 @@ void Test::test5() {
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        string res = sol.longestPalindrome(c.s);
+        string res = longestPalindrome(c.s);
         bool match = false;
         for (const auto& e : c.exp) {
             if (res == e) {
@@ -181,9 +180,9 @@ void Test::test5() {
             }
         }
         if (match) {
-            Test::assertTest(1, 1, i); // Pass
+            assertTest(1, 1, i); // Pass
         } else {
-            Test::assertTest(0, 1, i); // Fail, will print details
+            assertTest(0, 1, i); // Fail, will print details
             printf("res=%s exp=", res.c_str());
             for (const auto& e : c.exp) printf("%s ", e.c_str());
             printf("\n");

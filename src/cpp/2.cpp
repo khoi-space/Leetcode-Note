@@ -1,6 +1,6 @@
 
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 /**
@@ -8,7 +8,7 @@ using namespace std;
  * @input: two non-empty linked lists representing two non-negative integers (reserve ordered)
  * @output: the sum as a linked list
  */
-ListNode* Solution::addTwoNumber(ListNode* l1, ListNode* l2) {
+ListNode* addTwoNumber(ListNode* l1, ListNode* l2) {
     ListNode* dummyHead = new ListNode(0);
     ListNode* curr = dummyHead;
     int carry = 0;
@@ -25,7 +25,7 @@ ListNode* Solution::addTwoNumber(ListNode* l1, ListNode* l2) {
     return dummyHead->next;
 }
 
-void Test::test2() {
+void test2() {
     struct Case {
         vector<int> arr1;
         vector<int> arr2;
@@ -40,14 +40,13 @@ void Test::test2() {
         {{5}, {5}, {0,1}},
     };
 
-    extern Solution sol;
     int i = 0;
     for (const auto& c : cases) {
         ++i;
         ListNode* l1 = ListNode::createList(c.arr1.data(), c.arr1.size());
         ListNode* l2 = ListNode::createList(c.arr2.data(), c.arr2.size());
         ListNode* exp = ListNode::createList(c.exp.data(), c.exp.size());
-        ListNode* res = sol.addTwoNumber(l1, l2);
-        Test::assertTest(res, exp, i);
+        ListNode* res = addTwoNumber(l1, l2);
+        assertTest(res, exp, i);
     }
 }

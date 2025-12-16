@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -9,7 +9,7 @@ int approach = 0;
  * @input: the heads of two sorted linked lists list1 and list2
  * @output: the head of the merged linked list (sorted)
  */
-ListNode* Solution::mergeTwoLists(ListNode* list1, ListNode* list2) {
+ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
     if (approach == 1) {
         // Approach 1: recursion
         if (list1 == nullptr || list2 == nullptr) {

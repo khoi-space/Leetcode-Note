@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -8,7 +8,7 @@ int approach = 0;
  * @input: two unsigned int low and high
  * @output: count of odd numbers in [low, high]
  */
-int Solution::countOdds(int low, int high) {
+int countOdds(int low, int high) {
     if (approach == 1) {
         // Approach 1
         // If low is even, start from low+1
@@ -25,7 +25,7 @@ int Solution::countOdds(int low, int high) {
     return 0;
 }
 
-void Test::test1523() {
+void test1523() {
     cout << "Approach:\n";
     cout << "1. Readable\n";
     cout << "2. Count from 0\n";
@@ -49,11 +49,10 @@ void Test::test1523() {
         {100, 200, 50},
     };
 
-    extern Solution sol;
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        int res = sol.countOdds(c.low, c.high);
-        Test::assertTest(res, c.exp, i);
+        int res = countOdds(c.low, c.high);
+        assertTest(res, c.exp, i);
     }
 }

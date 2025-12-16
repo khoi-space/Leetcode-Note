@@ -1,7 +1,7 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 
-int Solution::myAtoi(string s) {
+int myAtoi(string s) {
     if (s.empty()) return 0;
 
     int i = 0;
@@ -40,7 +40,7 @@ int Solution::myAtoi(string s) {
     return (int)(sign * res);
 }
 
-void Test::test8() {
+void test8() {
 
     struct Case {
         string s;
@@ -60,11 +60,10 @@ void Test::test8() {
         {"2147483647", INT_MAX}
     };
 
-    extern Solution sol;
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        int res = sol.myAtoi(c.s);
-        Test::assertTest(res, c.exp, i);
+        int res = myAtoi(c.s);
+        assertTest(res, c.exp, i);
     }
 }

@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -20,7 +20,7 @@ bool isValidStr(string s);
  * 
  * @output: array of codes of all valid coupons (sorted by businessLine having the order above, and code)
  */
-vector<string> Solution::validateCoupons(vector<string>& code, vector<string>& businessLine, vector<bool>& isActive) {
+vector<string> validateCoupons(vector<string>& code, vector<string>& businessLine, vector<bool>& isActive) {
     if (approach == 1) {
         // Approach 1: Hashmap<string, int> (string for businessLines, int for check valid
         vector<string> valid_codes;
@@ -102,7 +102,7 @@ bool isValidStr(string s) {
     return is_valid_str;
 }
 
-void Test::test3606() {
+void test3606() {
     cout << "Approach:\n";
     cout << "1. Hashmap<string, int> (string for businessLines, int for check valid\n";
     cout << "2*. Hashmap<string, vector<tring>> (string for businessLines, vector<string> for their valid codes)\n";
@@ -121,10 +121,8 @@ void Test::test3606() {
         {{"GROCERY15","ELECTRONICS_50","DISCOUNT10"}, {"grocery","electronics","invalid"}, {false,true,true}, {"ELECTRONICS_50"}}
     };
 
-    extern Solution sol;
-
     for (int i = 0; i < (int)cases.size(); ++i) {
-        vector<string> res = sol.validateCoupons(cases[i].code, cases[i].businessLine, cases[i].isActive);
-        Test::assertTest(res, cases[i].exp, i);
+        vector<string> res = validateCoupons(cases[i].code, cases[i].businessLine, cases[i].isActive);
+        assertTest(res, cases[i].exp, i);
     }
 }

@@ -64,5 +64,6 @@
         "queue": "cpp",
         "deque": "cpp",
         "stack": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,6 +1,6 @@
 
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 /**
@@ -8,7 +8,7 @@ using namespace std;
  * @input: int x
  * @output: check if x is a palindrome number
  */
-bool Solution::isPalindrome(int x) {
+bool isPalindrome(int x) {
     if (x < 0 || (x % 10 == 0 && x != 0)) return false;
 
     int rev_num = 0;

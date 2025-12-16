@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 
@@ -8,7 +8,7 @@ using namespace std;
  * @input: an integer array and an integer target
  * @output: the sum of 3 int that closest to the target
  */
-int Solution::threeSumClosest(vector<int>& nums, int target) {
+int threeSumClosest(vector<int>& nums, int target) {
     int ans = 0;
     int n = nums.size();
     sort(nums.begin(), nums.end());
@@ -40,7 +40,7 @@ int Solution::threeSumClosest(vector<int>& nums, int target) {
     return ans;
 }
 
-void Test::test16() {
+void test16() {
     struct Case {
         vector<int> nums;
         int target;
@@ -52,9 +52,8 @@ void Test::test16() {
         {{0,0,0}, 1, 0}
     };
 
-    extern Solution sol;
     for (int i = 0; i < (int)cases.size(); ++i) {
-        int res = sol.threeSumClosest(cases[i].nums, cases[i].target);
-        Test::assertTest(res, cases[i].exp, i);
+        int res = threeSumClosest(cases[i].nums, cases[i].target);
+        assertTest(res, cases[i].exp, i);
     }
 }

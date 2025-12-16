@@ -1,6 +1,6 @@
 
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -14,7 +14,7 @@ int solve(vector<int>& A, vector<int>& B, int k, int a_start, int a_end, int b_s
  * @output: the median of the two sorted arrays
  * @require: must be O(log(m+n))
  */
-double Solution::findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
     if (approach == 1) {
         // Approach 1: Merge Sort - O(m+n)
         int p1 = 0, p2 = 0;
@@ -93,7 +93,7 @@ int solve(  vector<int>& A, vector<int>& B, int k,
     return -1;
 }
 
-void Test::test4() {
+void test4() {
     struct Case {
         vector<int> nums1;
         vector<int> nums2;
@@ -113,7 +113,6 @@ void Test::test4() {
         {{1,2,3,4,5}, {6,7,8,9,10}, 5.5}
     };
 
-    extern Solution sol;
     cout << "Approach:\n";
     cout << "1. Merge Sort\n";
     cout << "2. Binary Search + Recursive (*)\n";
@@ -121,7 +120,7 @@ void Test::test4() {
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        double res = sol.findMedianSortedArrays(const_cast<vector<int>&>(c.nums1), const_cast<vector<int>&>(c.nums2));
-        Test::assertTest(res, c.exp, i);
+        double res = findMedianSortedArrays(const_cast<vector<int>&>(c.nums1), const_cast<vector<int>&>(c.nums2));
+        assertTest(res, c.exp, i);
     }
 }

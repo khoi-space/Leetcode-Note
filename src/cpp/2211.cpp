@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 #include <iostream>
 using namespace std;
 
@@ -14,7 +14,7 @@ int approach = 0;
  * @input: a string of direction of each car
  * @output: number of collisions
  */
-int Solution::countCollisions(string directions) {
+int countCollisions(string directions) {
     if (approach == 1) {
         // Approach 1: Simulation
         int collisionCount = 0;
@@ -68,7 +68,7 @@ int Solution::countCollisions(string directions) {
     return 0;
 }
 
-void Test::test2211() {
+void test2211() {
     cout << "Approach:\n";
     cout << "1. Simulation\n";
     cout << "2. Counting\n";
@@ -103,12 +103,11 @@ void Test::test2211() {
         {"RXRL", -1} // Invalid directions
     };
 
-    extern Solution sol;
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        int res = sol.countCollisions(c.directions);
-        Test::assertTest(res, c.exp, i);
+        int res = countCollisions(c.directions);
+        assertTest(res, c.exp, i);
     }
 }
 

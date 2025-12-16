@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 /**
@@ -10,7 +10,7 @@ using namespace std;
  * - All elements in the subarray are unique.
  * - The sum of the elements in the subarray is max.
  */
-int Solution::maxSum(vector<int>& nums) {
+int maxSum(vector<int>& nums) {
     unordered_set<int> positiveNumSet;
     int max_sum = 0;
     for (int num : nums) {
@@ -29,7 +29,7 @@ int Solution::maxSum(vector<int>& nums) {
     return max_sum;
 }
 
-void Test::test3487() {
+void test3487() {
     struct Case {
         vector<int> nums;
         int exp;
@@ -41,9 +41,8 @@ void Test::test3487() {
         {{1,2,-1,-2,1,0,-1}, 3} //2
     };
 
-    extern Solution sol;
     for (int i = 0; i < (int)cases.size(); ++i) {
-        int res = sol.maxSum(cases[i].nums);
-        Test::assertTest(res, cases[i].exp, i);
+        int res = maxSum(cases[i].nums);
+        assertTest(res, cases[i].exp, i);
     }
 }  

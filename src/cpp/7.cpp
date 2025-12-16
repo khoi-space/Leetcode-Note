@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -9,7 +9,7 @@ int approach = 0;
  * @input: a signed 32-bit integer x
  * @output: a reverse of x
  */
-int Solution::reverse(int x) {
+int reverse(int x) {
     if (approach == 1) {
         // Approach 1: Pop & push digits
         int rev = 0;
@@ -43,7 +43,7 @@ int Solution::reverse(int x) {
     return 0;
 }
 
-void Test::test7() {
+void test7() {
     cout << "Approach:\n";
     cout << "1. Pop & push\n";
     cout << "2. Convert to string\n";
@@ -61,12 +61,11 @@ void Test::test7() {
         {123456789, 987654321}
     };
 
-    extern Solution sol;
     bool allPassed = true;
     for (auto& c : cases) {
         static int i = 0;
         ++i;
-        int res = sol.reverse(c.x);
+        int res = reverse(c.x);
         if (res != c.exp) {
             allPassed = false;
             cout << "\033[31mFAILED\033[0m case " << i << ": exp=" << c.exp << " got=" << res << endl;

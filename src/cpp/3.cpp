@@ -1,6 +1,6 @@
 
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 /**
@@ -8,7 +8,7 @@ using namespace std;
  * @input: a string s
  * @output: the length of the longest substring without duplicate characters
  */
-int Solution::lengthOfLongestSubstring(string s) {
+int lengthOfLongestSubstring(string s) {
     if (s.empty()) return 0;
     
     unordered_set<char> seen;
@@ -31,7 +31,7 @@ int Solution::lengthOfLongestSubstring(string s) {
     return maxLength;
 }
 
-void Test::test3() {
+void test3() {
     struct Case {
         string s;
         int exp;
@@ -50,11 +50,10 @@ void Test::test3() {
         {"abcdef", 6}
     };
 
-    extern Solution sol;
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        int res = sol.lengthOfLongestSubstring(c.s);
-        Test::assertTest(res, c.exp, i);
+        int res = lengthOfLongestSubstring(c.s);
+        assertTest(res, c.exp, i);
     }
 }

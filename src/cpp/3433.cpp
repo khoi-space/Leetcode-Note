@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 #define STATUS      0
@@ -16,7 +16,7 @@ using namespace std;
  *  * Note: the user will automatically be online again at time timestamp_i + 60
  * @output: an array {mentions} where {mentions[i]} represents the number of mentions the user with id {i} has
  */
-vector<int> Solution::countMentions(int numberOfUsers, vector<vector<string>>& events) {
+vector<int> countMentions(int numberOfUsers, vector<vector<string>>& events) {
     vector<int> count(numberOfUsers);
     vector<int> next_online_time(numberOfUsers);
     // Sort events by timestamp
@@ -75,7 +75,7 @@ vector<int> Solution::countMentions(int numberOfUsers, vector<vector<string>>& e
     return count;
 }
 
-void Test::test3433() {
+void test3433() {
     struct Case {
         // Input
         int numberOfUsers;
@@ -127,13 +127,11 @@ void Test::test3433() {
         {2, {{"MESSAGE", "1", "ALL"}, {"MESSAGE", "2", "HERE"}}, {2,2}}
     };
 
-    extern Solution sol;
-
     int i = 0;
     for (auto& c : cases) {
         ++i;
-        vector<int> res = sol.countMentions(c.numberOfUsers, c.events);
-        Test::assertTest(res, c.exp, i);
+        vector<int> res = countMentions(c.numberOfUsers, c.events);
+        assertTest(res, c.exp, i);
     }
 
 }

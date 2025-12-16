@@ -1,3 +1,3 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;

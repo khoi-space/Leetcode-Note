@@ -8,82 +8,89 @@
 using namespace std;
 using namespace std::chrono;
 
-Solution sol;
-Test test;
-
 int main(int argc, char* argv[]) {
     #ifndef TEST_TO_RUN
-    #define TEST_TO_RUN 1
+    #define TEST_TO_RUN 0
     #endif
 
     #if TEST_TO_RUN == 1
-        test.test1();
+        test1();
     #elif TEST_TO_RUN == 2
-        test.test2();
+        test2();
     #elif TEST_TO_RUN == 3
-        test.test3();
+        test3();
     #elif TEST_TO_RUN == 4
-        test.test4();
+        test4();
     #elif TEST_TO_RUN == 5
-        test.test5();
+        test5();
     #elif TEST_TO_RUN == 6
-        test.test6();
+        test6();
     #elif TEST_TO_RUN == 7
-        test.test7();
+        test7();
     #elif TEST_TO_RUN == 8
-        test.test8();
+        test8();
     #elif TEST_TO_RUN == 9
-        test.test9();
+        test9();
     #elif TEST_TO_RUN == 10
-        test.test10();
+        test10();
     #elif TEST_TO_RUN == 11
-        test.test11();
+        test11();
     #elif TEST_TO_RUN == 12
-        test.test12();
+        test12();
     #elif TEST_TO_RUN == 13
-        test.test13();
+        test13();
     #elif TEST_TO_RUN == 14
-        test.test14();
+        test14();
     #elif TEST_TO_RUN == 15
-        test.test15();
+        test15();
     #elif TEST_TO_RUN == 16
-        test.test16();
+        test16();
     #elif TEST_TO_RUN == 17
-        test.test17();
+        test17();
     #elif TEST_TO_RUN == 18
-        test.test18();
+        test18();
     #elif TEST_TO_RUN == 19
-        test.test19();
+        test19();
     #elif TEST_TO_RUN == 20
-        test.test20();
+        test20();
     #elif TEST_TO_RUN == 21
-        test.test21();
+        test21();
     #elif TEST_TO_RUN == 22
-        test.test22();
+        test22();
     #elif TEST_TO_RUN == 23
-        test.test23();
+        test23();
     #elif TEST_TO_RUN == 24
-        test.test24();
+        test24();
     #elif TEST_TO_RUN == 25
-        test.test25();
+        test25();
     #elif TEST_TO_RUN == 26
-        test.test26();
+        test26();
     #elif TEST_TO_RUN == 27
-        test.test27();
+        test27();
     #elif TEST_TO_RUN == 28
-        test.test28();
+        test28();
     #elif TEST_TO_RUN == 29
-        test.test29();
+        test29();
     #elif TEST_TO_RUN == 30
-        test.test30();
+        test30();
+    #elif TEST_TO_RUN == 162
+        test162();
     #elif TEST_TO_RUN == 1523
-        test.test1523();
+        test1523();
+    #elif TEST_TO_RUN == 1957
+        test1957();
+    #elif TEST_TO_RUN == 2210
+        test2210();
     #elif TEST_TO_RUN == 2211
-        test.test2211();
+        test2211();
     #elif TEST_TO_RUN == 3432
-        test.test3432();
+        test3432();
     #elif TEST_TO_RUN == 3433
-        test.test3433();
+        test3433();
+    #elif TEST_TO_RUN == 3487
+        test3487();
+    #elif TEST_TO_RUN == 3606
+        test3606();
     #else
     #error "Unknown TEST_TO_RUN value"
     #endif

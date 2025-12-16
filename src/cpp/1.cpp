@@ -1,6 +1,6 @@
 
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 #include <iostream>
 using namespace std;
 
@@ -11,7 +11,7 @@ int approach = 0;
  * @input: given an array of integers nums and an integer target, 
  * @output: indices of the two numbers such that they add up to target.
  */
-vector<int> Solution::twoSum(vector<int>& nums, int target) {
+vector<int> twoSum(vector<int>& nums, int target) {
     // int appr = 1;
     if (approach == 1) {
         // Approach 1 (optimal): using hash map (O(n)
@@ -39,8 +39,7 @@ vector<int> Solution::twoSum(vector<int>& nums, int target) {
     return {};
 }
 
-void Test::test1() {
-    extern Solution sol;
+void test1() {
     cout << "Approach:\n";
     cout << "1. Using hash map (*)\n";
     cout << "2. Brute-force\n";
@@ -62,7 +61,7 @@ void Test::test1() {
     int i = 0;
     for (auto& c : cases) {
         ++i;
-        vector<int> res = sol.twoSum(c.nums, c.target);
-        Test::assertTest(res, c.exp, i);
+        vector<int> res = twoSum(c.nums, c.target);
+        assertTest(res, c.exp, i);
     }
 }

@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 using namespace std;
 
 int approach = 0;
@@ -8,7 +8,7 @@ int approach = 0;
  * Problem 1957: Delete Characters to Make Fancy String
  * @detail: a fancy string has no 3 consecutive equal characters
  */
-string Solution::makeFancyString(string s) {
+string makeFancyString(string s) {
     if (approach == 1) {
         // Approach 1: Insert to new string
         if (s.size() < 3) return s;
@@ -49,7 +49,7 @@ string Solution::makeFancyString(string s) {
     return "";
 }
 
-void Test::test1957() {
+void test1957() {
     cout << "Approach:\n";
     cout << "1. Insert to new string\n";
     cout << "2. In-place 2 pointers\n";
@@ -65,10 +65,8 @@ void Test::test1957() {
         {"aaabaaaa", "aabaa"}
     };
 
-    extern Solution sol;
-
     for (int i = 0; i < (int)cases.size(); ++i) {
-        string res = sol.makeFancyString(cases[i].s);
-        Test::assertTest(res, cases[i].exp, i);
+        string res = makeFancyString(cases[i].s);
+        assertTest(res, cases[i].exp, i);
     }
 }

@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 #include <iostream>
 using namespace std;
 
@@ -13,7 +13,7 @@ int approach = 0;
         Y   I   R
  * @output: string that read line by line of the input string (such as "PAHNAPLSIIGYIR")
  */
-string Solution::convertZigzag(string s, int numRows) {
+string convertZigzag(string s, int numRows) {
     if (approach == 1) {
         // Approach 1: Row-wise simulation
         if (numRows == 1 || (int)s.size() <= numRows) return s;
@@ -51,7 +51,7 @@ string Solution::convertZigzag(string s, int numRows) {
     return "";
 }
 
-void Test::test6() {
+void test6() {
     cout << "Approach:\n";
     cout << "1. Row-wise Simulation\n";
     cout << "2. Row-by-row Traversal\n";
@@ -73,11 +73,10 @@ void Test::test6() {
         {"HELLO", 2, "HLOEL"},
     };
 
-    extern Solution sol;
     int i = 0;
     for (const auto& c : cases) {
         ++i;
-        string res = sol.convertZigzag(c.s, c.numRows);
-        Test::assertTest(res, c.exp, i);
+        string res = convertZigzag(c.s, c.numRows);
+        assertTest(res, c.exp, i);
     }
 }

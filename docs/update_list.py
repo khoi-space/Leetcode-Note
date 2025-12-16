@@ -172,11 +172,10 @@ def add_problem_entry(md_filepath: Path) -> bool:
                 # Create parent directories if needed and write default content for C++
                 code_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(code_path, "w", encoding="utf-8") as fcode:
-                    fcode.write('#include "solution.h"\n#include "test.h"\nusing namespace std;\n')
+                    fcode.write('#include "test.h"\n#include "global.h"\nusing namespace std;\n')
                 file_created = True
 
-        # Add a * to the problem number if the code file was just created
-        number_display = f"{number_str}*" if file_created else number_str
+        number_display = f"{number_str}" if file_created else number_str
         # Prepare the entry lines for the markdown file (problem and code link)
         entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
 

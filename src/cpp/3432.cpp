@@ -1,5 +1,5 @@
-#include "solution.h"
 #include "test.h"
+ #include "global.h"
 #include <iostream>
 using namespace std;
 
@@ -10,7 +10,7 @@ int approach = 0;
  * @input: vector<int> nums
  * @output: num of partitions where sum_left - sum_right is even
  */
-int Solution::countPartitions(vector<int>& nums) {
+int countPartitions(vector<int>& nums) {
     if (approach == 1) {
         // Approach 1: Mathematics
         int totalSum = 0;
@@ -52,7 +52,7 @@ int Solution::countPartitions(vector<int>& nums) {
     return 0;
 }
 
-void Test::test3432() {
+void test3432() {
     cout << "Approach:\n";
     cout << "1. Mathematics\n";
     cout << "2. Parity counting\n";
@@ -86,12 +86,12 @@ void Test::test3432() {
         {{1, 2, 3, 4, 5, 6}, 0},
         {{8, 1, 1, 8}, 3},
     };
-    extern Solution sol;
+    
     int i = 0;
     for (const auto& c : cases) {
         ++i;
         vector<int> numsCopy = c.nums;
-        int res = sol.countPartitions(numsCopy);
-        Test::assertTest(res, c.exp, i);
+        int res = countPartitions(numsCopy);
+        assertTest(res, c.exp, i);
     }
 }
