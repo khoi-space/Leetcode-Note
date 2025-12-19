@@ -177,6 +177,10 @@ def add_problem_entry(md_filepath: Path) -> bool:
                         '''#include "test.h"
 #include "global.h"
 using namespace std;
+
+//#define DEBUG
+#define APR 1
+
 /**
  * Problem {}: {}
  * @input: 
@@ -185,6 +189,8 @@ using namespace std;
 
 
 void test{}() {{
+    cout << "Approach " << APR << endl;
+
     struct Case {{
     }};
 
@@ -192,8 +198,9 @@ void test{}() {{
     }};
 
     for (int i = 0; i < (int)cases.size(); ++i) {{
-        // res
-        // assertTest(res, cases[i].exp, i);
+        Case c = cases[i];
+        
+        assertTest(res, c.exp, i);
     }}
 }}
 '''.format(number_str, name, number_str)
