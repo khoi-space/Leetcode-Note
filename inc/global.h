@@ -10,3 +10,5 @@
 #include <algorithm>
 #include <numeric>
 // #include "listnode.h"
+
+#define debug(x)    std::cout << #x << ": " << x << std::endl;
