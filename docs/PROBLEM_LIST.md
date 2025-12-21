@@ -1,5 +1,5 @@
 # LIST OF PROBLEMS
-**Total solved problems: 47**
+**Total solved problems: 50**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -85,6 +85,12 @@
     * [C++](../src/cpp/334.cpp)
 * [443] String Compression [[https://leetcode.com/problems/string-compression/](https://leetcode.com/problems/string-compression/)]
     * [C++](../src/cpp/443.cpp)
+* [1004] Max Consecutive Ones III [[https://leetcode.com/problems/max-consecutive-ones-iii/](https://leetcode.com/problems/max-consecutive-ones-iii/)]
+    * [C++](../src/cpp/1004.cpp)
+* [1456] Maximum Number of Vowels in a Substring of Given Length [[https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)]
+    * [C++](../src/cpp/1456.cpp)
+* [1493] Longest Subarray of 1's After Deleting One Element [[https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/](https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/)]
+    * [C++](../src/cpp/1493.cpp)
 * [1679] Max Number of K-Sum Pairs [[https://leetcode.com/problems/max-number-of-k-sum-pairs/](https://leetcode.com/problems/max-number-of-k-sum-pairs/)]
     * [C++](../src/cpp/1679.cpp)
 * [2110] Number of Smooth Descent Periods of a Stock [[https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/)]

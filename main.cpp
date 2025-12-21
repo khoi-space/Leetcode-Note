@@ -94,10 +94,16 @@ int main(int argc, char* argv[]) {
         test643();
     #elif TEST_TO_RUN == 944
         test944();
+    #elif TEST_TO_RUN == 1004
+        test1004();
     #elif TEST_TO_RUN == 1071
         test1071();
     #elif TEST_TO_RUN == 1431
         test1431();
+    #elif TEST_TO_RUN == 1456
+        test1456();
+    #elif TEST_TO_RUN == 1493
+        test1493();
     #elif TEST_TO_RUN == 1523
         test1523();
     #elif TEST_TO_RUN == 1679

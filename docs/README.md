@@ -1,4 +1,4 @@
-# [Click here to view problem list](PROBLEM_LIST.md)
+[Click here to view problem list](PROBLEM_LIST.md)
 # 📂 STRUCTURE
 ```
 Leetcode/  

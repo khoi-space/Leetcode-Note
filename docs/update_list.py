@@ -193,7 +193,7 @@ void test{}() {{
     cout << "Approach " << APR << " / " << MAX_APR << endl;
 
     struct Case {{
-
+        
     }};
 
     vector<Case> cases = {{
