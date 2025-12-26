@@ -1,5 +1,5 @@
 # LIST OF PROBLEMS
-**Total solved problems: 50**
+**Total solved problems: 51**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -85,6 +85,8 @@
     * [C++](../src/cpp/334.cpp)
 * [443] String Compression [[https://leetcode.com/problems/string-compression/](https://leetcode.com/problems/string-compression/)]
     * [C++](../src/cpp/443.cpp)
+* [955] Delete Columns to Make Sorted II [[https://leetcode.com/problems/delete-columns-to-make-sorted-ii/](https://leetcode.com/problems/delete-columns-to-make-sorted-ii/)]
+    * [C++](../src/cpp/955.cpp)
 * [1004] Max Consecutive Ones III [[https://leetcode.com/problems/max-consecutive-ones-iii/](https://leetcode.com/problems/max-consecutive-ones-iii/)]
     * [C++](../src/cpp/1004.cpp)
 * [1456] Maximum Number of Vowels in a Substring of Given Length [[https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)]

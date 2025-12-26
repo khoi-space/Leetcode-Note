@@ -55,6 +55,7 @@ void test443();
 void test605();
 void test643();
 void test944();
+void test955();
 void test1004();
 void test1071();
 void test1431();
