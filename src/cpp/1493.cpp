@@ -12,7 +12,37 @@ using namespace std;
  * @output: size of the longest non-empty subarray containing only 1's in the array after deleting one element
 */
 int longestSubarray(vector<int>& nums) {
-    return 0;
+    int zero_cnt = 0;
+    int nums_size = nums.size();
+    int longest_window = 0;
+    int cur_zero_idx = -1;
+    int last_zero_idx = -1;
+    
+    int start = 0;
+
+    for (int i = 0; i < nums_size; ++i) {
+        if (nums[i] == 0) {
+            ++zero_cnt;
+            last_zero_idx = cur_zero_idx;
+            cur_zero_idx = i;
+        }
+
+        while (zero_cnt > 1) {
+            zero_cnt -= (nums[start] == 0);
+            // zero_del_idx = start;
+            ++start;
+        }
+
+        if (longest_window < i - start) {
+            longest_window = i - start;
+            // zero_del_idx = i;
+        }
+    }
+    if (last_zero_idx == -1) {
+        nums.erase(nums.begin() + cur_zero_idx);
+    } else nums.erase(nums.begin() + last_zero_idx);
+
+    return longest_window;
 }
 
 void test1493() {
