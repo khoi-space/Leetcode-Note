@@ -1,5 +1,5 @@
 # LIST OF PROBLEMS
-**Total solved problems: 51**
+**Total solved problems: 55**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -31,10 +31,14 @@
     * [C++](../src/cpp/944.cpp)
 * [1071] Greatest Common Divisor of Strings [[https://leetcode.com/problems/greatest-common-divisor-of-strings/](https://leetcode.com/problems/greatest-common-divisor-of-strings/)]
     * [C++](../src/cpp/1071.cpp)
+* [1351] Count Negative Numbers in a Sorted Matrix [[https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)]
+    * [C++](../src/cpp/1351.cpp)
 * [1431] Kids With the Greatest Number of Candies [[https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)]
     * [C++](../src/cpp/1431.cpp)
 * [1523] Count Odd Numbers in an Interval Range [[https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/)]
     * [C++](../src/cpp/1523.cpp)
+* [1732] Find the Highest Altitude [[https://leetcode.com/problems/find-the-highest-altitude/](https://leetcode.com/problems/find-the-highest-altitude/)]
+    * [C++](../src/cpp/1732.cpp)
 * [1768] Merge Strings Alternately [[https://leetcode.com/problems/merge-strings-alternately/](https://leetcode.com/problems/merge-strings-alternately/)]
     * [C++](../src/cpp/1768.cpp)
 * [1925] Count Square Sum Triples [[https://leetcode.com/problems/count-square-sum-triples/](https://leetcode.com/problems/count-square-sum-triples/)]
@@ -43,6 +47,8 @@
     * [C++](../src/cpp/1957.cpp)
 * [2210] Count Hills and Valleys in an Array [[https://leetcode.com/problems/count-hills-and-valleys-in-an-array/](https://leetcode.com/problems/count-hills-and-valleys-in-an-array/)]
     * [C++](../src/cpp/2210.cpp)
+* [3074] Apple Redistribution into Boxes [[https://leetcode.com/problems/apple-redistribution-into-boxes/](https://leetcode.com/problems/apple-redistribution-into-boxes/)]
+    * [C++](../src/cpp/3074.cpp)
 * [3432] Count Partitions with Even Sum Difference [[https://leetcode.com/problems/count-partitions-with-even-sum-difference/](https://leetcode.com/problems/count-partitions-with-even-sum-difference/)]
     * [C++](../src/cpp/3432.cpp)
 * [3487] Maximum Unique Subarray Sum After Deletion [[https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/](https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/)]
@@ -85,6 +91,8 @@
     * [C++](../src/cpp/334.cpp)
 * [443] String Compression [[https://leetcode.com/problems/string-compression/](https://leetcode.com/problems/string-compression/)]
     * [C++](../src/cpp/443.cpp)
+* [840] Magic Squares In Grid [[https://leetcode.com/problems/magic-squares-in-grid/](https://leetcode.com/problems/magic-squares-in-grid/)]
+    * [C++](../src/cpp/840.cpp)
 * [955] Delete Columns to Make Sorted II [[https://leetcode.com/problems/delete-columns-to-make-sorted-ii/](https://leetcode.com/problems/delete-columns-to-make-sorted-ii/)]
     * [C++](../src/cpp/955.cpp)
 * [1004] Max Consecutive Ones III [[https://leetcode.com/problems/max-consecutive-ones-iii/](https://leetcode.com/problems/max-consecutive-ones-iii/)]
