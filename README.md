@@ -2,8 +2,7 @@
 ```
 Leetcode/  
 ├── scripts/            # Documentation and scripts    
-│   ├── PROBLEM_LIST.md   # Markdown file use to list all solved problems 
-│   └── update_readme.py  # Script to update README.md automatically  
+│   └── update_list.py  # Script to update README.md automatically  
 ├── inc/             # C++ header files  
 │   ├── listnode.h        # Definition for ListNode (linked list)  
 │   ├── solution.h        # Solution class declarations  
@@ -21,7 +20,7 @@ Leetcode/
 ├── README.md        
 ```
 ## 📝 NOTE 
-File [update_list.md](scripts/update_list.py) will help to automatically update file [README.md](README.md):
+File [update_list](scripts/update_list.py) will help to automatically update file [README](README.md) with:
 * Add a new solution entry
 * Add a new language to an existed solution
 * Count solutions
