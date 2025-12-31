@@ -17,6 +17,7 @@ inline bool isEqual(const std::vector<T>& lhs, const std::vector<T>& rhs) {
     return true;
 }
 
+// Compare linked lists
 inline bool isEqual(ListNode *lhs, ListNode* rhs) {
     while (lhs && rhs) {
         if (lhs->val != rhs->val) return false;
@@ -25,3 +26,12 @@ inline bool isEqual(ListNode *lhs, ListNode* rhs) {
     }
     return !lhs && !rhs;
 }
+
+// // Compare vectors unordered
+// template<typename T>
+// inline bool isEqualUnordered(const std::vector<T> lhs, const std::vector<T> rhs) {
+//     if (lhs.size() != rhs.size()) return false;
+
+//     sort(lhs.begin(), lhs.end());
+//     sort(rhs.begin(), lhs.end());
+// }

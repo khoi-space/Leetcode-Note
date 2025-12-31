@@ -58,4 +58,84 @@ struct ListNode
             cur = cur->next;
         }
     }
+
+    // Sort linked list using merge sort
+    static ListNode* sort(ListNode* head) {
+        if (!head || !head->next) return head;
+
+        // Find the middle point
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode* mid = slow->next;
+        slow->next = nullptr;
+
+        // Sort each half
+        ListNode* left = sort(head);
+        ListNode* right = sort(mid);
+
+        // Merge two sorted halves
+        return merge(left, right);
+    }
+    // Helper function to merge two sorted lists
+    static ListNode* merge(ListNode* l1, ListNode* l2) {
+        ListNode dummy(0);
+        ListNode* tail = &dummy;
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                tail->next = l1;
+                l1 = l1->next;
+            } else {
+                tail->next = l2;
+                l2 = l2->next;
+            }
+            tail = tail->next;
+        }
+        tail->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
+
+    // Sort linked list with custom comparator
+    template <typename Compare>
+    static ListNode* sort(ListNode* head, Compare comp) {
+        if (!head || !head->next) return head;
+
+        // Find the middle point
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode* mid = slow->next;
+        slow->next = nullptr;
+
+        // Sort each half
+        ListNode* left = sort(head, comp);
+        ListNode* right = sort(mid, comp);
+
+        // Merge two sorted halves with comparator
+        return merge(left, right, comp);
+    }
+    // Helper function to merge two sorted lists with comparator
+    template <typename Compare>
+    static ListNode* merge(ListNode* l1, ListNode* l2, Compare comp) {
+        ListNode dummy(0);
+        ListNode* tail = &dummy;
+        while (l1 && l2) {
+            if (comp(l1->val, l2->val)) {
+                tail->next = l1;
+                l1 = l1->next;
+            } else {
+                tail->next = l2;
+                l2 = l2->next;
+            }
+            tail = tail->next;
+        }
+        tail->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
 };
