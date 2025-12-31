@@ -60,6 +60,7 @@ void test944();
 void test955();
 void test1004();
 void test1071();
+void test1207();
 void test1351();
 void test1431();
 void test1456();

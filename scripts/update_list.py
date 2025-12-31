@@ -3,17 +3,17 @@ import unicodedata
 from pathlib import Path
 
 DOCS_DIR = Path(__file__).resolve().parent
-README_PATH = DOCS_DIR / "README.md"
-LIST_PATH = DOCS_DIR / "README.md"
+README_PATH =  "README.md"
+LIST_PATH = "README.md"
 
 LANG_MAP = {
-    "1": "    * [C++](../src/cpp/{num}.cpp)",
-    "2": "    * [C#](../src/csharp/{num}.cs)",
-    "3": "    * [C](../src/c/{num}.c)",
-    "4": "    * [Python](../src/python/{num}.py)",
-    "5": "    * [Java](../src/java/{num}.java)",
-    "6": "    * [Javascript](../src/javascript/{num}.js)",
-    "7": "    * [TypeScript](../src/typescript/{num}.ts)"
+    "1": "    * [C++](src/cpp/{num}.cpp)",
+    "2": "    * [C#](src/csharp/{num}.cs)",
+    "3": "    * [C](src/c/{num}.c)",
+    "4": "    * [Python](src/python/{num}.py)",
+    "5": "    * [Java](src/java/{num}.java)",
+    "6": "    * [Javascript](src/javascript/{num}.js)",
+    "7": "    * [TypeScript](src/typescript/{num}.ts)"
 }
 
 def _slugify(title: str) -> str:
