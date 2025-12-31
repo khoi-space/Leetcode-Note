@@ -34,6 +34,19 @@ struct ListNode
         return head;
     }
 
+    static ListNode* createList(const vector<int>& list) {
+        int _size = list.size();
+        if (_size == 0) return nullptr;
+
+        ListNode* head = new ListNode(list[0]);
+        ListNode* cur = head;
+        for (int num : list) {
+            cur->next = new ListNode(num);
+            cur = cur->next;
+        }
+        return head;
+    }
+
     void printList() const {
         const ListNode* cur = this;        
         while(cur != nullptr) {

@@ -11,4 +11,8 @@
 #include <numeric>
 // #include "listnode.h"
 
+#ifdef DEBUG
 #define debug(x)    std::cout << #x << ": " << x << std::endl;
+#else
+#define debug(x)    ;
+#endif

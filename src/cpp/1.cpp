@@ -1,10 +1,9 @@
-
+// #define DEBUG
 #include "test.h"
 #include "global.h"
 #include <iostream>
 using namespace std;
 
-#define DEBUG
 #define APR 1
 
 /**

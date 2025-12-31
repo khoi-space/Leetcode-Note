@@ -4,7 +4,7 @@ from pathlib import Path
 
 DOCS_DIR = Path(__file__).resolve().parent
 README_PATH = DOCS_DIR / "README.md"
-LIST_PATH = DOCS_DIR / "PROBLEM_LIST.md"
+LIST_PATH = DOCS_DIR / "README.md"
 
 LANG_MAP = {
     "1": "    * [C++](../src/cpp/{num}.cpp)",
@@ -174,11 +174,11 @@ def add_problem_entry(md_filepath: Path) -> bool:
                 code_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(code_path, "w", encoding="utf-8") as fcode:
                     fcode.write(
-                        '''#include "test.h"
+                        '''//#define DEBUG
+#include "test.h"
 #include "global.h"
 using namespace std;
 
-//#define DEBUG
 #define MAX_APR 1
 #define APR     1
 

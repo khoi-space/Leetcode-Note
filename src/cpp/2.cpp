@@ -1,9 +1,7 @@
-
+#define DEBUG
 #include "test.h"
 #include "global.h"
 using namespace std;
-
-#define DEBUG
 
 /**
  * Problem 2: Add Two Numbers

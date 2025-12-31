@@ -1,9 +1,7 @@
-
+// #define DEBUG
 #include "test.h"
 #include "global.h"
 using namespace std;
-
-#define DEBUG
 
 /**
  * Prolem 3: Longest Substring Without Repeating Characters

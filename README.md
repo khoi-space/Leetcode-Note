@@ -1,5 +1,43 @@
-# LIST OF PROBLEMS
-**Total solved problems: 55**
+# 📂 STRUCTURE
+```
+Leetcode/  
+├── scripts/            # Documentation and scripts    
+│   ├── PROBLEM_LIST.md   # Markdown file use to list all solved problems 
+│   └── update_readme.py  # Script to update README.md automatically  
+├── inc/             # C++ header files  
+│   ├── listnode.h        # Definition for ListNode (linked list)  
+│   ├── solution.h        # Solution class declarations  
+│   └── test.h            # Test class declarations  
+├── src/             # Source code  
+│   ├── cpp/              # C++ solution files  
+│   └── py/               # Python solution files
+│   └── ...               # Support other langs
+├── utils/           # Utility code  
+│   └── compare.h    # Compare unusual types
+│   └── convert.h    # Convert unusual types into string
+├── main.cpp         # Main C++ entry point  
+├── main.py          # Main Python entry point  
+├── Makefile         # Build script for C++  
+├── README.md        
+```
+## 📝 NOTE 
+File [update_list.md](update_list.py) will help to automatically update file [PROBLEM_LIST.md](PROBLEM_LIST.md):
+* Update a new problem section that have just solved.
+* Update a link to a new language of a solved problem.
+* Update numbers of solved problems.
+
+## 🚀 FUTURE PLANS:
+- [ ] Handle with other languages (such as python, java,...)
+- [ ] Create an app to:
+    * [ ] AI assistant: provide suggestions, analyze errors, generate test cases, explain code.
+    * [ ] Statistics & Analytics: progress charts, problem counts by difficulty, tags, solving time, accuracy rate, etc.
+    * [ ] Search & Filtering: by tags, difficulty, status, language, solving date, etc.
+    * [ ] Personal notes & reminders
+    * [ ] Practice mode: random problems, set timers
+    * [ ] Roadmap: suggest a roadmap with similar problems
+
+# 📃 LIST OF SOLUTIONS
+**Total solved problems: 58**
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](../src/cpp/1.cpp)
@@ -27,6 +65,8 @@
     * [C++](../src/cpp/605.cpp)
 * [643] Maximum Average Subarray I [[https://leetcode.com/problems/maximum-average-subarray-i/](https://leetcode.com/problems/maximum-average-subarray-i/)]
     * [C++](../src/cpp/643.cpp)
+* [724] Find Pivot Index [[https://leetcode.com/problems/find-pivot-index/](https://leetcode.com/problems/find-pivot-index/)]
+    * [C++](../src/cpp/724.cpp)
 * [944] Delete Columns to Make Sorted [[https://leetcode.com/problems/delete-columns-to-make-sorted/](https://leetcode.com/problems/delete-columns-to-make-sorted/)]
     * [C++](../src/cpp/944.cpp)
 * [1071] Greatest Common Divisor of Strings [[https://leetcode.com/problems/greatest-common-divisor-of-strings/](https://leetcode.com/problems/greatest-common-divisor-of-strings/)]
@@ -47,6 +87,8 @@
     * [C++](../src/cpp/1957.cpp)
 * [2210] Count Hills and Valleys in an Array [[https://leetcode.com/problems/count-hills-and-valleys-in-an-array/](https://leetcode.com/problems/count-hills-and-valleys-in-an-array/)]
     * [C++](../src/cpp/2210.cpp)
+* [2215] Find the Difference of Two Arrays [[https://leetcode.com/problems/find-the-difference-of-two-arrays/](https://leetcode.com/problems/find-the-difference-of-two-arrays/)]
+    * [C++](../src/cpp/2215.cpp)
 * [3074] Apple Redistribution into Boxes [[https://leetcode.com/problems/apple-redistribution-into-boxes/](https://leetcode.com/problems/apple-redistribution-into-boxes/)]
     * [C++](../src/cpp/3074.cpp)
 * [3432] Count Partitions with Even Sum Difference [[https://leetcode.com/problems/count-partitions-with-even-sum-difference/](https://leetcode.com/problems/count-partitions-with-even-sum-difference/)]
@@ -81,6 +123,8 @@
     * [C++](../src/cpp/17.cpp)
 * [18] 4Sum [[https://leetcode.com/problems/4sum/](https://leetcode.com/problems/4sum/)]
     * [C++](../src/cpp/18.cpp)
+* [19] Remove Nth Node From End of List [[https://leetcode.com/problems/remove-nth-node-from-end-of-list/](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)]
+    * [C++](../src/cpp/19.cpp)
 * [151] Reverse Words in a String [[https://leetcode.com/problems/reverse-words-in-a-string/](https://leetcode.com/problems/reverse-words-in-a-string/)]
     * [C++](../src/cpp/151.cpp)
 * [162] Find Peak Element [[https://leetcode.com/problems/find-peak-element/](https://leetcode.com/problems/find-peak-element/)]
@@ -115,4 +159,5 @@
     * [C++](../src/cpp/4.cpp)
 * [10] Regular Expression Matching [[https://leetcode.com/problems/regular-expression-matching/](https://leetcode.com/problems/regular-expression-matching/)]
     * [C++](../src/cpp/10.cpp)
+
 

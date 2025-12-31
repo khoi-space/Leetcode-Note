@@ -92,6 +92,8 @@ int main(int argc, char* argv[]) {
         test605();
     #elif TEST_TO_RUN == 643
         test643();
+    #elif TEST_TO_RUN == 724
+        test724();
     #elif TEST_TO_RUN == 840
         test840();
     #elif TEST_TO_RUN == 944
@@ -128,6 +130,8 @@ int main(int argc, char* argv[]) {
         test2210();
     #elif TEST_TO_RUN == 2211
         test2211();
+    #elif TEST_TO_RUN == 2215
+        test2215();
     #elif TEST_TO_RUN == 3074
         test3074();
     #elif TEST_TO_RUN == 3432
