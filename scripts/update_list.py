@@ -223,40 +223,41 @@ def add_problem_entry(md_filepath: Path) -> bool:
         leetcode_url = f"https://leetcode.com/problems/{slug}/"
 
 
-        # Build language map for all languages
+        # Prompt for language to create (only create file for selected language)
         lang_map = {k: v.format(num=number_str) for k, v in LANG_MAP.items()}
+        lang_input = get_language_input(lang_map)
+        if lang_input is None:
+            return False
         import os
         import re
         workspace_root = SCRIPTS_DIR.parent
         created_files = []
-        # Template cho từng loại file
-                # templates are stored as external files under scripts/templates/
-        # Tạo file cho tất cả ngôn ngữ trong lang_map
-        for k, code_link in lang_map.items():
-            m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
-            if m:
-                rel_path = m.group(0)[1:-1].replace('/', os.sep)
-                code_path = (workspace_root / rel_path).resolve()
-                ext = os.path.splitext(code_path)[1].lower()
-                if not code_path.exists():
-                    tpl = _load_template(workspace_root, ext)
-                    content = ''
-                    if tpl:
-                        try:
-                            content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
-                        except Exception:
-                            content = tpl
-                    code_path.parent.mkdir(parents=True, exist_ok=True)
-                    with open(code_path, "w", encoding="utf-8") as fcode:
-                        fcode.write(content)
-                    created_files.append(str(code_path))
+        # Create file only for chosen language
+        code_link = lang_map[lang_input]
+        m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
+        if m:
+            rel_path = m.group(0)[1:-1].replace('/', os.sep)
+            code_path = (workspace_root / rel_path).resolve()
+            ext = os.path.splitext(code_path)[1].lower()
+            if not code_path.exists():
+                tpl = _load_template(workspace_root, ext)
+                content = ''
+                if tpl:
+                    try:
+                        content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
+                    except Exception:
+                        content = tpl
+                code_path.parent.mkdir(parents=True, exist_ok=True)
+                with open(code_path, "w", encoding="utf-8") as fcode:
+                    fcode.write(content)
+                created_files.append(str(code_path))
         if created_files:
             print("Created code files:")
             for f in created_files:
                 print(f"  {f}")
         number_display = f"{number_str}" if created_files else number_str
-        # Prepare the entry lines for the markdown file (problem and all code links)
-        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]"] + list(lang_map.values())
+        # Prepare the entry lines for the markdown file (problem and only the chosen code link)
+        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
 
         # Find the correct index to insert the new problem so the list stays sorted by problem number
         insert_idx = section_end
