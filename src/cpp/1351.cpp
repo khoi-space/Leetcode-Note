@@ -1,8 +1,8 @@
+#define DEBUG
 #include "test.h"
 #include "global.h"
 using namespace std;
 
-//#define DEBUG
 #define MAX_APR 1
 #define APR     1
 
