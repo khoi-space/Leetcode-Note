@@ -3,12 +3,16 @@
 #include "convert.h"
 
 template <typename T>
-void assertTest(const T& res, const T& exp, const int caseName) {
+bool assertTest(const T& res, const T& exp, const int caseName) {
 	cout << "Case " << caseName << ": ";
 	if (!isEqual(res, exp)) {
-		cout << "\033[31mFAILED\033[0m: " << "Expected=" << exp << " Got=" << res << endl;
+		cout << "\033[1;31mFAILED\033[0m" << endl;
+		cout << "   \033[32mExpected\033[0m : " << exp << endl;
+		cout << "   \033[31mGot\033[0m      : " << res << endl;
+		return false;
 	} else {
-		cout << "\033[32mPASSED\033[0m\n";
+		cout << "\033[1;32mPASSED\033[0m\n";
+		return true;
 	}
 }
 
@@ -43,6 +47,7 @@ void test27();
 void test28();
 void test29();
 void test30();
+void test66();
 void test67();
 void test151();
 void test162();
@@ -66,6 +71,7 @@ void test1431();
 void test1456();
 void test1493();
 void test1523();
+void test1657();
 void test1679();
 void test1732();
 void test1768();
@@ -75,6 +81,8 @@ void test2110();
 void test2210();
 void test2211();
 void test2215();
+void test2352();
+void test2390();
 void test3074();
 void test3432();
 void test3433();

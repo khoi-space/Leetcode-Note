@@ -8,14 +8,14 @@ inline bool isEqual(const T& lhs, const T& rhs) {
 }
 
 // Compare vectors
-template<typename T>
-inline bool isEqual(const std::vector<T>& lhs, const std::vector<T>& rhs) {
-    if (lhs.size() != rhs.size()) return false;
-    for (size_t i = 0; i < lhs.size(); ++i) {
-        if (!isEqual(lhs[i], rhs[i])) return false;
-    }
-    return true;
-}
+// template<typename T>
+// inline bool isEqual(const std::vector<T>& lhs, const std::vector<T>& rhs) {
+//     if (lhs.size() != rhs.size()) return false;
+//     for (size_t i = 0; i < lhs.size(); ++i) {
+//         if (!isEqual(lhs[i], rhs[i])) return false;
+//     }
+//     return true;
+// }
 
 // Compare linked lists
 inline bool isEqual(ListNode *lhs, ListNode* rhs) {

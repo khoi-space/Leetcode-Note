@@ -2,7 +2,7 @@ import re
 import unicodedata
 from pathlib import Path
 
-DOCS_DIR = Path(__file__).resolve().parent
+SCRIPTS_DIR = Path(__file__).resolve().parent
 README_PATH =  "README.md"
 LIST_PATH = "README.md"
 
@@ -158,19 +158,20 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
         # Check and create the code file if it does not exist
         code_link = lang_map[lang_input]
-        # Extract the relative file path from the markdown link
         import os
         import re
-        m = re.search(r'\((\.\./src/[^)]+)\)', code_link)
+        # Fix regex to match both src/... and ../src/...
+        m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
         file_created = False
         code_path = None
+        # Set workspace_root to the parent of the scripts directory (project root)
+        workspace_root = SCRIPTS_DIR.parent
         if m:
-            rel_path = m.group(1).replace('/', os.sep)
-            workspace_root = DOCS_DIR
+            # Get code file path from markdown link
+            rel_path = m.group(0)[1:-1].replace('/', os.sep)  # Remove parentheses
             code_path = (workspace_root / rel_path).resolve()
             if not code_path.exists():
                 # ---------- Create new file -------------
-                # Create parent directories if needed and write default content for C++
                 code_path.parent.mkdir(parents=True, exist_ok=True)
                 with open(code_path, "w", encoding="utf-8") as fcode:
                     fcode.write(
@@ -179,8 +180,10 @@ def add_problem_entry(md_filepath: Path) -> bool:
 #include "global.h"
 using namespace std;
 
-#define MAX_APR 1
-#define APR     1
+//#define MAX_APR 1
+//#define APR     1
+
+static apr_idea = "";
 
 /**
  * Problem {}: {}
@@ -190,8 +193,6 @@ using namespace std;
 
 
 void test{}() {{
-    cout << "Approach " << APR << " / " << MAX_APR << endl;
-
     struct Case {{
         
     }};
@@ -205,11 +206,17 @@ void test{}() {{
         
         assertTest(res, c.exp, i);
     }}
+
+    #ifdef APR
+    cout << "--------------------------------" << endl;
+    cout << "\033[1m\033[34mApproach:\033[0m " << APR << " / " << MAX_APR << endl;
+    cout << ">>>> " << apr_idea << endl;
+    #endif
 }}
 '''.format(number_str, name, number_str)
-)
-        print(f"Created code file: {code_path}")
-        file_created = True
+                )
+            print(f"Created code file: {code_path}")
+            file_created = True
         number_display = f"{number_str}" if file_created else number_str
         # Prepare the entry lines for the markdown file (problem and code link)
         entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
@@ -238,7 +245,7 @@ void test{}() {{
     
         # ------------ Update test.h ----------------
         # Insert the prototype in sorted order in test.h
-        test_h_path = workspace_root.parent / 'inc' / 'test.h'
+        test_h_path = workspace_root / 'inc' / 'test.h'
         try:
             proto = f'void test{number_str}();\n'
             with open(test_h_path, 'r', encoding='utf-8') as ftest:
@@ -266,20 +273,20 @@ void test{}() {{
             print(f"Warning: Could not update test.h: {e}")
 
         # ----------------- Update main.cpp --------------------
-        # Insert #elif for the new test in main.cpp in sorted order (giống logic update test.h)
-        main_cpp_path = workspace_root.parent / 'main.cpp'
+        # Insert #elif for the new test in main.cpp in sorted order (same logic as update test.h)
+        main_cpp_path = workspace_root / 'main.cpp'
         try:
             proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
             proto_call = f'        test{number_str}();\n'
             with open(main_cpp_path, 'r', encoding='utf-8') as fmain:
                 main_lines = fmain.readlines()
-            # Kiểm tra trùng lặp
+            # Check for duplicate
             for line in main_lines:
                 m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
                 if m and int(m.group(1)) == int(number_str):
                     print(f"main.cpp: TEST_TO_RUN == {number_str} already exists, no update needed.")
                     return True
-            # Tìm vị trí chèn theo thứ tự tăng dần
+            # Find the position to insert in increasing order
             insert_idx = None
             for i, line in enumerate(main_lines):
                 m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
@@ -293,7 +300,7 @@ void test{}() {{
             if insert_idx is not None:
                 main_lines[insert_idx:insert_idx] = new_block
             else:
-                # Insert trước #else
+                # Insert before #else
                 for i, line in enumerate(main_lines):
                     if line.strip().startswith('#else'):
                         main_lines[i:i] = new_block
