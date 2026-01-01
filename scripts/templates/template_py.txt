@@ -1,0 +1,42 @@
+from typing import List, Optional, Dict, Set, Tuple
+import collections
+import heapq
+import itertools
+import math
+
+"""
+Problem {num}: {name}
+LeetCode: {leetcode}
+"""
+
+#Implement function
+class Solution(object):
+    def
+
+def test{num}():
+    class Case:
+        def __init__(exp):
+            #Inputs
+
+            #Expected
+            self.exp = exp
+
+    cases = [
+        Case(),
+        Case(),
+        Case()
+    ]
+
+    sol = Solution()
+
+    for i, c in enumerate(cases):
+        res = sol.
+        if res == c.exp:
+            print(f"Test case {i+1} passed.")
+        else:
+            print(f"Test case {i+1} failed: got {res}, expected {c.exp}")
+    print("Done.")
+
+
+if __name__ == "__main__":
+    test{num}()

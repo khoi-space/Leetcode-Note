@@ -1,0 +1,13 @@
+/*
+Problem {num}: {name}
+LeetCode: {leetcode}
+*/
+
+void test{num}() {
+    // TODO: Implement test cases
+}
+
+int main() {
+    test{num}();
+    return 0;
+}

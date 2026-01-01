@@ -16,6 +16,33 @@ LANG_MAP = {
     "7": "    * [TypeScript](src/typescript/{num}.ts)"
 }
 
+
+def _load_template(workspace_root: Path, ext: str) -> str:
+    """Load a template file from scripts/templates for the given extension.
+    Template filenames: template_py.txt, template_cpp.txt, template_js.txt, template_java.txt,
+    template_cs.txt, template_ts.txt, template_c.txt
+    Returns empty string if not found.
+    """
+    name_map = {
+        '.py': 'template_py.txt',
+        '.cpp': 'template_cpp.txt',
+        '.js': 'template_js.txt',
+        '.java': 'template_java.txt',
+        '.cs': 'template_cs.txt',
+        '.ts': 'template_ts.txt',
+        '.c': 'template_c.txt',
+    }
+    fname = name_map.get(ext)
+    if not fname:
+        return ''
+    tpl_path = workspace_root / 'scripts' / 'templates' / fname
+    if not tpl_path.exists():
+        return ''
+    try:
+        return tpl_path.read_text(encoding='utf-8')
+    except Exception:
+        return ''
+
 def _slugify(title: str) -> str:
     """Return a LeetCode-friendly slug derived from the problem title."""
     normalized = unicodedata.normalize("NFKD", title)
@@ -67,6 +94,51 @@ def add_language_link_to_problem(number_str, lang_key, lang_map, markdown_file_p
         with open(markdown_file_path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
         print(f"Added link for problem {number_str}")
+
+        # --------- Tạo file code nếu chưa tồn tại ---------
+        import os
+        import re
+        from pathlib import Path
+        SCRIPTS_DIR = Path(__file__).resolve().parent
+        workspace_root = SCRIPTS_DIR.parent
+        code_link = lang_line
+        m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
+        if m:
+            rel_path = m.group(0)[1:-1].replace('/', os.sep)
+            code_path = (workspace_root / rel_path).resolve()
+            ext = os.path.splitext(code_path)[1].lower()
+            # Try to extract problem name from the markdown entry line
+            entry_line = lines[entry_idx].strip() if entry_idx is not None else ''
+            name = ''
+            leetcode_url = ''
+            try:
+                mname = re.match(r"\* \[\d+\]\s+(.*?)\s+\[\[", entry_line)
+                if mname:
+                    name = mname.group(1)
+                else:
+                    parts = entry_line.split('] ', 1)
+                    if len(parts) > 1:
+                        name = parts[1].split(' [[')[0]
+                # try to extract leetcode url
+                murl = re.search(r'\((https?://[^)]+)\)', entry_line)
+                if murl:
+                    leetcode_url = murl.group(1)
+            except Exception:
+                pass
+            # templates are loaded from scripts/templates via _load_template
+            if not code_path.exists():
+                tpl = _load_template(workspace_root, ext)
+                content = ''
+                if tpl:
+                    # Replace only the known placeholders to avoid formatting errors
+                    try:
+                        content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
+                    except Exception:
+                        content = tpl
+                code_path.parent.mkdir(parents=True, exist_ok=True)
+                with open(code_path, "w", encoding="utf-8") as fcode:
+                    fcode.write(content)
+                print(f"Created code file: {code_path}")
         return True
     except Exception as e:
         print(f"Error: {e}")
@@ -150,76 +222,41 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
         leetcode_url = f"https://leetcode.com/problems/{slug}/"
 
-        # Prompt for language and build the language map for the selected problem number
-        lang_map = {k: v.format(num=number_str) for k, v in LANG_MAP.items()}
-        lang_input = get_language_input(lang_map)
-        if lang_input is None:
-            return False
 
-        # Check and create the code file if it does not exist
-        code_link = lang_map[lang_input]
+        # Build language map for all languages
+        lang_map = {k: v.format(num=number_str) for k, v in LANG_MAP.items()}
         import os
         import re
-        # Fix regex to match both src/... and ../src/...
-        m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
-        file_created = False
-        code_path = None
-        # Set workspace_root to the parent of the scripts directory (project root)
         workspace_root = SCRIPTS_DIR.parent
-        if m:
-            # Get code file path from markdown link
-            rel_path = m.group(0)[1:-1].replace('/', os.sep)  # Remove parentheses
-            code_path = (workspace_root / rel_path).resolve()
-            if not code_path.exists():
-                # ---------- Create new file -------------
-                code_path.parent.mkdir(parents=True, exist_ok=True)
-                with open(code_path, "w", encoding="utf-8") as fcode:
-                    fcode.write(
-                        '''//#define DEBUG
-#include "test.h"
-#include "global.h"
-using namespace std;
-
-//#define MAX_APR 1
-//#define APR     1
-
-static apr_idea = "";
-
-/**
- * Problem {}: {}
- * @input: 
- * @output: 
-*/
-
-
-void test{}() {{
-    struct Case {{
-        
-    }};
-
-    vector<Case> cases = {{
-        
-    }};
-
-    for (int i = 0; i < (int)cases.size(); ++i) {{
-        Case c = cases[i];
-        
-        assertTest(res, c.exp, i);
-    }}
-
-    #ifdef APR
-    cout << "--------------------------------" << endl;
-    cout << "\033[1m\033[34mApproach:\033[0m " << APR << " / " << MAX_APR << endl;
-    cout << ">>>> " << apr_idea << endl;
-    #endif
-}}
-'''.format(number_str, name, number_str)
-                )
-            print(f"Created code file: {code_path}")
-            file_created = True
-        number_display = f"{number_str}" if file_created else number_str
-        # Prepare the entry lines for the markdown file (problem and code link)
-        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
+        created_files = []
+        # Template cho từng loại file
+                # templates are stored as external files under scripts/templates/
+        # Tạo file cho tất cả ngôn ngữ trong lang_map
+        for k, code_link in lang_map.items():
+            m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
+            if m:
+                rel_path = m.group(0)[1:-1].replace('/', os.sep)
+                code_path = (workspace_root / rel_path).resolve()
+                ext = os.path.splitext(code_path)[1].lower()
+                if not code_path.exists():
+                    tpl = _load_template(workspace_root, ext)
+                    content = ''
+                    if tpl:
+                        try:
+                            content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
+                        except Exception:
+                            content = tpl
+                    code_path.parent.mkdir(parents=True, exist_ok=True)
+                    with open(code_path, "w", encoding="utf-8") as fcode:
+                        fcode.write(content)
+                    created_files.append(str(code_path))
+        if created_files:
+            print("Created code files:")
+            for f in created_files:
+                print(f"  {f}")
+        number_display = f"{number_str}" if created_files else number_str
+        # Prepare the entry lines for the markdown file (problem and all code links)
+        entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]"] + list(lang_map.values())
 
         # Find the correct index to insert the new problem so the list stays sorted by problem number
         insert_idx = section_end
@@ -243,73 +280,74 @@ void test{}() {{
             f.write("\n".join(lines) + "\n")
         print(f"Added problem {number_str} to {header}")
     
-        # ------------ Update test.h ----------------
-        # Insert the prototype in sorted order in test.h
-        test_h_path = workspace_root / 'inc' / 'test.h'
-        try:
-            proto = f'void test{number_str}();\n'
-            with open(test_h_path, 'r', encoding='utf-8') as ftest:
-                lines = ftest.readlines()
-            # Find the correct position to insert so the prototypes are sorted
-            insert_idx = None
-            for i, line in enumerate(lines):
-                m = re.match(r'void test(\d+)\(\);', line.strip())
-                if m:
-                    cur_num = int(m.group(1))
-                    # Insert before the first prototype with a greater number
-                    if int(number_str) < cur_num:
-                        insert_idx = i
-                        break
-            if insert_idx is None:
-                # If not found, insert at the end before EOF
-                insert_idx = len(lines)
-            # Avoid duplicate prototypes
-            if proto not in lines:
-                lines.insert(insert_idx, proto)
-                with open(test_h_path, 'w', encoding='utf-8') as ftest:
-                    ftest.writelines(lines)
-            print('Update test.h')
-        except Exception as e:
-            print(f"Warning: Could not update test.h: {e}")
+        # ------------ Update test.h và main.cpp chỉ nếu có C++ -------------
+        if any('.cpp' in f for f in created_files):
+            # Insert the prototype in sorted order in test.h
+            test_h_path = workspace_root / 'inc' / 'test.h'
+            try:
+                proto = f'void test{number_str}();\n'
+                with open(test_h_path, 'r', encoding='utf-8') as ftest:
+                    lines = ftest.readlines()
+                # Find the correct position to insert so the prototypes are sorted
+                insert_idx = None
+                for i, line in enumerate(lines):
+                    m = re.match(r'void test(\d+)\(\);', line.strip())
+                    if m:
+                        cur_num = int(m.group(1))
+                        # Insert before the first prototype with a greater number
+                        if int(number_str) < cur_num:
+                            insert_idx = i
+                            break
+                if insert_idx is None:
+                    # If not found, insert at the end before EOF
+                    insert_idx = len(lines)
+                # Avoid duplicate prototypes
+                if proto not in lines:
+                    lines.insert(insert_idx, proto)
+                    with open(test_h_path, 'w', encoding='utf-8') as ftest:
+                        ftest.writelines(lines)
+                print('Update test.h')
+            except Exception as e:
+                print(f"Warning: Could not update test.h: {e}")
 
-        # ----------------- Update main.cpp --------------------
-        # Insert #elif for the new test in main.cpp in sorted order (same logic as update test.h)
-        main_cpp_path = workspace_root / 'main.cpp'
-        try:
-            proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
-            proto_call = f'        test{number_str}();\n'
-            with open(main_cpp_path, 'r', encoding='utf-8') as fmain:
-                main_lines = fmain.readlines()
-            # Check for duplicate
-            for line in main_lines:
-                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
-                if m and int(m.group(1)) == int(number_str):
-                    print(f"main.cpp: TEST_TO_RUN == {number_str} already exists, no update needed.")
-                    return True
-            # Find the position to insert in increasing order
-            insert_idx = None
-            for i, line in enumerate(main_lines):
-                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
-                if m:
-                    cur_num = int(m.group(1))
-                    num_to_add = int(number_str)
-                    if num_to_add < cur_num and insert_idx is None:
-                        insert_idx = i
-                        break
-            new_block = [proto_elif, proto_call]
-            if insert_idx is not None:
-                main_lines[insert_idx:insert_idx] = new_block
-            else:
-                # Insert before #else
+            # ----------------- Update main.cpp --------------------
+            # Insert #elif for the new test in main.cpp in sorted order (same logic as update test.h)
+            main_cpp_path = workspace_root / 'main.cpp'
+            try:
+                proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
+                proto_call = f'        test{number_str}();\n'
+                with open(main_cpp_path, 'r', encoding='utf-8') as fmain:
+                    main_lines = fmain.readlines()
+                # Check for duplicate
+                for line in main_lines:
+                    m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                    if m and int(m.group(1)) == int(number_str):
+                        print(f"main.cpp: TEST_TO_RUN == {number_str} already exists, no update needed.")
+                        return True
+                # Find the position to insert in increasing order
+                insert_idx = None
                 for i, line in enumerate(main_lines):
-                    if line.strip().startswith('#else'):
-                        main_lines[i:i] = new_block
-                        break
-            with open(main_cpp_path, 'w', encoding='utf-8') as fmain:
-                fmain.writelines(main_lines)
-            print('Update main.cpp')
-        except Exception as e:
-            print(f"Warning: Could not update main.cpp: {e}")
+                    m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                    if m:
+                        cur_num = int(m.group(1))
+                        num_to_add = int(number_str)
+                        if num_to_add < cur_num and insert_idx is None:
+                            insert_idx = i
+                            break
+                new_block = [proto_elif, proto_call]
+                if insert_idx is not None:
+                    main_lines[insert_idx:insert_idx] = new_block
+                else:
+                    # Insert before #else
+                    for i, line in enumerate(main_lines):
+                        if line.strip().startswith('#else'):
+                            main_lines[i:i] = new_block
+                            break
+                with open(main_cpp_path, 'w', encoding='utf-8') as fmain:
+                    fmain.writelines(main_lines)
+                print('Update main.cpp')
+            except Exception as e:
+                print(f"Warning: Could not update main.cpp: {e}")
 
         return True
     except FileNotFoundError:

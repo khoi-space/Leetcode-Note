@@ -1,0 +1,18 @@
+// Problem {num}: {name}
+// LeetCode: {leetcode}
+
+public class Solution{num} {
+    public static int[] solution(int[] nums, int target) {
+        // TODO: implement
+        return new int[]{};
+    }
+
+    public static void test{num}() {
+        // TODO: add tests
+        System.out.println("Done.");
+    }
+
+    public static void main(String[] args) {
+        test{num}();
+    }
+}
