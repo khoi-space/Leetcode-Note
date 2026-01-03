@@ -107,11 +107,10 @@ File [update_list](scripts/update_list.py) will help to automatically update fil
     * [C++](src/cpp/3433.cpp)
 
 ## 🟢Easy
-* [0] test [[https://leetcode.com/problems/test/](https://leetcode.com/problems/test/)]
-    * [C++](src/cpp/solutions/0.cpp)
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](src/cpp/1.cpp)
     * [Python](src/python/1.py)
+    * [C](src/c/solutions/1.c)
 * [9] Palindrome Number [[https://leetcode.com/problems/palindrome-number/](https://leetcode.com/problems/palindrome-number/)]
     * [C++](src/cpp/9.cpp)
 * [13] Roman to Integer [[https://leetcode.com/problems/roman-to-integer/](https://leetcode.com/problems/roman-to-integer/)]

@@ -1,3 +1,6 @@
+#ifndef CONVERT_H
+#define CONVERT_H
+
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -13,3 +16,5 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
     os << "]";
     return os;
 }
+
+#endif // CONVERT_H

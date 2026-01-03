@@ -1,3 +1,6 @@
+#ifndef LISTNODE_H
+#define LISTNODE_H
+
 #include <iostream>
 using namespace std;
 
@@ -139,3 +142,5 @@ struct ListNode
         return dummy.next;
     }
 };
+
+#endif // LISTNODE_H

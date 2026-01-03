@@ -1,3 +1,6 @@
+#ifndef GLOBAL_H
+#define GLOBAL_H
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -11,7 +14,6 @@
 #include <climits>
 #include <algorithm>
 #include <numeric>
-// #include "listnode.h"
 
 #ifdef DEBUG
 #define db_put(x)      std::cout << "\033[30m" << #x << ": " << x << " | " <<  "\033[0m";
@@ -22,3 +24,5 @@
 #define db_dump(x)     ;
 #define db_say(x)      ;
 #endif
+
+#endif // GLOBAL_H

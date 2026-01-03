@@ -1,10 +1,13 @@
 import re
+import os
 import unicodedata
 from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 README_PATH =  "README.md"
 LIST_PATH = "README.md"
+
+workspace_root = Path(__file__).resolve().parent
 
 LANG_MAP = {
     "1": "    * [C++](src/cpp/solutions/{num}.cpp)",
@@ -95,12 +98,7 @@ def add_language_link_to_problem(number_str, lang_key, lang_map, markdown_file_p
             f.write("\n".join(lines) + "\n")
         print(f"Added link for problem {number_str}")
 
-        # --------- Tạo file code nếu chưa tồn tại ---------
-        import os
-        import re
-        from pathlib import Path
-        SCRIPTS_DIR = Path(__file__).resolve().parent
-        workspace_root = SCRIPTS_DIR.parent
+        # --------- Create code file if not existed ---------
         code_link = lang_line
         m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
         if m:
@@ -228,9 +226,6 @@ def add_problem_entry(md_filepath: Path) -> bool:
         lang_input = get_language_input(lang_map)
         if lang_input is None:
             return False
-        import os
-        import re
-        workspace_root = SCRIPTS_DIR.parent
         created_files = []
         # Create file only for chosen language
         code_link = lang_map[lang_input]

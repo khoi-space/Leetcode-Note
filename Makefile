@@ -1,63 +1,55 @@
-CXX = g++
-TARGET = main
-
-# Compiler flags and include paths
-CXXFLAGS = -std=c++17 -Wall -g -Isrc/cpp
-
 # Source layout
 SRC_DIR = src
-LANG = cpp
-MAIN_SRC = $(SRC_DIR)/$(LANG)/main.cpp
-
-# Python solutions directory
-PY_SOL_DIR = $(SRC_DIR)/python/solutions
-
-# Default sources (no implicit PROBLEM handling)
-SOURCES = $(MAIN_SRC)
-
-# Default target prints help (avoid implicit PROBLEM build)
-all: help
-
-# Build the main executable (manual use only)
-$(TARGET): $(SOURCES)
-	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(TARGET).exe
-	./$(TARGET).exe
-
-# Run the program
-run:
-	./$(TARGET).exe
-
-# Clean up generated files (Windows)
-clean:
-	del /f $(TARGET).exe 2>nul || echo Clean completed
-
-# Rebuild everything
-rebuild: clean all
 
 # Show help
 help:
 	@echo "Available targets:"
-	@echo "  all        - Show help (default)"
-	@echo "  run        - Build and run the program"
-	@echo "  clean      - Remove all generated files"
-	@echo "  rebuild    - Clean and build"
 	@echo "  help       - Show this help"
-	@echo "  cpp        - Build+run C++ solution: PROBLEM=<id>"
-	@echo "  py         - Run Python solution: PROBLEM=<id>"
+	@echo "  cpp        - Build + run C++ solution: id=<id>"
+	@echo "  py         - Run Python solution: id=<id>"
+	@echo "  c          - Build + run C solution: id=<id>"
 
-.PHONY: all run clean rebuild help
+clean: 
+	del /f main_cpp.exe 2>nul
+	del /f main_c.exe 2>nul
+
+.PHONY: help py cpp c clean run
 
 # --------------- PYTHON SECTION -----------------------
-# Run a Python solution by problem ID: mingw32-make py PROBLEM=17
+# Run a Python solution by problem id: mingw32-make py id=17
+
+# Python solutions directory
+PY_SOL_DIR = $(SRC_DIR)/python/solutions
+
 py:
-	@if not defined PROBLEM (echo Set PROBLEM=ID, e.g., mingw32-make py PROBLEM=1 & exit /b 1)
-	@echo Running Python problem $(PROBLEM)...
-	set PYTHONPATH=$(SRC_DIR)/python & python $(PY_SOL_DIR)/$(PROBLEM).py
+	@if not defined id (echo Please set problem id e.g., mingw32-make py id=1 & exit /b 1)
+	@powershell -NoProfile -Command "Write-Host '----- Python: Problem ${id} -----' -ForegroundColor Blue"
+	set PYTHONPATH=$(SRC_DIR)/python & python $(PY_SOL_DIR)/$(id).py
 
 # --------------- C++ SECTION --------------------------
-# Build and run a C++ solution by problem ID: mingw32-make cpp PROBLEM=1
+# NOTE: We will run main.cpp because we don't wanna to see too much .exe files (e.g., 1.exe, 2.exe,...)
+# Build and run a C++ solution by problem id: mingw32-make cpp id=1
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -g -Isrc/cpp
+# Directory of main.cpp 
+MAIN_CPP_SRC = $(SRC_DIR)/cpp/main.cpp
+
 cpp:
-	@if not defined PROBLEM (echo Set PROBLEM=ID, e.g., mingw32-make cpp PROBLEM=1 & exit /b 1)
-	@echo Building C++ problem $(PROBLEM)...
-	$(CXX) $(CXXFLAGS) -DTEST_TO_RUN=$(PROBLEM) $(MAIN_SRC) $(SRC_DIR)/$(LANG)/solutions/$(PROBLEM).cpp -o $(TARGET).exe
-	./$(TARGET).exe
+	@if not defined id (echo Please set problem id, e.g., mingw32-make cpp id=1 & exit /b 1)
+	$(CXX) $(CXXFLAGS) -DTEST_TO_RUN=$(id) $(MAIN_CPP_SRC) $(SRC_DIR)/cpp/solutions/$(id).cpp -o main_cpp.exe
+	@powershell -NoProfile -Command "Write-Host '----- C++: Problem ${id} -----' -ForegroundColor Blue"
+	./main_cpp.exe
+
+# --------------- C SECTION --------------------------
+CC = gcc
+CFLAGS = -std=c11 -Wall -g -Isrc/c
+# Directory of main.c
+MAIN_C_SRC = $(SRC_DIR)/c/main.c
+
+# Build and run a C solution by problem id: mingw32-make c id=1
+c:
+	@if not defined id (echo Please set problem id, e.g., mingw32-make c id=1 & exit /b 1)
+	$(CC) $(CFLAGS) -DTEST_TO_RUN=$(id) $(MAIN_C_SRC) $(SRC_DIR)/c/solutions/$(id).c -o main_c.exe
+	@powershell -NoProfile -Command "Write-Host '----- C: Problem ${id} -----' -ForegroundColor Blue"
+	./main_c.exe
+

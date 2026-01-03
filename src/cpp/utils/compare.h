@@ -1,4 +1,8 @@
+#ifndef COMPARE_H
+#define COMPARE_H
+
 #include <vector>
+#include <cmath>
 #include "../inc/listnode.h"
 
 // Compare basic types
@@ -35,3 +39,5 @@ inline bool isEqual(ListNode *lhs, ListNode* rhs) {
 //     sort(lhs.begin(), lhs.end());
 //     sort(rhs.begin(), lhs.end());
 // }
+
+#endif // COMPARE_H

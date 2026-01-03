@@ -1,4 +1,3 @@
-#include <cmath>
 #include "../utils/compare.h"
 #include "../utils/convert.h"
 

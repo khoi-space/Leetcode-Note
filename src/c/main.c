@@ -1,7 +1,6 @@
 // #include "test.h"
 #include "inc/test.h"
 #include "inc/global.h"
-using namespace std;
 
 int main(int argc, char* argv[]) {
     #ifndef TEST_TO_RUN
@@ -150,8 +149,10 @@ int main(int argc, char* argv[]) {
         test3487();
     #elif TEST_TO_RUN == 3606
         test3606();
+    #elif TEST_TO_RUN == 4000
+        test4000();
     #else
-        cout << "Unknown TEST_TO_RUN value";
+        printf("Unknown TEST_TO_RUN value");
     #endif
     return 0;
 }
