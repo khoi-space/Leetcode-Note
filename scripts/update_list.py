@@ -7,13 +7,13 @@ README_PATH =  "README.md"
 LIST_PATH = "README.md"
 
 LANG_MAP = {
-    "1": "    * [C++](src/cpp/{num}.cpp)",
-    "2": "    * [C#](src/csharp/{num}.cs)",
-    "3": "    * [C](src/c/{num}.c)",
-    "4": "    * [Python](src/python/{num}.py)",
-    "5": "    * [Java](src/java/{num}.java)",
-    "6": "    * [Javascript](src/javascript/{num}.js)",
-    "7": "    * [TypeScript](src/typescript/{num}.ts)"
+    "1": "    * [C++](src/cpp/solutions/{num}.cpp)",
+    "2": "    * [C#](src/csharp/solutions/{num}.cs)",
+    "3": "    * [C](src/c/solutions/{num}.c)",
+    "4": "    * [Python](src/python/solutions/{num}.py)",
+    "5": "    * [Java](src/java/solutions/{num}.java)",
+    "6": "    * [Javascript](src/javascript/solutions/{num}.js)",
+    "7": "    * [TypeScript](src/typescript/solutions/{num}.ts)"
 }
 
 
@@ -284,7 +284,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
         # ------------ Update test.h và main.cpp chỉ nếu có C++ -------------
         if any('.cpp' in f for f in created_files):
             # Insert the prototype in sorted order in test.h
-            test_h_path = workspace_root / 'inc' / 'test.h'
+            test_h_path = workspace_root / 'src' / 'cpp' / 'inc' / 'test.h'
             try:
                 proto = f'void test{number_str}();\n'
                 with open(test_h_path, 'r', encoding='utf-8') as ftest:
@@ -313,7 +313,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
 
             # ----------------- Update main.cpp --------------------
             # Insert #elif for the new test in main.cpp in sorted order (same logic as update test.h)
-            main_cpp_path = workspace_root / 'main.cpp'
+            main_cpp_path = workspace_root / 'src' / 'cpp' / 'main.cpp'
             try:
                 proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
                 proto_call = f'        test{number_str}();\n'

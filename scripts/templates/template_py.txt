@@ -15,7 +15,7 @@ class Solution(object):
 
 def test{num}():
     class Case:
-        def __init__(exp):
+        def __init__(self, exp):
             #Inputs
 
             #Expected

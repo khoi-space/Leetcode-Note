@@ -66,6 +66,7 @@ File [update_list](scripts/update_list.py) will help to automatically update fil
     * [C++](src/cpp/16.cpp)
 * [17] Letter Combinations of a Phone Number [[https://leetcode.com/problems/letter-combinations-of-a-phone-number/](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)]
     * [C++](src/cpp/17.cpp)
+    * [Python](src/python/17.py)
 * [18] 4Sum [[https://leetcode.com/problems/4sum/](https://leetcode.com/problems/4sum/)]
     * [C++](src/cpp/18.cpp)
 * [19] Remove Nth Node From End of List [[https://leetcode.com/problems/remove-nth-node-from-end-of-list/](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)]
@@ -106,6 +107,8 @@ File [update_list](scripts/update_list.py) will help to automatically update fil
     * [C++](src/cpp/3433.cpp)
 
 ## 🟢Easy
+* [0] test [[https://leetcode.com/problems/test/](https://leetcode.com/problems/test/)]
+    * [C++](src/cpp/solutions/0.cpp)
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](src/cpp/1.cpp)
     * [Python](src/python/1.py)
