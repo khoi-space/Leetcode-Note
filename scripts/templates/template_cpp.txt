@@ -1,6 +1,6 @@
 // #define DEBUG
-#include "test.h"
-#include "global.h"
+#include "inc/test.h"
+#include "inc/global.h"
 using namespace std;
 
 // #define MAX_APR 1

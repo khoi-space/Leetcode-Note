@@ -4,6 +4,8 @@ import heapq
 import itertools
 import math
 
+from inc.test import *
+
 """
 Problem {num}: {name}
 LeetCode: {leetcode}
