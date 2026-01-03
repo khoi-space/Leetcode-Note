@@ -70,6 +70,8 @@
     * [C++](src/cpp/3433.cpp)
 
 ## 🟢Easy
+* [0] dump [[https://leetcode.com/problems/dump/](https://leetcode.com/problems/dump/)]
+    * [C++](src/cpp/solutions/0.cpp)
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [C++](src/cpp/1.cpp)
     * [Python](src/python/1.py)
