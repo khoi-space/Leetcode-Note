@@ -5,7 +5,7 @@ from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 README_PATH =  "README.md"
-LIST_PATH = "README.md"
+LIST_PATH = "SOL_LIST.md"
 
 workspace_root = Path(__file__).resolve().parent
 
@@ -18,7 +18,6 @@ LANG_MAP = {
     "6": "    * [Javascript](src/javascript/solutions/{num}.js)",
     "7": "    * [TypeScript](src/typescript/solutions/{num}.ts)"
 }
-
 
 def _load_template(workspace_root: Path, ext: str) -> str:
     """Load a template file from scripts/templates for the given extension.
