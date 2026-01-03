@@ -154,7 +154,7 @@ int main(int argc, char* argv[]) {
     #elif TEST_TO_RUN == 3606
         test3606();
     #else
-        #error "Unknown TEST_TO_RUN value"
+        cout << "Unknown TEST_TO_RUN value";
     #endif
     return 0;
 }

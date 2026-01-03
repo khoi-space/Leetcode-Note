@@ -4,7 +4,7 @@ def assertTest(res, exp, case_name):
 	RESET = '\033[0m'
 	BOLD_GREEN = '\033[32m'
 	BOLD_RED = '\033[31m'
-	print(f"Case {case_name}: ", end='')
+	print(f"Case {case_name + 1}: ", end='')
 	if res != exp:
 		print(f"{RED}FAILED{RESET}")
 		print(f"   {BOLD_GREEN}Expected{RESET} : {exp}")

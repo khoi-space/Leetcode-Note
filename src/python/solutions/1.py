@@ -4,6 +4,8 @@ import heapq
 import itertools
 import math
 
+from inc.test import *
+
 """
 Problem 1: Two Sum
 LeetCode: https://leetcode.com/problems/two-sum/
@@ -38,11 +40,7 @@ def test1():
 
     for i, c in enumerate(cases):
         res = sol.twoSum(c.nums, c.target)
-        if res == c.exp:
-            print(f"Test case {i+1} passed.")
-        else:
-            print(f"Test case {i+1} failed: got {res}, expected {c.exp}")
-    print("Done.")
+        assertTest(res, c.exp, i)
 
 
 if __name__ == "__main__":
