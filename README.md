@@ -1,26 +1,44 @@
 # 📂 STRUCTURE
 ```
-Leetcode/  
-├── scripts/            # Documentation and scripts    
-│   └── update_list.py  # Script to update README.md automatically  
-├── inc/             # C++ header files  
-│   ├── listnode.h        # Definition for ListNode (linked list)  
-│   ├── solution.h        # Solution class declarations  
-│   └── test.h            # Test class declarations  
-├── src/             # Source code  
-│   ├── cpp/              # C++ solution files  
-│   └── py/               # Python solution files
-│   └── ...               # Support other langs
-├── utils/           # Utility code  
-│   └── compare.h    # Compare unusual types
-│   └── convert.h    # Convert unusual types into string
-├── main.cpp         # Main C++ entry point  
-├── main.py          # Main Python entry point  
-├── Makefile         # Build script for C++  
-├── README.md        
+Leetcode/
+├── Makefile                 # Build/run targets for C++, Python, and C
+├── README.md
+├── scripts/
+│   └── update_list.py       # Update README (entries, links, counts)
+└── src/
+    ├── cpp/
+    │   ├── inc/             # C++ headers
+    │   │   ├── global.h
+    │   │   ├── test.h
+    │   │   └── listnode.h
+    │   ├── solutions/       # C++ solutions (e.g., 63.cpp, 443.cpp, ...)
+    │   └── main.cpp         # C++ entry (dispatches by TEST_TO_RUN)
+    ├── c/
+    │   ├── inc/             # C headers
+    │   │   ├── global.h
+    │   │   ├── test.h
+    │   │   └── listnode.h
+    │   ├── utils/           # C utilities
+    │   │   ├── compare.h
+    │   │   └── convert.h
+    │   ├── solutions/       # C solutions (e.g., 1.c, ...)
+    │   └── main.c           # C entry (dispatches by TEST_TO_RUN)
+    ├── python/
+    │   ├── inc/             # Python helpers
+    │   │   └── test.py
+    │   ├── solutions/       # Python solutions (e.g., 1.py, 17.py)
+    │   └── utils/
+    ├── java/
+    │   └── solutions/
+    ├── javascript/
+    │   └── solutions/
+    ├── typescript/
+    │   └── solutions/
+    └── csharp/
+        └── solutions/
 ```
 ## 📝 NOTE 
-File [update_list](scripts/update_list.py) will help to automatically update file [README](README.md) with:
+File [update_list](scripts/update_list.py) updates [README](README.md):
 * Add a new solution entry
 * Add a new language to an existed solution
 * Count solutions

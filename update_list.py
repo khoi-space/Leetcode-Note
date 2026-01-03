@@ -276,7 +276,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
             f.write("\n".join(lines) + "\n")
         print(f"Added problem {number_str} to {header}")
     
-        # ------------ Update test.h và main.cpp in C++ -------------
+        # ------------ Update test.h and main.cpp in C++ -------------
         if any('.cpp' in f for f in created_files):
             # Update test.h
             # Insert the prototype in sorted order in test.h
@@ -345,12 +345,13 @@ def add_problem_entry(md_filepath: Path) -> bool:
                 print('Update main.cpp')
             except Exception as e:
                 print(f"Warning: Could not update main.cpp: {e}")
-        # ------------ Update test.h và main.c in C -------------
+        # ------------ Update test.h and main.c in C -------------
         elif any('.c' in f for f in created_files):
+            # Update test.h
             # Insert the prototype in sorted order in test.h
             test_h_path = workspace_root / 'src' / 'c' / 'inc' / 'test.h'
             try:
-                proto = f'void test{number_str}();\n'
+                proto = f'void test{number_str}(void);\n'
                 with open(test_h_path, 'r', encoding='utf-8') as ftest:
                     lines = ftest.readlines()
                 # Find the correct position to insert so the prototypes are sorted
@@ -375,7 +376,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
             except Exception as e:
                 print(f"Warning: Could not update test.h: {e}")
 
-            # ----------------- Update main.c --------------------
+            # Update main.c
             # Insert #elif for the new test in main.c in sorted order (same logic as update test.h)
             main_c_path = workspace_root / 'src' / 'c' / 'main.c'
             try:
