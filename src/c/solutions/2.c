@@ -59,7 +59,6 @@ void test2() {
     #endif
     
     printf("\033[35m========== TESTCASE ========\033[0m\n");
-    
     struct Case {
         int l1[20]; int l1_len;
         int l2[20]; int l2_len;

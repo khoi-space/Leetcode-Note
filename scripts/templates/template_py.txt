@@ -12,34 +12,36 @@ from inc.debug import *
 Problem {num}: {name}
 LeetCode: {leetcode}
 :explain: 
+"""
 
-DEBUG = True
 INFO = True
 APR = 1
-apr_idea = ""
-time_cmplx = ""
-space_cmplx = ""
+if APR == 1:
+    apr_idea = "Brute-force"
+    time_cmplx = "n^2"
+    space_cmplx = "1"
+elif APR == 2:
+    apr_idea = "Two-pass Hash Table"
+    time_cmplx = "n"
+    space_cmplx = "n"
+elif APR == 3:
+    apr_idea = "One-pass Hash Table"
+    time_cmplx = "n"
+    space_cmplx = "n"
 
-#Implement function
+# Implement
 class Solution(object):
-    def __init__(self):
-        global apr_idea, time_cmplx, space_cmplx
-        if APR == 1:
-            apr_idea = ""
-            time_cmplx = ""
-            space_cmplx = ""
-        elif APR == 2:
-            apr_idea = ""
-            time_cmplx = ""
-            space_cmplx = ""
-
-    # Implement solution below
     if APR == 1:
-    
-    elif APR == 2:
 
 
 def test{num}():
+    if INFO:
+        print(f"\033[35m=========== INFO ===========\033[0m")
+        print(f"Approach {APR}: {apr_idea}")
+        print(f"  + Time Complexity: O({time_cmplx})")
+        print(f"  + Space Complexity: O({space_cmplx})")
+
+    print("\033[35m========== TESTCASE ========\033[0m")
     class Case:
         def __init__(self, exp):
             #Inputs
@@ -55,17 +57,13 @@ def test{num}():
 
     sol = Solution()
 
-    if INFO:
-        print(f"\033[1m\033[34mApproach {APR}: {apr_idea}\033[0m")
-        print(f"  Time Complexity: O({time_cmplx})")
-        print(f"  Space Complexity: O({space_cmplx})")s
-
     for i, c in enumerate(cases):
         inputs = [c.]
         res = sol.
         if assertTest(res, c.exp, i) == False:
-            for j, input in enumerate(inputs):
-                print(f"   Input {j}  : {input}")
+            print(f"   Input    : ", end="")
+            for input in inputs:
+                print(f"{input}", end=" | ")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@
 * [2] Add Two Numbers [[https://leetcode.com/problems/add-two-numbers/](https://leetcode.com/problems/add-two-numbers/)]
     * [C](src/c/solutions/2.c)
     * [C++](src/cpp/solutions/2.cpp)
+    * [Python](src/python/solutions/2.py)
 
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]

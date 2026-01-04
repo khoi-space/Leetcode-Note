@@ -55,8 +55,8 @@ void test2() {
     cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
     cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
     #endif
-    cout << "\033[35m========== TESTCASE ========\033[0m\n";
 
+    cout << "\033[35m========== TESTCASE ========\033[0m\n";
     struct Case {
         vector<int> l1;
         vector<int> l2;
