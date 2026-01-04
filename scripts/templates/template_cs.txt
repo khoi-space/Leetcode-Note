@@ -1,0 +1,20 @@
+// Problem {num}: {name}
+// LeetCode: {leetcode}
+
+using System;
+
+class Solution{num} {
+    static int[] Solution(int[] nums, int target) {
+        // TODO: implement
+        return new int[]{};
+    }
+
+    static void Test{num}() {
+        // TODO: add tests
+        Console.WriteLine("Done.");
+    }
+
+    static void Main() {
+        Test{num}();
+    }
+}

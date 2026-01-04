@@ -1,0 +1,24 @@
+// Problem {num}: {name}
+// LeetCode: {leetcode}
+
+function solution(nums: number[], target: number): number[] {
+    // TODO: implement
+    return [];
+}
+
+function test{num}(): void {
+    const cases: [number[], number, number[]][] = [
+        [[2,7,11,15], 9, [0,1]],
+        [[3,2,4], 6, [1,2]],
+        [[3,3], 6, [0,1]],
+    ];
+    for (let i = 0; i < cases.length; i++) {
+        const [nums, target, exp] = cases[i];
+        const res = solution(nums, target);
+        console.log(`Test case ${i+1}:`, JSON.stringify(res) === JSON.stringify(exp) ? 'passed' : `failed (got ${res}, expected ${exp})`);
+    }
+}
+
+if (require.main === module) {
+    test{num}();
+}

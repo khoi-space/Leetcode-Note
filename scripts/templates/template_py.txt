@@ -1,0 +1,73 @@
+from typing import List, Optional, Dict, Set, Tuple
+import collections
+import heapq
+import itertools
+import math
+
+# Local include
+from inc.test import *
+from inc.debug import *
+
+"""
+Problem {num}: {name}
+LeetCode: {leetcode}
+:explain: return the sum of divisors of the integers that have exactly four divisors
+"""
+
+DEBUG = True
+INFO = True
+APR = 1
+apr_idea = ""
+time_cmplx = ""
+space_cmplx = ""
+
+#Implement function
+class Solution(object):
+    def __init__(self):
+        global apr_idea, time_cmplx, space_cmplx
+        if APR == 1:
+            apr_idea = "Direct Divisor Counting"
+            time_cmplx = "n x sqrt(m)"
+            space_cmplx = "1"
+        elif APR == 2:
+            apr_idea = "Mathematic"
+            time_cmplx = "n x sqrt(m)"
+            space_cmplx = "1"
+
+    # Implement solution below
+    if APR == 1:
+    
+    elif APR == 2:
+
+
+def test{num}():
+    class Case:
+        def __init__(self, exp):
+            #Inputs
+
+            #Expected
+            self.exp = exp
+
+    cases = [
+        Case(),
+        Case(),
+        Case()
+    ]
+
+    sol = Solution()
+
+    if INFO:
+        print(f"\033[1m\033[34mApproach {APR}: {apr_idea}\033[0m")
+        print(f"  Time Complexity: O({time_cmplx})")
+        print(f"  Space Complexity: O({space_cmplx})")s
+
+    for i, c in enumerate(cases):
+        inputs = [c.]
+        res = sol.
+        if assertTest(res, c.exp, i) == False:
+            for j, input in enumerate(inputs):
+                print(f"   Input {j}  : {input}")
+
+
+if __name__ == "__main__":
+    test{num}()
