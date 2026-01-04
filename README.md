@@ -7,8 +7,9 @@ Leetcode/
 ├── README.md
 ├── SOL_LIST.md              # Table of contents (use to review or summarize)
 ├── Makefile                 # Build/run targets for C++, Python, and C
+|── update_list.py           # Update entries, links, counts
 ├── scripts/
-│   └── update_list.py       # Update README (entries, links, counts)
+|   └── templates/           # Init code templates
 └── src/
     ├── cpp/
     │   ├── inc/             # C++ headers
@@ -23,7 +24,6 @@ Leetcode/
     ├── python/
     │   ├── inc/             # Python helpers
     │   ├── solutions/       # Python solutions (e.g., 1.py, 17.py)
-    │   └── utils/
     // In progress...
     ├── java/
     │   └── solutions/
