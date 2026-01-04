@@ -1,17 +1,17 @@
 /.vscode
 
 /main_cpp.exe
-/src/cpp/dump.cpp
-/src/cpp/solutions/*.cpp
-!src/cpp/solutions/1.cpp
+cpp/dump.cpp
+cpp/solutions/*.cpp
+cpp/solutions/1.cpp
 
 /main_c.exe
-/src/c/dump.c
-/src/c/solutions/*.c
-!src/c/solutions/1.c
+c/dump.c
+c/solutions/*.c
+!c/solutions/1.c
 
 .venv/
-/src/python/dump.py
+python/dump.py
 __pycache__/
-/src/python/solutions/*.py
-!src/python/solutions/1.py
+python/solutions/*.py
+!python/solutions/1.py
