@@ -23,7 +23,7 @@ PY_SOL_DIR = $(SRC_DIR)/python/solutions
 
 py:
 	@if not defined id (echo Please set problem id e.g., mingw32-make py id=1 & exit /b 1)
-	@powershell -NoProfile -Command "Write-Host '----- Python: Problem ${id} -----' -ForegroundColor Blue"
+	@powershell -NoProfile -Command "Write-Host '----- PYTHON: PROBLEM ${id} -----' -ForegroundColor Blue"
 	set PYTHONPATH=$(SRC_DIR)/python & python $(PY_SOL_DIR)/$(id).py
 
 # --------------- C++ SECTION --------------------------
@@ -37,7 +37,7 @@ MAIN_CPP_SRC = $(SRC_DIR)/cpp/main.cpp
 cpp:
 	@if not defined id (echo Please set problem id, e.g., mingw32-make cpp id=1 & exit /b 1)
 	$(CXX) $(CXXFLAGS) -DTEST_TO_RUN=$(id) $(MAIN_CPP_SRC) $(SRC_DIR)/cpp/solutions/$(id).cpp -o main_cpp.exe
-	@powershell -NoProfile -Command "Write-Host '----- C++: Problem ${id} -----' -ForegroundColor Blue"
+	@powershell -NoProfile -Command "Write-Host '----- C++: PROBLLEM ${id} -----' -ForegroundColor Blue"
 	./main_cpp.exe
 
 # --------------- C SECTION --------------------------
@@ -50,6 +50,6 @@ MAIN_C_SRC = $(SRC_DIR)/c/main.c
 c:
 	@if not defined id (echo Please set problem id, e.g., mingw32-make c id=1 & exit /b 1)
 	$(CC) $(CFLAGS) -DTEST_TO_RUN=$(id) $(MAIN_C_SRC) $(SRC_DIR)/c/solutions/$(id).c -o main_c.exe
-	@powershell -NoProfile -Command "Write-Host '----- C: Problem ${id} -----' -ForegroundColor Blue"
+	@powershell -NoProfile -Command "Write-Host '----- C: PROBLEM ${id} -----' -ForegroundColor Blue"
 	./main_c.exe
 

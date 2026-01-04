@@ -2,13 +2,18 @@
 #include "../inc/global.h"
 using namespace std;
 
-// #define INFO
-// #define APR     1
+// Display info of the approach
+#define INFO
+
+// Approach
+#define APR 1
 
 #ifdef INFO
-static string apr_idea = "";
-static string time_cmplx = "";
-static string space_cmplx = "";
+#if APR == 1
+    string apr_idea = "";
+    string time_cmplx = "";
+    string space_cmplx = "";
+#endif
 #endif
 
 Debug db = Debug{true}; // Turn on/off debug mode
@@ -18,31 +23,28 @@ Debug db = Debug{true}; // Turn on/off debug mode
  * LeetCode: {leetcode}
  * @input:
  * @output:
- */
- class Solution {
+*/
+class Solution {
 public:
-    Solution() {
-        #ifdef INFO
-            #if APR == 1
-                apr_idea = "";
-                time_cmplx = "";
-                space_cmplx = "";
-            #elif APR == 2
-                apr_idea = "";
-                time_cmplx = "";
-                space_cmplx = "";
-            #endif
-        #endif
-    }
-
-    // Implement solution below
-
+    #if APR == 1
+    
+    #endif
 };
 
 
 void test{num}() {
+    #ifdef INFO
+    cout << "\033[35m=========== INFO ===========\033[0m" << endl;
+    cout << "Approach " << APR << ": " << apr_idea << endl;
+    cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
+    cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
+    #endif
+    cout << "\033[35m========== TESTCASE ========\033[0m\n";
+
     struct Case {
-        // add fields
+        // Inputs
+
+        // Expect
     };
 
     vector<Case> cases = {
@@ -50,13 +52,6 @@ void test{num}() {
     };
 
     Solution sol = Solution();
-
-    #ifdef INFO
-    cout << "--------------------------------" << endl;
-    cout << "\033[1m\033[34mApproach " << APR << ": " << apr_idea << "\033[0m" << endl;
-    cout << "  Time Complexity: O(" << time_cmplx << ")" << endl;
-    cout << "  Space Complexity: O(" << space_cmplx << ")" << endl;
-    #endif
 
     for (int i = 0; i < (int)cases.size(); ++i) {
         Case c = cases[i];
@@ -67,7 +62,7 @@ void test{num}() {
         auto res = sol.
 
         if(assertTest(res, c.exp, i) == false) {
-            cout << "   Input    : " << c.in1;
+            cout << "   Input    : " << in1 << endl;
         }
     }
 }

@@ -11,8 +11,7 @@ from inc.debug import *
 """
 Problem {num}: {name}
 LeetCode: {leetcode}
-:explain: return the sum of divisors of the integers that have exactly four divisors
-"""
+:explain: 
 
 DEBUG = True
 INFO = True
@@ -26,13 +25,13 @@ class Solution(object):
     def __init__(self):
         global apr_idea, time_cmplx, space_cmplx
         if APR == 1:
-            apr_idea = "Direct Divisor Counting"
-            time_cmplx = "n x sqrt(m)"
-            space_cmplx = "1"
+            apr_idea = ""
+            time_cmplx = ""
+            space_cmplx = ""
         elif APR == 2:
-            apr_idea = "Mathematic"
-            time_cmplx = "n x sqrt(m)"
-            space_cmplx = "1"
+            apr_idea = ""
+            time_cmplx = ""
+            space_cmplx = ""
 
     # Implement solution below
     if APR == 1:

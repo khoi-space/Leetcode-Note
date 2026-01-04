@@ -3,16 +3,17 @@
 
 template <typename T>
 bool assertTest(const T& res, const T& exp, const int caseName) {
-	cout << "Case " << caseName << ": ";
+	cout << "\033[1mCase " << caseName + 1 << ": ";
 	if (!isEqual(res, exp)) {
-		cout << "\033[1;31mFAILED\033[0m" << endl;
+		cout << "\033[31mFAILED\033[0m" << endl;
 		cout << "   Expected : " << exp << endl;
 		cout << "   Got      : " << res << endl;
 		return false;
 	} else {
-		cout << "\033[1;32mPASSED\033[0m\n";
+		cout << "\033[32mPASSED\033[0m\n";
 		return true;
 	}
 }
 
-void test1();
+void test1();void test1();
+void test2();

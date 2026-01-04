@@ -12,6 +12,8 @@ int main(int argc, char* argv[]) {
         test0();
     #elif TEST_TO_RUN == 1
         test1();
+    #elif TEST_TO_RUN == 2
+        test2();
     #else
         cout << "Unknown TEST_TO_RUN value";
     #endif

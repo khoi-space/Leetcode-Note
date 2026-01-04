@@ -2,7 +2,12 @@
 #define LISTNODE_H
 
 #include <iostream>
+#include <vector>
+#include <sstream>
 using namespace std;
+
+// Forward declaration
+struct ListNode;
 
 struct ListNode
 {
@@ -22,6 +27,12 @@ struct ListNode
         val = x; 
         next = _next;
     };
+    ListNode(const int *arr, int size) {
+        createList(arr, size);
+    }
+    ListNode(const vector<int> vct) {
+        createList(vct);
+    }
 
     // Helper functions
     static ListNode* createList(const int *arr, int size) {
@@ -43,23 +54,34 @@ struct ListNode
 
         ListNode* head = new ListNode(list[0]);
         ListNode* cur = head;
-        for (int num : list) {
-            cur->next = new ListNode(num);
+        for (int i = 1; i < _size; ++i) {
+            cur->next = new ListNode(list[i]);
             cur = cur->next;
         }
         return head;
     }
 
-    void printList() const {
+    // Free allocated memory
+    static void freeList(ListNode* head) {
+        while (head) {
+            ListNode* tmp = head;
+            head = head->next;
+            delete tmp;
+        }
+    }
+
+    string list2Str() const {
+        stringstream ss;
         const ListNode* cur = this;        
         while(cur != nullptr) {
             if (cur->next != nullptr) {
-                cout << cur->val << "->";
+                ss << cur->val << "->";
             } else {
-                cout << cur->val << '\n';
+                ss << cur->val;
             }
             cur = cur->next;
         }
+        return ss.str();
     }
 
     // Sort linked list using merge sort
@@ -142,5 +164,11 @@ struct ListNode
         return dummy.next;
     }
 };
+
+// Overload operator<< to print linked list
+inline ostream& operator<<(ostream& os, ListNode* head) {
+    os << "[" << head->list2Str() << "]";
+    return os;
+}
 
 #endif // LISTNODE_H

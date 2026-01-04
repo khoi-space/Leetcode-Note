@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+#include "../inc/listnode.h"
 using namespace std;
 
 template<typename T>

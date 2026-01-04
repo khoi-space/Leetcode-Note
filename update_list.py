@@ -337,6 +337,8 @@ def add_problem_entry(md_filepath: Path) -> bool:
         # Tạo file solution mới
         created_file = create_new_file(number_str, name, leetcode_url, lang_input, lang_map)
         number_display = f"{number_str}" if created_file else number_str
+        # Get the code link for the selected language
+        code_link = lang_map[lang_input]
         # Prepare the entry lines for the markdown file (problem and only the chosen code link)
         entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
 
@@ -363,7 +365,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
         print(f"Added problem {number_str} to {header}")
     
         # ------------ Update test.h and main.cpp in C++ -------------
-        if any('.cpp' in f for f in created_files):
+        if created_file and '.cpp' in created_file:
             # Update test.h
             # Insert the prototype in sorted order in test.h
             test_h_path = workspace_root / 'src' / 'cpp' / 'inc' / 'test.h'
@@ -432,7 +434,7 @@ def add_problem_entry(md_filepath: Path) -> bool:
             except Exception as e:
                 print(f"Warning: Could not update main.cpp: {e}")
         # ------------ Update test.h and main.c in C -------------
-        elif any('.c' in f for f in created_files):
+        elif created_file and '.c' in created_file:
             # Update test.h
             # Insert the prototype in sorted order in test.h
             test_h_path = workspace_root / 'src' / 'c' / 'inc' / 'test.h'
