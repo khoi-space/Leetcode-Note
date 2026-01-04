@@ -7,8 +7,8 @@ def assertTest(res, exp, case_name):
 	print(f"Case {case_name + 1}: ", end='')
 	if res != exp:
 		print(f"{RED}FAILED{RESET}")
-		print(f"   {BOLD_GREEN}Expected{RESET} : {exp}")
-		print(f"   {BOLD_RED}Got{RESET}      : {res}")
+		print(f"   Expected : {exp}")
+		print(f"   Got      : {res}")
 		return False
 	else:
 		print(f"{GREEN}PASSED{RESET}")

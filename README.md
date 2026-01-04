@@ -1,7 +1,7 @@
-## 📖 Table of Contents
-[Click here to view SOL_LIST.md](SOL_LIST.md)
+## 📖 LIST OF SOLUTIONS
+>[Click here to view SOL_LIST.md](SOL_LIST.md)
 
-# 📂 STRUCTURE
+## 📂 STRUCTURE
 ```
 Leetcode/
 ├── README.md
@@ -35,20 +35,17 @@ Leetcode/
         └── solutions/
 ```
 
-__Note__: File [update_list](scripts/update_list.py) will help to update [README](README.md) with:
-* Add a new solution entry (and create the code file from a template if missing)
-* Add a new language to an existing solution (and create a new file if missing)
-* Update the total solved problem count
-
-## 📃 User's Guide:
-1️⃣ **Create a new problem entry**: Enter as follows:
+## 📃 USER GUIDE
+### 1️⃣ __HOW TO CREATE A PROBLEM?__
+**Answer:** Use [update_list.py](update_list.py) with these options below:
+* *Create a new problem entry*: 
 ```
 PS E:\Git_wp\Leetcode> python .\update_list.py
 Add new problem entry? (y/n): y
 ...
 ```
 
-2️⃣ **Create a new language to an existing solution**: Enter as follows:
+* *Create a new language to an existing solution*:
 ```
 PS E:\Git_wp\Leetcode> python .\update_list.py
 Add new problem entry? (y/n): n
@@ -56,9 +53,9 @@ Add new language for a problem? (y/n): y
 ...
 ```
 
-3️⃣ **Just want to update solution count**: For both prompts above, choose "No".
+* *Just update solution count*: Choose "NO" for both options above.
 
-✨ **Sample**:
+✨ **Example of creating a new problem**:
 ```
 PS E:\Git_wp\Leetcode> python .\update_list.py
 Add new problem entry? (y/n): y
@@ -82,6 +79,17 @@ Update main.cpp
 Total problem: 1
 Updated to file SOL_LIST.md
 ```
+
+### 2️⃣ __HOW TO RUN A SOLUTION FILE?__
+**Answer:** Use Makefile.  
+Syntax `mingw32-make <lang> id=<id>`
+* lang = [py, cpp, c, cs, js, java, ts]
+* id is the problem number
+
+`mingw32-make help` for more detailed.
+
+### 3️⃣ __HOW TO RUN A TESTCASES?__
+**Answer:** Init code contains a skeleton of the testcase. Please write your own testcase in it. When running code, the testcase will run too.
 
 ## 🚀 FUTURE PLANS:
 - [ ] Handle with other languages (such as python, java,...)

@@ -1,7 +1,7 @@
-// #define DEBUG
-#include "inc/test.h"
-#include "inc/global.h"
-#include <iostream>
+#define DEBUG
+
+#include "../inc/global.h"
+#include "../inc/test.h"
 using namespace std;
 
 #define APR 1

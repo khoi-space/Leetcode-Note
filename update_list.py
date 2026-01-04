@@ -71,6 +71,137 @@ def check_duplicate_link(lines, entry_idx, lang_line):
             return True
     return False
 
+def create_new_file(number_str, name, leetcode_url, lang_key, lang_map):
+    """Create a new solution file, write template, update test.h/main.[c|cpp] if C/C++. Return created file path (or empty if not created)."""
+    lang_line = lang_map[lang_key]
+    m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', lang_line)
+    if not m:
+        return ''
+    rel_path = m.group(0)[1:-1].replace('/', os.sep)
+    code_path = (workspace_root / rel_path).resolve()
+    ext = os.path.splitext(code_path)[1].lower()
+    if code_path.exists():
+        return ''
+    tpl = _load_template(workspace_root, ext)
+    content = ''
+    if tpl:
+        try:
+            content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
+        except Exception:
+            content = tpl
+    code_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(code_path, "w", encoding="utf-8") as fcode:
+        fcode.write(content)
+    print(f"Created code file: {code_path}")
+    # Update test.h and main.cpp/c if C/C++
+    if ext == '.cpp':
+        # Update test.h for C++
+        test_h_path = workspace_root / 'src' / 'cpp' / 'inc' / 'test.h'
+        try:
+            proto = f'void test{number_str}();\n'
+            with open(test_h_path, 'r', encoding='utf-8') as ftest:
+                lines = ftest.readlines()
+            insert_idx = None
+            for i, line in enumerate(lines):
+                m = re.match(r'void test(\d+)\(\);', line.strip())
+                if m and int(number_str) < int(m.group(1)):
+                    insert_idx = i
+                    break
+            if insert_idx is None:
+                insert_idx = len(lines)
+            if proto not in lines:
+                lines.insert(insert_idx, proto)
+                with open(test_h_path, 'w', encoding='utf-8') as ftest:
+                    ftest.writelines(lines)
+            print('Update test.h')
+        except Exception as e:
+            print(f"Warning: Could not update test.h: {e}")
+        # Update main.cpp for C++
+        main_cpp_path = workspace_root / 'src' / 'cpp' / 'main.cpp'
+        try:
+            proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
+            proto_call = f'        test{number_str}();\n'
+            with open(main_cpp_path, 'r', encoding='utf-8') as fmain:
+                main_lines = fmain.readlines()
+            for line in main_lines:
+                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                if m and int(m.group(1)) == int(number_str):
+                    print(f"main.cpp: TEST_TO_RUN == {number_str} already exists, no update needed.")
+                    return str(code_path)
+            insert_idx = None
+            for i, line in enumerate(main_lines):
+                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                if m and int(number_str) < int(m.group(1)) and insert_idx is None:
+                    insert_idx = i
+                    break
+            new_block = [proto_elif, proto_call]
+            if insert_idx is not None:
+                main_lines[insert_idx:insert_idx] = new_block
+            else:
+                for i, line in enumerate(main_lines):
+                    if line.strip().startswith('#else'):
+                        main_lines[i:i] = new_block
+                        break
+            with open(main_cpp_path, 'w', encoding='utf-8') as fmain:
+                fmain.writelines(main_lines)
+            print('Update main.cpp')
+        except Exception as e:
+            print(f"Warning: Could not update main.cpp: {e}")
+    elif ext == '.c':
+        # Update test.h for C
+        test_h_path = workspace_root / 'src' / 'c' / 'inc' / 'test.h'
+        try:
+            proto = f'void test{number_str}(void);\n'
+            with open(test_h_path, 'r', encoding='utf-8') as ftest:
+                lines = ftest.readlines()
+            insert_idx = None
+            for i, line in enumerate(lines):
+                m = re.match(r'void test(\d+)\(\);', line.strip())
+                if m and int(number_str) < int(m.group(1)):
+                    insert_idx = i
+                    break
+            if insert_idx is None:
+                insert_idx = len(lines)
+            if proto not in lines:
+                lines.insert(insert_idx, proto)
+                with open(test_h_path, 'w', encoding='utf-8') as ftest:
+                    ftest.writelines(lines)
+            print('Update test.h')
+        except Exception as e:
+            print(f"Warning: Could not update test.h: {e}")
+        # Update main.c for C
+        main_c_path = workspace_root / 'src' / 'c' / 'main.c'
+        try:
+            proto_elif = f'    #elif TEST_TO_RUN == {number_str}\n'
+            proto_call = f'        test{number_str}();\n'
+            with open(main_c_path, 'r', encoding='utf-8') as fmain:
+                main_lines = fmain.readlines()
+            for line in main_lines:
+                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                if m and int(m.group(1)) == int(number_str):
+                    print(f"main.c: TEST_TO_RUN == {number_str} already exists, no update needed.")
+                    return str(code_path)
+            insert_idx = None
+            for i, line in enumerate(main_lines):
+                m = re.match(r'\s*#elif TEST_TO_RUN == (\d+)', line.strip())
+                if m and int(number_str) < int(m.group(1)) and insert_idx is None:
+                    insert_idx = i
+                    break
+            new_block = [proto_elif, proto_call]
+            if insert_idx is not None:
+                main_lines[insert_idx:insert_idx] = new_block
+            else:
+                for i, line in enumerate(main_lines):
+                    if line.strip().startswith('#else'):
+                        main_lines[i:i] = new_block
+                        break
+            with open(main_c_path, 'w', encoding='utf-8') as fmain:
+                fmain.writelines(main_lines)
+            print('Update main.c')
+        except Exception as e:
+            print(f"Warning: Could not update main.c: {e}")
+    return str(code_path)
+
 def add_language_link_to_problem(number_str, lang_key, lang_map, markdown_file_path):
     """Add a language link to the problem entry in the markdown file. Avoid duplicates."""
     try:
@@ -96,46 +227,24 @@ def add_language_link_to_problem(number_str, lang_key, lang_map, markdown_file_p
         with open(markdown_file_path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
         print(f"Added link for problem {number_str}")
-
-        # --------- Create code file if not existed ---------
-        code_link = lang_line
-        m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
-        if m:
-            rel_path = m.group(0)[1:-1].replace('/', os.sep)
-            code_path = (workspace_root / rel_path).resolve()
-            ext = os.path.splitext(code_path)[1].lower()
-            # Try to extract problem name from the markdown entry line
-            entry_line = lines[entry_idx].strip() if entry_idx is not None else ''
-            name = ''
-            leetcode_url = ''
-            try:
-                mname = re.match(r"\* \[\d+\]\s+(.*?)\s+\[\[", entry_line)
-                if mname:
-                    name = mname.group(1)
-                else:
-                    parts = entry_line.split('] ', 1)
-                    if len(parts) > 1:
-                        name = parts[1].split(' [[')[0]
-                # try to extract leetcode url
-                murl = re.search(r'\((https?://[^)]+)\)', entry_line)
-                if murl:
-                    leetcode_url = murl.group(1)
-            except Exception:
-                pass
-            # templates are loaded from scripts/templates via _load_template
-            if not code_path.exists():
-                tpl = _load_template(workspace_root, ext)
-                content = ''
-                if tpl:
-                    # Replace only the known placeholders to avoid formatting errors
-                    try:
-                        content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
-                    except Exception:
-                        content = tpl
-                code_path.parent.mkdir(parents=True, exist_ok=True)
-                with open(code_path, "w", encoding="utf-8") as fcode:
-                    fcode.write(content)
-                print(f"Created code file: {code_path}")
+        # Try to extract from entry line
+        entry_line = lines[entry_idx].strip() if entry_idx is not None else ''
+        name = ''
+        leetcode_url = ''
+        try:
+            mname = re.match(r"\* \[\d+\]\s+(.*?)\s+\[\[", entry_line)
+            if mname:
+                name = mname.group(1)
+            else:
+                parts = entry_line.split('] ', 1)
+                if len(parts) > 1:
+                    name = parts[1].split(' [[')[0]
+            murl = re.search(r'\((https?://[^)]+)\)', entry_line)
+            if murl:
+                leetcode_url = murl.group(1)
+        except Exception:
+            pass
+        create_new_file(number_str, name, leetcode_url, lang_key, lang_map)
         return True
     except Exception as e:
         print(f"Error: {e}")
@@ -225,31 +334,9 @@ def add_problem_entry(md_filepath: Path) -> bool:
         lang_input = get_language_input(lang_map)
         if lang_input is None:
             return False
-        created_files = []
-        # Create file only for chosen language
-        code_link = lang_map[lang_input]
-        m = re.search(r'\((?:\.?\.?/)?src/[^)]+\)', code_link)
-        if m:
-            rel_path = m.group(0)[1:-1].replace('/', os.sep)
-            code_path = (workspace_root / rel_path).resolve()
-            ext = os.path.splitext(code_path)[1].lower()
-            if not code_path.exists():
-                tpl = _load_template(workspace_root, ext)
-                content = ''
-                if tpl:
-                    try:
-                        content = tpl.replace('{num}', str(number_str)).replace('{name}', name).replace('{leetcode}', leetcode_url)
-                    except Exception:
-                        content = tpl
-                code_path.parent.mkdir(parents=True, exist_ok=True)
-                with open(code_path, "w", encoding="utf-8") as fcode:
-                    fcode.write(content)
-                created_files.append(str(code_path))
-        if created_files:
-            print("Created code files:")
-            for f in created_files:
-                print(f"  {f}")
-        number_display = f"{number_str}" if created_files else number_str
+        # Tạo file solution mới
+        created_file = create_new_file(number_str, name, leetcode_url, lang_input, lang_map)
+        number_display = f"{number_str}" if created_file else number_str
         # Prepare the entry lines for the markdown file (problem and only the chosen code link)
         entry_lines = [f"* [{number_display}] {name} [[{leetcode_url}]({leetcode_url})]", code_link]
 
@@ -425,20 +512,35 @@ def add_problem_entry(md_filepath: Path) -> bool:
 def update_problem_count(md_filepath: Path):
     """Update the total solved problems count based on code links in the markdown file."""
     md_filepath = Path(md_filepath)
-    # Regex to match code file links and extract problem numbers
-    link_pattern = re.compile(r'(?:\./|\.\./)*src/(?:[^/]+/)?(\d+)\.[^\s)]+', re.IGNORECASE)
-
     # Regex to match the placeholder for the total problem count
     placeholder_pattern = re.compile(r'(\s*)(\d+)(\s*)', re.DOTALL)
+
+    # List all solution folders
+    solution_dirs = [
+        workspace_root / 'src' / 'cpp' / 'solutions',
+        workspace_root / 'src' / 'c' / 'solutions',
+        workspace_root / 'src' / 'python' / 'solutions',
+        workspace_root / 'src' / 'java' / 'solutions',
+        workspace_root / 'src' / 'csharp' / 'solutions',
+        workspace_root / 'src' / 'javascript' / 'solutions',
+        workspace_root / 'src' / 'typescript' / 'solutions',
+    ]
+
+
+    unique_problem_numbers = set()
+    for sol_dir in solution_dirs:
+        if sol_dir.exists():
+            for f in sol_dir.iterdir():
+                if f.is_file():
+                    m = re.match(r'(\d+)\.[^.]+$', f.name)
+                    if m:
+                        unique_problem_numbers.add(m.group(1))
+
+    total_problems = len(unique_problem_numbers)
 
     try:
         with open(md_filepath, 'r', encoding='utf-8') as f:
             content = f.read()
-
-        # Remove HTML comments and count unique problem numbers from code links
-        content_no_comments = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)
-        matches = link_pattern.findall(content_no_comments)
-        total_problems = len(set(matches))
 
         def replacement_function(match):
             """Replace the placeholder digits with the current problem count while preserving surrounding whitespace."""

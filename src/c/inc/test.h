@@ -43,4 +43,3 @@ static inline bool assertTestArray(const int* res, int rn, const int* exp, int e
 }
 
 void test1(void);
-void test4000();
