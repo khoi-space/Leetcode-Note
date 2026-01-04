@@ -83,8 +83,8 @@ Updated to file SOL_LIST.md
 ### 2️⃣ __HOW TO RUN A SOLUTION FILE?__
 **Answer:** Use Makefile.  
 Syntax `mingw32-make <lang> id=<id>`
-* lang = [py, cpp, c, cs, js, java, ts]
-* id is the problem number
+* *lang* = [py, cpp, c, cs, js, java, ts]
+* *id* is the problem number
 
 `mingw32-make help` for more detailed.
 
