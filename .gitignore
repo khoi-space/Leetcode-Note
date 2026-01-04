@@ -12,6 +12,6 @@
 
 .venv/
 /src/python/dump.py
-/src/python/__pycache__
+/src/python/__pycache__/*
 /src/python/solutions/*.py
 !src/python/solutions/1.py
