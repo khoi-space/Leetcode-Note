@@ -17,7 +17,7 @@ typedef void (*print_func)(const void*);
 // cmp: comparison function pointer
 // printElem: print function pointer
 static inline bool assertTest(const void* res, int rn, const void* exp, int en, int caseName, size_t elem_size, cmp_func cmp, print_func printElem) {
-	printf("\033[1mCase %d: \033[0m", caseName + 1);
+	printf("\033[1mCase %d: ", caseName + 1);
 	if (rn < 0 || en < 0) {
 		if (!cmp(res, exp)) {
 			printf("\033[31mFAILED\033[0m\n");
