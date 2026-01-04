@@ -26,18 +26,6 @@ static inline ListNode* list_create_from_array(const int* arr, int size) {
     return head;
 }
 
-static inline void list_print(const ListNode* head) {
-    const ListNode* cur = head;
-    while (cur != NULL) {
-        if (cur->next != NULL) {
-            printf("%d->", cur->val);
-        } else {
-            printf("%d\n", cur->val);
-        }
-        cur = cur->next;
-    }
-}
-
 static inline void list_free(ListNode* head) {
     while (head != NULL) {
         ListNode* next = head->next;
