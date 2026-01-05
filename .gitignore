@@ -1,4 +1,5 @@
 /.vscode
+/SOL_LIST.md
 
 /main_cpp.exe
 /src/cpp/dump.cpp
