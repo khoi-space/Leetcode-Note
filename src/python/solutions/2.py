@@ -6,7 +6,7 @@ import math
 
 # Local include
 from inc.test import *
-from inc.debug import *
+import inc.debug as db
 from inc.listnode import *
 
 """
@@ -60,9 +60,9 @@ def test2():
 
     print("\033[35m========== TESTCASE ========\033[0m")
     class Case:
-        def __init__(self, l1_arr, l2_arr, exp_arr):
-            self.l1_arr = l1_arr
-            self.l2_arr = l2_arr
+        def __init__(self, l1, l2, exp_arr):
+            self.l1 = l1
+            self.l2 = l2
             self.exp_arr = exp_arr
 
     cases = [
@@ -74,14 +74,16 @@ def test2():
     sol = Solution()
 
     for i, c in enumerate(cases):
-        l1 = ListNode.create_from_list(c.l1_arr)
-        l2 = ListNode.create_from_list(c.l2_arr)
+        l1 = ListNode.create_from_list(c.l1)
+        l2 = ListNode.create_from_list(c.l2)
         
         res = sol.addTwoNumbers(l1, l2)
-        res_arr = ListNode.to_list(res)
-        
-        if assertTest(res_arr, c.exp_arr, i) == False:
-            print(f"   Input    : {c.l1_arr} + {c.l2_arr}")
+
+        _res = ListNode.to_list(res)
+        _exp = c.exp_arr
+
+        if assertTest(_res, _exp, i) == False:
+            print(f"   Input    : {c.l1} + {c.l2}")
 
 
 if __name__ == "__main__":

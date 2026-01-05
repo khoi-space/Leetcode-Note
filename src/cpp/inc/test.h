@@ -15,5 +15,9 @@ bool assertTest(const T& res, const T& exp, const int caseName) {
 	}
 }
 
-void test1();void test1();
+void test1();
 void test2();
+void test4();
+void test21();
+void test28();
+void test1975();

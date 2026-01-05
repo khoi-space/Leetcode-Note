@@ -14,8 +14,5 @@
 #include <climits>
 #include <algorithm>
 #include <numeric>
-#include "debug.h"
-
-extern Debug db;
 
 #endif // GLOBAL_H

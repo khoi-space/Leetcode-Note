@@ -13,6 +13,8 @@ int main(int argc, char* argv[]) {
         test1();
     #elif TEST_TO_RUN == 2
         test2();
+    #elif TEST_TO_RUN == 21
+        test21();
     #else
         printf("Unknown TEST_TO_RUN value");
     #endif

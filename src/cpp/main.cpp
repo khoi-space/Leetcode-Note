@@ -14,6 +14,14 @@ int main(int argc, char* argv[]) {
         test1();
     #elif TEST_TO_RUN == 2
         test2();
+    #elif TEST_TO_RUN == 4
+        test4();
+    #elif TEST_TO_RUN == 21
+        test21();
+    #elif TEST_TO_RUN == 28
+        test28();
+    #elif TEST_TO_RUN == 1975
+        test1975();
     #else
         cout << "Unknown TEST_TO_RUN value";
     #endif

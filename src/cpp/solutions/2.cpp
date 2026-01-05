@@ -2,17 +2,18 @@
 #include "../inc/global.h"
 using namespace std;
 
+// Debug mode
+#define DEBUG
+#include "../inc/debug.h"
+
 // Display info of the approach
 #define INFO
-
-// Approach
 #define APR 1
-
 #ifdef INFO
 #if APR == 1
-    string apr_idea = "Elementary Math";
-    string time_cmplx = "max(m,n)";
-    string space_cmplx = "1";
+string apr_idea = "Elementary Math";
+string time_cmplx = "max(m,n)";
+string space_cmplx = "1";
 #endif
 #endif
 

@@ -4,7 +4,10 @@ import heapq
 import itertools
 import math
 
+# Local include
 from inc.test import *
+import inc.debug as db
+from inc.listnode import *
 
 """
 Problem 1: Two Sum
@@ -60,7 +63,8 @@ class Solution(object):
 def test1():
     if INFO:
         print(f"\033[35m=========== INFO ===========\033[0m")
-        print(f"Approach {APR}: {apr_idea}")
+        print(f"FILE: {__file__}")
+        print(f"APPROACH {APR}: {apr_idea}")
         print(f"  + Time Complexity: O({time_cmplx})")
         print(f"  + Space Complexity: O({space_cmplx})")
 

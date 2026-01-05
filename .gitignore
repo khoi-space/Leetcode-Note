@@ -1,21 +1,27 @@
 /.vscode
 /SOL_LIST.md
+/debug.log
+
+/scripts/templates/*
+!/scripts/templates/template_cpp.txt
+!/scripts/templates/template_c.txt
+!/scripts/templates/template_py.txt
 
 /main_cpp.exe
 /src/cpp/dump.cpp
-/src/cpp/solutions/*.cpp
-!/src/cpp/solutions/1.cpp
-!/src/cpp/solutions/2.cpp
+# /src/cpp/solutions/*.cpp
+# !/src/cpp/solutions/1.cpp
+# !/src/cpp/solutions/2.cpp
 
 /main_c.exe
 /src/c/dump.c
-/src/c/solutions/*.c
-!/src/c/solutions/1.c
-!/src/c/solutions/2.c
+# /src/c/solutions/*.c
+# !/src/c/solutions/1.c
+# !/src/c/solutions/2.c
 
 .venv/
 /src/ython/dump.py
 __pycache__/
-/src/python/solutions/*.py
-!/src/python/solutions/1.py
-!/src/python/solutions/2.py
+# /src/python/solutions/*.py
+# !/src/python/solutions/1.py
+# !/src/python/solutions/2.py

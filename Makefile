@@ -3,15 +3,21 @@ SRC_DIR = src
 
 # Show help
 help:
-	@echo "Available targets:"
-	@echo "  help       - Show this help"
-	@echo "  cpp        - Build + run C++ solution: id=<id>"
-	@echo "  py         - Run Python solution: id=<id>"
-	@echo "  c          - Build + run C solution: id=<id>"
+	@echo Available targets:
+	@echo 	help       	- Show this help
+	@echo 	update		- Create/Update a problem
+	@echo 	cpp        	- Build+run C++ solution: id=[id]
+	@echo 	py         	- Run Python solution: id=[id]
+	@echo 	c         	- Build + run C solution: id=[id]
+	@powershell -NoProfile -Command "Write-Host '	===DANGER ZONE===' -ForegroundColor Red"
+	@echo 	clear_prj 	- Init the project
 
 clean: 
 	del /f main_cpp.exe 2>nul
 	del /f main_c.exe 2>nul
+
+clear_prj:
+	python clear_project.py
 
 .PHONY: help py cpp c clean run
 
@@ -20,7 +26,8 @@ clean:
 
 # Python solutions directory
 PY_SOL_DIR = $(SRC_DIR)/python/solutions
-
+update:
+	python update_list.py
 py:
 	@if not defined id (echo Please set problem id e.g., mingw32-make py id=1 & exit /b 1)
 	@powershell -NoProfile -Command "Write-Host '----- PYTHON: PROBLEM ${id} -----' -ForegroundColor Blue"

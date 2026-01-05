@@ -2,25 +2,26 @@
 #include "../inc/global.h"
 using namespace std;
 
+// Debug mode
+#define DEBUG
+#include "../inc/debug.h"
+
 // Display info of the approach
 #define INFO
-
-// Approach
 #define APR 1
-
 #ifdef INFO
 #if APR == 1
-    string apr_idea = "Brute-force";
-    string time_cmplx = "n^^2";
-    string space_cmplx = "1";
+string apr_idea = "Brute-force";
+string time_cmplx = "n^2";
+string space_cmplx = "1";
 #elif APR == 2
-    string apr_idea = "Two-pass Hash Table";
-    string time_cmplx = "n";
-    string space_cmplx = "n";
+string apr_idea = "Two-pass Hash Table";
+string time_cmplx = "n";
+string space_cmplx = "n";
 #elif APR == 3
-    string apr_idea = "One-pass Hash Table";
-    string time_cmplx = "n";
-    string space_cmplx = "n";
+string apr_idea = "One-pass Hash Table";
+string time_cmplx = "n";
+string space_cmplx = "n";
 #endif
 #endif
 
@@ -84,7 +85,8 @@ public:
 void test1() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
-    cout << "Approach " << APR << ": " << apr_idea << endl;
+    cout << "FILE: " << __FILE__ << endl;
+    cout << "APPROACH " << APR << ": " << apr_idea << endl;
     cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
     cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
     #endif
