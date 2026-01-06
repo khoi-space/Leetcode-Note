@@ -4,7 +4,19 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-    
+
+    def __eq__(self, other):
+        """Overload operator =="""
+        if not isinstance(other, ListNode):
+            return False
+        if self.val != other.val:
+            return False
+        if self.next is None and other.next is None:
+            return True
+        if self.next is None or other.next is None:
+            return False
+        return self.next == other.next
+
     @staticmethod
     def create_from_list(arr):
         """Create linked list from array/list"""
