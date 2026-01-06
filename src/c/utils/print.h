@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include "../inc/listnode.h"
+#include "../inc/treenode.h"
 #include "compare.h"
 
 static inline void print_int(const void* a) {
@@ -29,6 +30,19 @@ static inline void print_list(const void* a) {
         if (node) printf(" -> ");
     }
     printf("]\n");
+}
+
+// Print tree in preorder
+static inline void print_tree(TreeNode* root) {
+    if (!root) {
+        printf("null");
+        return;
+    }
+    printf("%d (", root->val);
+    print_tree(root->left);
+    printf(" ");
+    print_tree(root->right);
+    printf(")");
 }
 
 #endif // PRINT_H
