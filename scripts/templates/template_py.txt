@@ -21,11 +21,11 @@ if APR == 1:
     apr_idea = ""
     time_cmplx = ""
     space_cmplx = ""
-
+    
+db.DEBUG = True
 # Implement
 class Solution(object):
     if APR == 1:
-
 
 def test{num}():
     if INFO:
@@ -36,24 +36,18 @@ def test{num}():
         print(f"  + Space Complexity: O({space_cmplx})")
 
     print("\033[35m========== TESTCASE ========\033[0m")
-    class Case:
-        def __init__(self, exp):
-            #Inputs
-            #Expected
-            self.exp = exp
-
     cases = [
-        Case(),
-        Case(),
-        Case()
+        (),
+        (),
+        ()
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        inputs = [c.]
-        res = sol.
-        if assertTest(res, c.exp, i) == False:
+    for i, (input, exp) in enumerate(cases):
+        inputs = [input]
+        #res = sol.solver(input)
+        if assertTest(res, exp, i) == False:
             print(f"   Input    : ", end="")
             for input in inputs:
                 print(f"{input}", end=" | ")

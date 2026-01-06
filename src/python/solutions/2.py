@@ -5,7 +5,7 @@ import itertools
 import math
 
 # Local include
-from inc.test import *
+from inc.test import assertTest
 import inc.debug as db
 from inc.listnode import *
 
