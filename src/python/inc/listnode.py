@@ -1,3 +1,5 @@
+from typing import Optional
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -33,6 +35,26 @@ class ListNode:
             result.append(str(current.val))
             current = current.next
         return " -> ".join(result)
-    
-    def __repr__(self):
-        return f"ListNode({self.val})"
+
+# Recognize listnode
+def is_listnode(obj):
+	return hasattr(obj, 'val') and hasattr(obj, 'next')
+
+# Compare listnode
+def listnode_equal(a: Optional[ListNode], b: Optional[ListNode], unorder=False):
+	if (unorder == False):
+		while a and b:
+			if a.val != b.val:
+				return False
+			a = a.next
+			b = b.next
+		return a is None and b is None
+	else:
+		vals_a, vals_b = [], []
+		while a:
+			vals_a.append(a.val)
+			a = a.next
+		while b:
+			vals_b.append(b.val)
+			b = b.next
+		return sorted(vals_a) == sorted(vals_b)
