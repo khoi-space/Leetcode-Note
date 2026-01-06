@@ -1,10 +1,8 @@
-#include "../inc/test.h"
 #include "../inc/global.h"
 using namespace std;
 
-// Debug mode
-#define DEBUG
-#include "../inc/debug.h"
+// Turn on/off debug mode
+#undef DEBUG
 
 // Display info of the approach
 #define INFO
@@ -16,8 +14,6 @@ string time_cmplx = "";
 string space_cmplx = "";
 #endif
 #endif
-
-Debug db = Debug{true}; // Turn on/off debug mode
 
 /**
  * Problem {num}: {name}
