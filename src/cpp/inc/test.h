@@ -24,4 +24,5 @@ void test5();
 void test6();
 void test21();
 void test28();
+void test1161();
 void test1975();

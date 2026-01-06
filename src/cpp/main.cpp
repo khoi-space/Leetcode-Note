@@ -24,6 +24,8 @@ int main(int argc, char* argv[]) {
         test21();
     #elif TEST_TO_RUN == 28
         test28();
+    #elif TEST_TO_RUN == 1161
+        test1161();
     #elif TEST_TO_RUN == 1975
         test1975();
     #else

@@ -1,5 +1,5 @@
 # 📃 LIST OF SOLUTIONS
-**Total solved problems: 7**
+**Total solved problems: 11**
 ## 🔴Hard
 * [4] Median of Two Sorted Arrays [[https://leetcode.com/problems/median-of-two-sorted-arrays/](https://leetcode.com/problems/median-of-two-sorted-arrays/)]
     * [C++](src/cpp/solutions/4.cpp)
@@ -9,6 +9,14 @@
     * [C](src/c/solutions/2.c)
     * [C++](src/cpp/solutions/2.cpp)
     * [Python](src/python/solutions/2.py)
+* [3] Longest Substring Without Repeating Characters [[https://leetcode.com/problems/longest-substring-without-repeating-characters/](https://leetcode.com/problems/longest-substring-without-repeating-characters/)]
+    * [C++](src/cpp/solutions/3.cpp)
+* [5] Longest Palindromic Substring [[https://leetcode.com/problems/longest-palindromic-substring/](https://leetcode.com/problems/longest-palindromic-substring/)]
+    * [C++](src/cpp/solutions/5.cpp)
+* [6] Zigzag Conversion [[https://leetcode.com/problems/zigzag-conversion/](https://leetcode.com/problems/zigzag-conversion/)]
+    * [C++](src/cpp/solutions/6.cpp)
+* [1161] Maximum Level Sum of a Binary Tree [[https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/](https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/)]
+    * [C++](src/cpp/solutions/1161.cpp)
 * [1975] Maximum Matrix Sum [[https://leetcode.com/problems/maximum-matrix-sum/](https://leetcode.com/problems/maximum-matrix-sum/)]
     * [C++](src/cpp/solutions/1975.cpp)
     * [Python](src/python/solutions/1975.py)
