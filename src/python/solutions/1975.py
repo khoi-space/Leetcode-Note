@@ -23,7 +23,6 @@ if APR == 1:
     space_cmplx = "1"
 
 db.DEBUG = True
-
 # Implement
 class Solution(object):
     if APR == 1:
@@ -31,6 +30,7 @@ class Solution(object):
             max_sum = 0
             negative_count = 0
             min_abs_val = float("inf") #MAX
+            db.log(matrix)
             
             for row in matrix:
                 for val in row:
@@ -47,30 +47,23 @@ class Solution(object):
 def test1975():
     if INFO:
         print(f"\033[35m=========== INFO ===========\033[0m")
-        print(f"File: {__file__}")
-        print(f"Approach {APR}: {apr_idea}")
+        print(f"FILE: {__file__}")
+        print(f"APPROACH {APR}: {apr_idea}")
         print(f"  + Time Complexity: O({time_cmplx})")
         print(f"  + Space Complexity: O({space_cmplx})")
 
     print("\033[35m========== TESTCASE ========\033[0m")
-    class Case:
-        def __init__(self, matrix, exp):
-            #Inputs
-            self.matrix = matrix
-            #Expected
-            self.exp = exp
-
     cases = [
-        Case([[1,-1],[-1,1]], 4),
-        Case([[1,2,3],[-1,-2,-3],[1,2,3]], 16)
+        ([[1,-1],[-1,1]], 4),
+        ([[1,2,3],[-1,-2,-3],[1,2,3]], 16)
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        inputs = [c.matrix]
-        res = sol.maxMatrixSum(c.matrix)
-        if assertTest(res, c.exp, i) == False:
+    for i, (matrix, exp) in enumerate(cases):
+        inputs = [matrix]
+        res = sol.maxMatrixSum(matrix)
+        if assertTest(res, exp, i) == False:
             print(f"   Input    : ", end="")
             for input in inputs:
                 print(f"{input}", end=" | ")

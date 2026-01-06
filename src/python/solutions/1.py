@@ -28,10 +28,12 @@ elif APR == 3:
     time_cmplx = "n"
     space_cmplx = "n"
 
+db.DEBUG = True
 #Implement function
 class Solution(object):
     if APR == 1:
         def twoSum(self, nums: List[int], target: int) -> List[int]:
+            db.see(nums)
             for i in range(len(nums)):
                 for j in range(i + 1, len(nums)):
                     if nums[j] == target - nums[i]:
@@ -78,17 +80,17 @@ def test1():
             self.exp = exp
 
     cases = [
-        Case([2,7,11,15], 9, [0,1]),
-        Case([3,2,4], 6, [1,2]),
-        Case([3,3], 6, [0,1])
+        ([2,7,11,15], 9, [0,1]),
+        ([3,2,4], 6, [1,2]),
+        ([3,3], 6, [0,1])
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        inputs = [c.nums, c.target]
-        res = sol.twoSum(c.nums, c.target)
-        if assertTest(res, c.exp, i) == False:
+    for i, (nums, target, exp) in enumerate(cases):
+        inputs = [nums, target]
+        res = sol.twoSum(nums, target)
+        if assertTest(res, exp, i) == False:
             print(f"   Input    : ", end="")
             for input in inputs:
                 print(f"{input}", end=" | ")

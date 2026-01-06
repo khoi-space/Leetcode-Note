@@ -30,6 +30,7 @@ elif APR == 3:
     time_cmplx = "n"
     space_cmplx = "n"
 
+db.DEBUG = True
 # Implement
 class Solution(object):
     if APR == 1:
@@ -54,7 +55,8 @@ class Solution(object):
 def test2():
     if INFO:
         print(f"\033[35m=========== INFO ===========\033[0m")
-        print(f"Approach {APR}: {apr_idea}")
+        print(f"FILE: {__file__}")
+        print(f"APPROACH {APR}: {apr_idea}")
         print(f"  + Time Complexity: O({time_cmplx})")
         print(f"  + Space Complexity: O({space_cmplx})")
 
@@ -66,24 +68,25 @@ def test2():
             self.exp_arr = exp_arr
 
     cases = [
-        Case([2,4,3], [5,6,4], [7,0,8]),
-        Case([0], [0], [0]),
-        Case([9,9,9,9,9,9,9], [9,9,9,9], [8,9,9,9,0,0,0,1])
+        ([2,4,3], [5,6,4], [7,0,8]),
+        ([0], [0], [0]),
+        ([9,9,9,9,9,9,9], [9,9,9,9], [8,9,9,9,0,0,0,1])
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        l1 = ListNode.create_from_list(c.l1)
-        l2 = ListNode.create_from_list(c.l2)
-        
+    for i, (l1, l2, exp) in enumerate(cases):
+        l1 = ListNode.create_from_list(l1)
+        l2 = ListNode.create_from_list(l2)
+        exp = ListNode.create_from_list(exp)
+        inputs = [l1, l2]
         res = sol.addTwoNumbers(l1, l2)
 
-        _res = ListNode.to_list(res)
-        _exp = c.exp_arr
-
-        if assertTest(_res, _exp, i) == False:
-            print(f"   Input    : {c.l1} + {c.l2}")
+        if assertTest(res, exp, i) == False:
+            print(f"   Input    : ", end="")
+            for input in inputs:
+                print(f"{input}", end=" | ")
+            print()
 
 
 if __name__ == "__main__":

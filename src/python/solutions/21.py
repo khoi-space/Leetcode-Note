@@ -26,6 +26,7 @@ elif APR == 2:
     time_cmplx = "m+n"
     space_cmplx = "m+n"
 
+db.DEBUG = True
 # Implement
 class Solution(object):
     if APR == 1:
@@ -64,7 +65,8 @@ class Solution(object):
 def test21():
     if INFO:
         print(f"\033[35m=========== INFO ===========\033[0m")
-        print(f"Approach {APR}: {apr_idea}")
+        print(f"FILE: {__file__}")
+        print(f"APPROACH {APR}: {apr_idea}")
         print(f"  + Time Complexity: O({time_cmplx})")
         print(f"  + Space Complexity: O({space_cmplx})")
 
@@ -78,23 +80,21 @@ def test21():
             self.exp = exp
 
     cases = [
-        Case([1,2,4], [1,3,4], [1,1,2,3,4,4]),
-        Case([], [], []),
-        Case([], [0], [0])
+        ([1,2,4], [1,3,4], [1,1,2,3,4,4]),
+        ([], [], []),
+        ([], [0], [0])
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        list1 = ListNode.create_from_list(c.list1)
-        list2 = ListNode.create_from_list(c.list2)
+    for i, (list1, list2, exp) in enumerate(cases):
+        list1 = ListNode.create_from_list(list1)
+        list2 = ListNode.create_from_list(list2)
+        exp = ListNode.create_from_list(exp)
         inputs = [list1, list2]
         res = sol.mergeTwoLists(list1, list2)
 
-        _res = ListNode.to_list(res)
-        _exp = c.exp
-
-        if assertTest(_res, _exp, i) == False:
+        if assertTest(res, exp, i) == False:
             print(f"   Input    : ", end="")
             for input in inputs:
                 print(f"{input}", end=" | ")

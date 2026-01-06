@@ -26,6 +26,7 @@ elif APR == 2:
     time_cmplx = "n"
     space_cmplx = "1"
 
+db.DEBUG = True
 # Implement
 class Solution(object):
     if APR == 1:
@@ -67,26 +68,18 @@ def test58():
         print(f"  + Space Complexity: O({space_cmplx})")
 
     print("\033[35m========== TESTCASE ========\033[0m")
-    class Case:
-        def __init__(self, s, exp):
-            #Inputs
-            self.s = s
-
-            #Expected
-            self.exp = exp
-
     cases = [
-        Case("Hello World", 5),
-        Case("   fly me   to   the moon  ", 4),
-        Case("luffy is still joyboy", 6)
+        ("Hello World", 5),
+        ("   fly me   to   the moon  ", 4),
+        ("luffy is still joyboy", 6)
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        inputs = [c.s]
-        res = sol.lengthOfLastWord(c.s)
-        if assertTest(res, c.exp, i) == False:
+    for i, (s, exp) in enumerate(cases):
+        inputs = [s]
+        res = sol.lengthOfLastWord(s)
+        if assertTest(res, exp, i) == False:
             print(f"   Input    : ", end="")
             for input in inputs:
                 print(f"{input}", end=" | ")

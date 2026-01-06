@@ -22,7 +22,7 @@ if APR == 1:
     time_cmplx = "m*n"
     space_cmplx = "m"
 
-# Implement
+db.DEBUG = True
 class Solution(object):
     if APR == 1:
         def strStr(self, haystack: str, needle: str) -> int:
@@ -37,30 +37,23 @@ class Solution(object):
 def test28():
     if INFO:
         print(f"\033[35m=========== INFO ===========\033[0m")
-        print(f"Approach {APR}: {apr_idea}")
+        print(f"FILE: {__file__}")
+        print(f"APPROACH {APR}: {apr_idea}")
         print(f"  + Time Complexity: O({time_cmplx})")
         print(f"  + Space Complexity: O({space_cmplx})")
 
     print("\033[35m========== TESTCASE ========\033[0m")
-    class Case:
-        def __init__(self, haystack, needle, exp):
-            #Inputs
-            self.haystack = haystack
-            self.needle = needle
-            #Expected
-            self.exp = exp
-
     cases = [
-        Case("sadbutsad", "sad", 0),
-        Case("leetcode", "leeto", -1)
+        ("sadbutsad", "sad", 0),
+        ("leetcode", "leeto", -1)
     ]
 
     sol = Solution()
 
-    for i, c in enumerate(cases):
-        inputs = [c.haystack, c.needle]
-        res = sol.strStr(c.haystack, c.needle)
-        if assertTest(res, c.exp, i) == False:
+    for i, (haystack, needle, exp) in enumerate(cases):
+        inputs = [haystack, needle]
+        res = sol.strStr(haystack, needle)
+        if assertTest(res, exp, i) == False:
             print(f"   Input    : ", end="")
             for input in inputs:
                 print(f"{input}", end=" | ")
