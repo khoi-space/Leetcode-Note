@@ -22,13 +22,13 @@ static inline void print_array(const void* a) {
 
 static inline void print_list(const void* a) {
     const ListNode* node = (const ListNode*)a;
-    printf("(");
+    printf("[");
     while (node) {
         printf("%d", node->val);
         node = node->next;
         if (node) printf(" -> ");
     }
-    printf(")\n");
+    printf("]\n");
 }
 
 #endif // PRINT_H

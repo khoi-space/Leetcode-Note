@@ -108,25 +108,7 @@ struct ListNode
         return ss.str();
     }
 
-    // Sort linked list using bubble sort
-    static void sort(ListNode* list, bool ascending = true) {
-        if (!list) return;
-        bool swapped;
-        do {
-            swapped = false;
-            ListNode* curr = list;
-            while (curr && curr->next) {
-                if ((ascending && curr > curr->next) || 
-                    (!ascending && curr < curr->next)) {
-                    std::swap(curr->val, curr->next->val);
-                    swapped = true;
-                }
-                curr = curr->next;
-            }
-        } while (swapped);
-    }
-
-    // Overload operator
+    // Overload operator compare 2 listnode
     bool operator<(const ListNode &other) const {
         return (this->val < other.val);
     }
