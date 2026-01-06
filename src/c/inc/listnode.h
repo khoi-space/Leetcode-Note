@@ -1,4 +1,3 @@
-// C-compatible singly linked list utilities
 #ifndef LISTNODE_H
 #define LISTNODE_H
 
