@@ -2,14 +2,14 @@
 #include "../inc/test.h"
 #include "../utils/compare.h"
 #include "../utils/print.h"
+
+// Debug mode
+#define DEBUG
 #include "../inc/debug.h"
 
 // Display info of the approach
 #define INFO
-
-// Approach
-#define APR 3
-
+#define APR 1
 #ifdef INFO
 #if APR == 1
 static char apr_idea[40] = "Brute-force";
@@ -25,6 +25,7 @@ static char time_cmplx[20] = "n";
 static char space_cmplx[20] = "n";
 #endif
 #endif
+
 /*
 Problem 1: Two Sum
 LeetCode: https://leetcode.com/problems/two-sum/
@@ -38,6 +39,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
                 result[0] = i;
                 result[1] = j;
                 *returnSize = 2;
+                db_log(result[0]);
+                db_see(result[0]);
                 return result;
             }
         }
@@ -118,7 +121,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
 void test1() {
     #ifdef INFO
     printf("\033[35m=========== INFO ===========\033[0m\n");
-    printf("Approach %d: %s\n", APR, apr_idea);
+    printf("FILE: %s", __FILE__);
+    printf("APPROACH %d: %s\n", APR, apr_idea);
     printf("  + Time Complexity: O(%s)\n", time_cmplx);
     printf("  + Space Complexity: O(%s)\n", space_cmplx);
     #endif

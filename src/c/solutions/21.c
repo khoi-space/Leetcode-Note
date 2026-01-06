@@ -3,17 +3,20 @@
 #include "../inc/test.h"
 #include "../utils/compare.h"
 #include "../utils/print.h"
+
+// Debug mode
+#define DEBUG
 #include "../inc/debug.h"
 
 // Display info of the approach
 #define INFO
-
-// Approach
 #define APR 1
+#ifdef INFO
 #if APR == 1
 static char apr_idea[40] = "";
 static char time_cmplx[20] = "";
 static char space_cmplx[20] = "";
+#endif
 #endif
 
 /*
@@ -27,7 +30,8 @@ LeetCode: https://leetcode.com/problems/merge-two-sorted-lists/
 void test21() {
     #ifdef INFO
     printf("\033[35m=========== INFO ===========\033[0m\n");
-    printf("Approach %d: %s\n", APR, apr_idea);
+    printf("FILE: %s", __FILE__);
+    printf("APPROACH %d: %s\n", APR, apr_idea);
     printf("  + Time Complexity: O(%s)\n", time_cmplx);
     printf("  + Space Complexity: O(%s)\n", space_cmplx);
     #endif
