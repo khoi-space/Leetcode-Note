@@ -5,10 +5,11 @@
 #include <vector>
 #include <sstream>
 #include "../inc/listnode.h"
+#include "../inc/treenode.h"
 using namespace std;
 
 template<typename T>
-inline std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
+inline ostream& operator<<(ostream& os, const vector<T>& v) {
     os << "[";
     for (size_t i = 0; i < v.size(); ++i) {
         if (i) os << ", ";
@@ -18,8 +19,13 @@ inline std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
     return os;
 }
 
-inline std::ostream& operator<<(ostream& os, ListNode* head) {
+inline ostream& operator<<(ostream& os, ListNode* head) {
     os << "[" << head->list2Str() << "]";
+    return os;
+}
+
+inline ostream& operator<<(ostream& os, TreeNode* root) {
+    os << "[" << TreeNode::tree2Str(root) << "]";
     return os;
 }
 
