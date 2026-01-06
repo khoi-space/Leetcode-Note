@@ -1,10 +1,8 @@
-#include "../inc/test.h"
 #include "../inc/global.h"
 using namespace std;
 
-// Debug mode
-#define DEBUG
-#include "../inc/debug.h"
+// Turn off debug mode (uncomment to turn on)
+#undef DEBUG
 
 // Display info of the approach
 #define INFO
@@ -24,8 +22,6 @@ string time_cmplx = "log(min(m,n))";
 string space_cmplx = "1";
 #endif
 #endif
-
-Debug db = Debug{true}; // Turn on/off debug mode
 
 /**
  * Problem 4: Median of Two Sorted Arrays
@@ -156,7 +152,8 @@ public:
 void test4() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
-    cout << "Approach " << APR << ": " << apr_idea << endl;
+    cout << "FILE: " << __FILE__ << endl;
+    cout << "APPROACH " << APR << ": " << apr_idea << endl;
     cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
     cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
     #endif

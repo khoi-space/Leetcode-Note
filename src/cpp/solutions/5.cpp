@@ -9,46 +9,53 @@ using namespace std;
 #define APR 1
 #ifdef INFO
 #if APR == 1
-string apr_idea = "If negative count is odd, substract the sum by min_abs_val twice";
-string time_cmplx = "n*m";
+string apr_idea = "Expand from centers";
+string time_cmplx = "n^2";
 string space_cmplx = "1";
 #endif
 #endif
 
 /**
- * Problem 1975: Maximum Matrix Sum
- * LeetCode: https://leetcode.com/problems/maximum-matrix-sum/
- * @input: integer matrix [n x n]
- * @output: maximum sum of the matrix after using the operation below:
- *  + Choose any two adjacent elem of matrix and multiply each by -1
+ * Problem 5: Longest Palindromic Substring
+ * LeetCode: https://leetcode.com/problems/longest-palindromic-substring/
 */
 class Solution {
 public:
     #if APR == 1
-    long long maxMatrixSum(vector<vector<int>>& matrix) {
-        long long total_sum = 0;
-        int min_abs_val = INT_MAX;
-        int negative_count = 0;
+    string longestPalindrome(string s) {
+        string ans = "";
 
-        for (vector<int>& row : matrix) {
-            for (int val : row) {
-                total_sum += abs(val);
-                if (val < 0) ++negative_count;
-                min_abs_val = min(min_abs_val, abs(val));
+        for (size_t i = 0; i < s.size(); ++i) {
+            string odd = expand(s, i, i); // Check an odd-size palindrome expaned from i
+            if (odd.size() > ans.size()) {
+                ans = odd;
+            }
+
+            string even = expand(s, i, i + 1); // Check an even-size palindrome expanded from i and i+1
+            if (even.size() > ans.size()) {
+                ans = even;
             }
         }
 
-        if (negative_count % 2 == 1) {
-            total_sum -= 2 * min_abs_val;
+        return ans;
+    }
+private:
+    string expand(string s, int i, int j) {
+        int l = i;
+        int r = j;
+
+        while (l >= 0 && r < (int)s.size() && s[l] == s[r]) {
+            --l;
+            ++r;
         }
 
-        return total_sum;
+        return s.substr(l + 1, r - l - 1);
     }
     #endif
 };
 
 
-void test1975() {
+void test5() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
     cout << "FILE: " << __FILE__ << endl;
@@ -60,15 +67,15 @@ void test1975() {
     cout << "\033[35m========== TESTCASE ========\033[0m\n";
     struct Case {
         // Inputs
-        vector<vector<int>> matrix;
+        string s;
         // Expect
-        long long exp;
+        string exp;
     };
 
     vector<Case> cases = {
         // {{}}
-        {{{1,-1},{-1,1}}, 4},
-        {{{1,2,3},{-1,-2,-3},{1,2,3}}, 16}
+        {"babad", "bab"},
+        {"cbbd", "bb"}
     };
 
     Solution sol = Solution();
@@ -76,10 +83,10 @@ void test1975() {
     for (int i = 0; i < (int)cases.size(); ++i) {
         Case c = cases[i];
         // Inputs
-        auto in1 = c.matrix;
+        auto in1 = c.
 
         // Result
-        auto res = sol.maxMatrixSum(in1);
+        auto res = sol.
 
         if(assertTest(res, c.exp, i) == false) {
             cout << "   Input    : " << in1 << endl;

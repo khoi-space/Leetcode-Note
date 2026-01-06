@@ -1,9 +1,7 @@
 #ifndef LISTNODE_H
 #define LISTNODE_H
 
-#include <iostream>
-#include <vector>
-#include <sstream>
+#include "global.h"
 using namespace std;
 
 // Forward declaration
@@ -28,13 +26,23 @@ struct ListNode
         next = _next;
     };
     ListNode(const int *arr, int size) {
-        createList(arr, size);
+        ListNode* copy = createList(arr, size);
+        val = copy ? copy->val : 0;
+        next = copy ? copy->next : 0;
     }
     ListNode(const vector<int> vct) {
-        createList(vct);
+        ListNode* copy = createList(vct);
+        val = copy ? copy->val : 0;
+        next = copy ? copy->next : 0;
+    }
+    ListNode(const ListNode* list) {
+        ListNode* copy = createList(list);
+        val = copy ? copy->val : 0;
+        next = copy ? copy->next : nullptr;
     }
 
-    // Helper functions
+    /* Helper functions */
+    // Create list from array
     static ListNode* createList(const int *arr, int size) {
         if (size == 0) return nullptr;
         
@@ -48,6 +56,7 @@ struct ListNode
         return head;
     }
 
+    // Create list from vector
     static ListNode* createList(const vector<int>& list) {
         int _size = list.size();
         if (_size == 0) return nullptr;
@@ -61,6 +70,20 @@ struct ListNode
         return head;
     }
 
+    // Create list from list
+    static ListNode* createList(const ListNode* list) {
+        if (!list) return nullptr;
+        ListNode* head = new ListNode(list->val);
+        ListNode* cur = head;
+        const ListNode* node = list->next;
+        while (node) {
+            cur->next = new ListNode(node->val);
+            cur = cur->next;
+            node = node->next;
+        }
+        return head;
+    }
+
     // Free allocated memory
     static void freeList(ListNode* head) {
         while (head) {
@@ -70,6 +93,7 @@ struct ListNode
         }
     }
 
+    // Convert list to str in format: a->b->...
     string list2Str() const {
         stringstream ss;
         const ListNode* cur = this;        
@@ -84,91 +108,48 @@ struct ListNode
         return ss.str();
     }
 
-    // Sort linked list using merge sort
-    static ListNode* sort(ListNode* head) {
-        if (!head || !head->next) return head;
-
-        // Find the middle point
-        ListNode* slow = head;
-        ListNode* fast = head->next;
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        ListNode* mid = slow->next;
-        slow->next = nullptr;
-
-        // Sort each half
-        ListNode* left = sort(head);
-        ListNode* right = sort(mid);
-
-        // Merge two sorted halves
-        return merge(left, right);
-    }
-    // Helper function to merge two sorted lists
-    static ListNode* merge(ListNode* l1, ListNode* l2) {
-        ListNode dummy(0);
-        ListNode* tail = &dummy;
-        while (l1 && l2) {
-            if (l1->val < l2->val) {
-                tail->next = l1;
-                l1 = l1->next;
-            } else {
-                tail->next = l2;
-                l2 = l2->next;
+    // Sort linked list using bubble sort
+    static void sort(ListNode* list, bool ascending = true) {
+        if (!list) return;
+        bool swapped;
+        do {
+            swapped = false;
+            ListNode* curr = list;
+            while (curr && curr->next) {
+                if ((ascending && curr > curr->next) || 
+                    (!ascending && curr < curr->next)) {
+                    std::swap(curr->val, curr->next->val);
+                    swapped = true;
+                }
+                curr = curr->next;
             }
-            tail = tail->next;
-        }
-        tail->next = l1 ? l1 : l2;
-        return dummy.next;
+        } while (swapped);
     }
 
-    // Sort linked list with custom comparator
-    template <typename Compare>
-    static ListNode* sort(ListNode* head, Compare comp) {
-        if (!head || !head->next) return head;
-
-        // Find the middle point
-        ListNode* slow = head;
-        ListNode* fast = head->next;
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        ListNode* mid = slow->next;
-        slow->next = nullptr;
-
-        // Sort each half
-        ListNode* left = sort(head, comp);
-        ListNode* right = sort(mid, comp);
-
-        // Merge two sorted halves with comparator
-        return merge(left, right, comp);
+    // Overload operator
+    bool operator<(const ListNode &other) const {
+        return (this->val < other.val);
     }
-    // Helper function to merge two sorted lists with comparator
-    template <typename Compare>
-    static ListNode* merge(ListNode* l1, ListNode* l2, Compare comp) {
-        ListNode dummy(0);
-        ListNode* tail = &dummy;
-        while (l1 && l2) {
-            if (comp(l1->val, l2->val)) {
-                tail->next = l1;
-                l1 = l1->next;
-            } else {
-                tail->next = l2;
-                l2 = l2->next;
-            }
-            tail = tail->next;
-        }
-        tail->next = l1 ? l1 : l2;
-        return dummy.next;
+
+    bool operator==(const ListNode &other) const {
+        return (this->val == other.val);
+    }
+
+    bool operator!=(const ListNode &other) const {
+        return (this->val != other.val);
+    }
+
+    bool operator>(const ListNode &other) const {
+        return (this->val > other.val);
+    }
+
+    bool operator<=(const ListNode &other) const {
+        return (this->val <= other.val);
+    }
+
+    bool operator>=(const ListNode &other) const {
+        return (this->val >= other.val);
     }
 };
-
-// Overload operator<< to print linked list
-inline ostream& operator<<(ostream& os, ListNode* head) {
-    os << "[" << head->list2Str() << "]";
-    return os;
-}
 
 #endif // LISTNODE_H

@@ -5,24 +5,21 @@
 #include <cmath>
 #include "../inc/listnode.h"
 
-// Compare basic types
+// (No use anymore)
+
+// Compare basic types (int, double, char, string,...)
 template<typename T>
-inline bool isEqual(const T& lhs, const T& rhs) {
+inline bool isEqual(const T& lhs, const T& rhs, bool unorder_cmp = false) {
     return lhs == rhs;
 }
 
-// Compare vectors
-// template<typename T>
-// inline bool isEqual(const std::vector<T>& lhs, const std::vector<T>& rhs) {
-//     if (lhs.size() != rhs.size()) return false;
-//     for (size_t i = 0; i < lhs.size(); ++i) {
-//         if (!isEqual(lhs[i], rhs[i])) return false;
-//     }
-//     return true;
-// }
-
 // Compare linked lists
-inline bool isEqual(ListNode *lhs, ListNode* rhs) {
+inline bool isEqual(ListNode *lhs, ListNode* rhs, bool unorder_cmp = false) {
+    if (unorder_cmp) {
+        // Sort two ListNode first
+        ListNode::sort(lhs);
+        ListNode::sort(rhs);
+    }
     while (lhs && rhs) {
         if (lhs->val != rhs->val) return false;
         lhs = lhs->next;
@@ -31,13 +28,14 @@ inline bool isEqual(ListNode *lhs, ListNode* rhs) {
     return !lhs && !rhs;
 }
 
-// // Compare vectors unordered
-// template<typename T>
-// inline bool isEqualUnordered(const std::vector<T> lhs, const std::vector<T> rhs) {
-//     if (lhs.size() != rhs.size()) return false;
+// Compare vectors
+inline bool isEqual(vector<int> lhs, vector<int> rhs, bool unorder_cmp = false) {
+    if (unorder_cmp) {
+        std::sort(lhs.begin(), lhs.end());
+        std::sort(lhs.begin(), rhs.end());
+    }
 
-//     sort(lhs.begin(), lhs.end());
-//     sort(rhs.begin(), lhs.end());
-// }
+    return lhs == rhs;
+}
 
 #endif // COMPARE_H

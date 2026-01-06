@@ -1,10 +1,8 @@
-#include "../inc/test.h"
 #include "../inc/global.h"
 using namespace std;
 
-// Debug mode
-#define DEBUG
-#include "../inc/debug.h"
+// Turn off debug mode (uncomment to turn on)
+#undef DEBUG
 
 // Display info of the approach
 #define INFO
@@ -24,8 +22,6 @@ string time_cmplx = "n";
 string space_cmplx = "n";
 #endif
 #endif
-
-Debug db = Debug{true}; // Turn on/off debug mode
 
 /**
  * Problem 1: Two Sum

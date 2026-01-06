@@ -1,10 +1,8 @@
-#include "../inc/test.h"
 #include "../inc/global.h"
 using namespace std;
 
-// Debug mode
-#define DEBUG
-#include "../inc/debug.h"
+// Turn off debug mode (uncomment to turn on)
+#undef DEBUG
 
 // Display info of the approach
 #define INFO
@@ -16,8 +14,6 @@ string time_cmplx = "m*n";
 string space_cmplx = "m";
 #endif
 #endif
-
-Debug db = Debug{true}; // Turn on/off debug mode
 
 /**
  * Problem 28: Find the Index of the First Occurrence in a String
@@ -46,7 +42,7 @@ public:
 void test28() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
-    cout << "FILE:" << __FILE__ << endl;
+    cout << "FILE: " << __FILE__ << endl;
     cout << "APPROACH " << APR << ": " << apr_idea << endl;
     cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
     cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;

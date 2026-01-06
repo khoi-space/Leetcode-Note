@@ -1,5 +1,3 @@
-// #include "test.h"
-#include "inc/test.h"
 #include "inc/global.h"
 using namespace std;
 
@@ -14,8 +12,14 @@ int main(int argc, char* argv[]) {
         test1();
     #elif TEST_TO_RUN == 2
         test2();
+    #elif TEST_TO_RUN == 3
+        test3();
     #elif TEST_TO_RUN == 4
         test4();
+    #elif TEST_TO_RUN == 5
+        test5();
+    #elif TEST_TO_RUN == 6
+        test6();
     #elif TEST_TO_RUN == 21
         test21();
     #elif TEST_TO_RUN == 28

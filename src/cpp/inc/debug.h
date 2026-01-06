@@ -5,15 +5,32 @@
 #include <fstream>
 #include <string>
 
+//Turn on debug mode
+#define DEBUG
+
 #ifdef DEBUG
-    static std::ofstream debugLog("debug.log");
-    #define db(x)       std::cout << x << std::endl;
-    #define db_dump(x)  std::cout << #x << ": " << x << std::endl;
-    #define db_log(x) debugLog << #x << ": " << x << std::endl;
+    /**
+     * Usage:
+     *  db(msg)         : to shout a useless msg
+     *  db_info(msg)    : to shout a info msg
+     *  db_warn(msg)    : to shout a warnign msg (unusual behavior)
+     *  db_error(msg)   : to shout a error msg (to track before crash)
+     *  db_var(x)       : to dump name and value of x
+     *  db_loc()        : to track the line and file
+     */
+    #define db(msg)         std::cout << "[DEBUG] " << msg << std::endl;
+    #define db_info(msg)    std::cout << "\033[7m[INFO]\033[0m " << msg << std::endl;
+    #define db_warn(msg)    std::cout << "\033[33m[WARN]\033[0m " << msg << std::endl;
+    #define db_error(msg)   std::cout << "\033[31m[ERROR]\033[0m " << msg << std::endl;
+    #define db_var(x)       std::cout << "[VAR] " << #x << " = " << x << std::endl;
+    #define db_loc()        std::cout << "[LOC] " << __FILE__ << ":" << __LINE__ << std::endl;
 #else
-    #define db(x)
-    #define db_dump(x)
-    #define db_log(x)
+#define db(msg)
+    #define db_info(msg)
+    #define db_warn(msg)
+    #define db_error(msg)
+    #define db_var(x)  
+    #define db_loc()
 #endif
 
 #endif // DEBUG_H

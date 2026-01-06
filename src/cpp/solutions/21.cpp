@@ -1,10 +1,8 @@
-#include "../inc/test.h"
 #include "../inc/global.h"
 using namespace std;
 
-// Debug mode
-#define DEBUG
-#include "../inc/debug.h"
+// Turn off debug mode (uncomment to turn on)
+#undef DEBUG
 
 // Display info of the approach
 #define INFO
@@ -20,8 +18,6 @@ string time_cmplx = "m+n";
 string space_cmplx = "m+n";
 #endif
 #endif
-
-Debug db = Debug{true}; // Turn on/off debug mode
 
 /**
  * Problem 21: Merge Two Sorted Lists

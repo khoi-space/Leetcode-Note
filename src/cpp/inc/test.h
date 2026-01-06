@@ -1,10 +1,11 @@
 #include "../utils/compare.h"
-#include "../utils/convert.h"
+#include "../utils/print.h"
 
+// Assert Test and print result to terminal (option unorder_cmp means don't care about the order of res and exp)
 template <typename T>
-bool assertTest(const T& res, const T& exp, const int caseName) {
+static bool assertTest(const T& res, const T& exp, const int caseName, bool unorder_cmp = false) {
 	cout << "\033[1mCase " << caseName + 1 << ": ";
-	if (!isEqual(res, exp)) {
+	if (!isEqual(res, exp, unorder_cmp)) {
 		cout << "\033[31mFAILED\033[0m" << endl;
 		cout << "   Expected : " << exp << endl;
 		cout << "   Got      : " << res << endl;
@@ -17,7 +18,10 @@ bool assertTest(const T& res, const T& exp, const int caseName) {
 
 void test1();
 void test2();
+void test3();
 void test4();
+void test5();
+void test6();
 void test21();
 void test28();
 void test1975();
