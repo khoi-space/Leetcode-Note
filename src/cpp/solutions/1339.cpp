@@ -80,6 +80,7 @@ void test1339() {
     
     for (int i = 0; i < (int)cases.size(); ++i) {
         Solution sol = Solution();
+        
         Case c = cases[i];
         // Convertion (for ListNode and TreeNode)
         TreeNode* root = TreeNode::createTree(c.root);
@@ -92,5 +93,7 @@ void test1339() {
         if(assertTest(res, c.exp, i) == false) {
             cout << "   Input    : " << in1 << endl;
         }
+
+        TreeNode::freeTree(root);
     }
 }

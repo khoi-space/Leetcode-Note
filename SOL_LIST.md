@@ -19,6 +19,8 @@
     * [C++](src/cpp/solutions/1161.cpp)
 * [1339] Maximum Product of Splitted Binary Tree [[https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/](https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/)]
     * [C++](src/cpp/solutions/1339.cpp)
+    * [Python](src/python/solutions/1339.py)
+    * [C](src/c/solutions/1339.c)
 * [1975] Maximum Matrix Sum [[https://leetcode.com/problems/maximum-matrix-sum/](https://leetcode.com/problems/maximum-matrix-sum/)]
     * [C++](src/cpp/solutions/1975.cpp)
     * [Python](src/python/solutions/1975.py)

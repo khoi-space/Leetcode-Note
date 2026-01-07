@@ -57,3 +57,4 @@ static inline bool assertTest(const void* res, int rn, const void* exp, int en, 
 void test1(void);
 void test2(void);
 void test21(void);
+void test1339(void);
