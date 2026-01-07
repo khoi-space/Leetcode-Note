@@ -61,7 +61,7 @@ cpp:
 
 # --------------- C SECTION --------------------------
 CC = gcc
-CFLAGS = -std=c11 -Wall -g -Isrc/c
+CFLAGS = -std=c11 -Wall -Wno-unused-function -g -Isrc/c
 # Directory of main.c
 MAIN_C_SRC = $(SRC_DIR)/c/main.c
 
