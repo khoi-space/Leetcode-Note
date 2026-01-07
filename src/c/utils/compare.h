@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <string.h>
+#include "../inc/treenode.h"
 #include "../inc/listnode.h"
 
 // ===== Comparison functions for basic types =====
