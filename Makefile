@@ -4,17 +4,29 @@ SRC_DIR = src
 # Show help
 help:
 	@echo Available targets:
-	@echo 	help       	- Show this help
-	@echo 	update		- Create/Update a problem
-	@echo 	cpp        	- Build+run C++ solution: id=[id]
-	@echo 	py         	- Run Python solution: id=[id]
-	@echo 	c         	- Build + run C solution: id=[id]
-	@powershell -NoProfile -Command "Write-Host '	===DANGER ZONE===' -ForegroundColor Red"
-	@echo 	clear_prj 	- Init the project
+	@echo ===SOLUTION COMMANDS===
+	@echo + update    - Create/Update a problem
+	@echo + cpp       - Build + run C++ solution arg: id=
+	@echo + py        - Run Python solution arg: id=
+	@echo + c         - Build + run C solution: arg: id=
+	@echo ===OTHER HELPERS===
+	@echo + doctor    - Check Windows toolchain gcc, g++, python available
+	@echo + help      - Show this help
+	@echo + run       - run specific fiels with arg file= (just file name is OK)
+	@echo + clean     - Remove all .exe files
+
+	@echo ===DANGER ZONE===
+	@echo + clear_prj - Init the project
+
+run:
+	@if not defined file (echo Please set file. E.g. mingw32-make run file=testing.py & exit /b 1)
+	@powershell -NoProfile -Command "$$path = (Get-ChildItem -Recurse -File -Path '$(SRC_DIR)' -Filter '$(file)' | Select-Object -First 1 -ExpandProperty FullName); if (-not $$path) { Write-Host 'File $(file) not found!' ; exit 1 } ; $$ext = [IO.Path]::GetExtension($$path).ToLower(); if ($$ext -eq '.py') { python $$path } elseif ($$ext -eq '.cpp') { g++ $$path -o main_cpp.exe; if ($$LASTEXITCODE -eq 0) { ./main_cpp.exe } } elseif ($$ext -eq '.c') { gcc $$path -o main_c.exe; if ($$LASTEXITCODE -eq 0) { ./main_c.exe } } else { Write-Host ('Unsupported extension: ' + $$ext) ; exit 1 }"
+doctor:
+	@powershell -NoProfile -Command "$$ok = $$true; if (-not (Get-Command gcc -ErrorAction SilentlyContinue)) { Write-Host 'Missing: gcc' ; $$ok = $false }; if (-not (Get-Command g++ -ErrorAction SilentlyContinue)) { Write-Host 'Missing: g++' ; $$ok = $false }; if (-not (Get-Command py -ErrorAction SilentlyContinue) -and -not (Get-Command python -ErrorAction SilentlyContinue)) { Write-Host 'Missing: python/py' ; $$ok = $false }; if ($$ok) { Write-Host 'Environment OK' } else { exit 1 }"
 
 clean: 
-	del /f main_cpp.exe 2>nul
-	del /f main_c.exe 2>nul
+	if exist *.exe del /Q /F *.exe
+	@for /R $(SRC_DIR) %f in (*.exe) do @del /Q /F "%f"
 
 clear_prj:
 	python clear_project.py
