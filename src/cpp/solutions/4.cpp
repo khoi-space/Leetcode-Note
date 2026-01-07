@@ -181,9 +181,8 @@ void test4() {
         {{1,2,3,4,5}, {6,7,8,9,10}, 5.5}
     };
 
-    Solution sol = Solution();
-
     for (int i = 0; i < (int)cases.size(); ++i) {
+        Solution sol = Solution();
         Case c = cases[i];
         // Inputs
         auto in1 = c.nums1;

@@ -97,9 +97,8 @@ void test21() {
         {{1,1,1}, {1,1,1}, {1,1,1,1,1,1}}
     };
 
-    Solution sol = Solution();
-
     for (int i = 0; i < (int)cases.size(); ++i) {
+        Solution sol = Solution();
         Case c = cases[i];
         ListNode* l1 = ListNode::createList(c.l1_arr);
         ListNode* l2 = ListNode::createList(c.l2_arr);

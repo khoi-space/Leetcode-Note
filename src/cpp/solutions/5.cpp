@@ -78,9 +78,8 @@ void test5() {
         {"cbbd", "bb"}
     };
 
-    Solution sol = Solution();
-
     for (int i = 0; i < (int)cases.size(); ++i) {
+        Solution sol = Solution();
         Case c = cases[i];
         // Inputs
         auto in1 = c.

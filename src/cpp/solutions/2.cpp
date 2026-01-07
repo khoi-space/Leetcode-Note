@@ -67,9 +67,8 @@ void test2() {
         {{9,9,9,9,9,9,9}, {9,9,9,9}, {8,9,9,9,0,0,0,1}}
     };
 
-    Solution sol = Solution();
-
     for (int i = 0; i < (int)cases.size(); ++i) {
+        Solution sol = Solution();
         Case c = cases[i];
         ListNode* l1 = ListNode::createList(c.l1);
         ListNode* l2 = ListNode::createList(c.l2);

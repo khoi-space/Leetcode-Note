@@ -120,9 +120,8 @@ void test1161() {
         {{989,null,10250,98693,-89388,null,null,null,-32127}, 2}
     };
 
-    Solution sol = Solution();
-
     for (int i = 0; i < (int)cases.size(); ++i) {
+        Solution sol = Solution();
         Case c = cases[i];
         TreeNode* root = TreeNode::createTree(c.root);
         // Inputs
