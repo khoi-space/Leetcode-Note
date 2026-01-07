@@ -1,5 +1,5 @@
 # 📃 LIST OF SOLUTIONS
-**Total solved problems: 11**
+**Total solved problems: 12**
 ## 🔴Hard
 * [4] Median of Two Sorted Arrays [[https://leetcode.com/problems/median-of-two-sorted-arrays/](https://leetcode.com/problems/median-of-two-sorted-arrays/)]
     * [C++](src/cpp/solutions/4.cpp)
@@ -17,6 +17,8 @@
     * [C++](src/cpp/solutions/6.cpp)
 * [1161] Maximum Level Sum of a Binary Tree [[https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/](https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/)]
     * [C++](src/cpp/solutions/1161.cpp)
+* [1339] Maximum Product of Splitted Binary Tree [[https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/](https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/)]
+    * [C++](src/cpp/solutions/1339.cpp)
 * [1975] Maximum Matrix Sum [[https://leetcode.com/problems/maximum-matrix-sum/](https://leetcode.com/problems/maximum-matrix-sum/)]
     * [C++](src/cpp/solutions/1975.cpp)
     * [Python](src/python/solutions/1975.py)
