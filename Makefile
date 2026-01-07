@@ -25,13 +25,13 @@ doctor:
 	@powershell -NoProfile -Command "$$ok = $$true; if (-not (Get-Command gcc -ErrorAction SilentlyContinue)) { Write-Host 'Missing: gcc' ; $$ok = $false }; if (-not (Get-Command g++ -ErrorAction SilentlyContinue)) { Write-Host 'Missing: g++' ; $$ok = $false }; if (-not (Get-Command py -ErrorAction SilentlyContinue) -and -not (Get-Command python -ErrorAction SilentlyContinue)) { Write-Host 'Missing: python/py' ; $$ok = $false }; if ($$ok) { Write-Host 'Environment OK' } else { exit 1 }"
 
 clean: 
-	if exist *.exe del /Q /F *.exe
-	@for /R $(SRC_DIR) %f in (*.exe) do @del /Q /F "%f"
+	@cmd /C "if exist *.exe del /Q /F *.exe"
+	@cmd /C "for /R $(SRC_DIR) %%f in (*.exe) do @del /Q /F \"%%f\""
 
 clear_prj:
 	python clear_project.py
 
-.PHONY: help py cpp c clean run
+.PHONY: help py cpp c clean run doctor clean clear_prj
 
 # --------------- PYTHON SECTION -----------------------
 # Run a Python solution by problem id: mingw32-make py id=17
