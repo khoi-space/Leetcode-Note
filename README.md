@@ -35,61 +35,42 @@ Leetcode/
         └── solutions/
 ```
 
-## 📃 USER GUIDE
-### 1️⃣ __HOW TO CREATE A PROBLEM?__
-**Answer:** Use [update_list.py](update_list.py) with these options below:
-* *Create a new problem entry*: 
-```
-PS E:\Git_wp\Leetcode> python .\update_list.py
-Add new problem entry? (y/n): y
-...
-```
+## 📃 USER GUIDE (Windows)
 
-* *Create a new language to an existing solution*:
-```
-PS E:\Git_wp\Leetcode> python .\update_list.py
-Add new problem entry? (y/n): n
-Add new language for a problem? (y/n): y
-...
-```
+### ✅ Prerequisites
+- Install MinGW-w64 (gcc/g++) and add to PATH.
+- Install Python 3 (py launcher or python in PATH).
 
-* *Just update solution count*: Choose "NO" for both options above.
+Quick check environment is ready: `mingw32-make doctor`
 
-✨ **Example of creating a new problem**:
+### ✨ Create a problem
+Interactive helper (add new problem, add language, or update counts): `python .\update_list.py` or `mingw32-make update`
+
+### 🐞 Run solutions
+**(Recommended)** By problem id (dispatch via language entry points):
 ```
-PS E:\Git_wp\Leetcode> python .\update_list.py
-Add new problem entry? (y/n): y
-Problem number: 0
-Problem name: dump  
-Difficulty (easy/medium/hard): easy
-Language:
-1. C++
-2. C#
-3. C
-4. Python
-5. Java
-6. Javascript
-7. TypeScript
->>> 1
-Created code files:
-  E:\Git_wp\Leetcode\src\cpp\solutions\0.cpp
-Added problem 0 to ## 🟢Easy
-Update test.h
-Update main.cpp
-Total problem: 1
-Updated to file SOL_LIST.md
+mingw32-make py   id=11
+mingw32-make cpp  id=11
+mingw32-make c    id=11
 ```
 
-### 2️⃣ __HOW TO RUN A SOLUTION FILE?__
-**Answer:** Use Makefile.  
-Syntax `mingw32-make <lang> id=<id>`
-* *lang* = [py, cpp, c, cs, js, java, ts]
-* *id* is the problem number
+Run a file by name (searched under `src/` recursively):
+```
+mingw32-make run file=testing.py
+```
 
-`mingw32-make help` for more detailed.
+### 🧪 Tests
+The generated code includes a minimal test harness. Edit the language-specific entry files to adjust tests:
+- C++: `src/cpp/main.cpp`
+- C:   `src/c/main.c`
+- Python: individual files in `src/python/solutions/`
 
-### 3️⃣ __HOW TO RUN A TESTCASES?__
-**Answer:** Init code contains a skeleton of the testcase. Please write your own testcase in it. When running code, the testcase will run too.
+### 🧹 Clean
+```
+mingw32-make clean
+```
+---
+Tips: `mingw32-make help` lists available targets and usage.
 
 ## 🚀 FUTURE PLANS:
 - [ ] Handle with other languages (such as python, java,...)
