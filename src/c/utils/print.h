@@ -40,7 +40,7 @@ static inline void print_tree(TreeNode* root) {
     }
     printf("%d (", root->val);
     print_tree(root->left);
-    printf(" ");
+    printf(", ");
     print_tree(root->right);
     printf(")");
 }

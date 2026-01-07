@@ -49,9 +49,17 @@ struct TreeNode {
         if (!fancy) {
             // Preorder
             if (!root) return "null";
-            return to_string(root->val) + " (" + tree2Str(root->left) + " " + tree2Str(root->right) + ")";
+            // If leaf node, do not print children
+            if (!root->left && !root->right) {
+                return to_string(root->val);
+            }
+
+            string leftStr = tree2Str(root->left);
+            string rightStr = tree2Str(root->right);
+
+            return to_string(root->val) + " (" + leftStr + ", " + rightStr + ")";
         } else {
-            // Maybe later
+            // Fancy tree (maybe later)
             return "";
         }
     }

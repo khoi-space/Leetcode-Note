@@ -20,7 +20,6 @@ string space_cmplx = "";
  * LeetCode: {leetcode}
 */
 class Solution {
-public:
     #if APR == 1
     
     #endif
@@ -47,9 +46,9 @@ void test{num}() {
         // {{}}
     };
 
-    Solution sol = Solution();
 
     for (int i = 0; i < (int)cases.size(); ++i) {
+        Solution sol = Solution();
         Case c = cases[i];
         // Inputs
         auto in1 = c.

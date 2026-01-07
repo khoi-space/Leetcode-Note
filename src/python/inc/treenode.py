@@ -11,7 +11,7 @@ class TreeNode:
         def preorder(node):
             if node is None:
                 return "null"
-            return f"{node.val} (" + preorder(node.left) + " " + preorder(node.right) + ")"
+            return f"{node.val} (" + preorder(node.left) + ", " + preorder(node.right) + ")"
         return preorder(self)
     
     def __eq__(self, other):
