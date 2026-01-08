@@ -1,8 +1,7 @@
 #include "../inc/global.h"
 using namespace std;
 
-// Turn off debug mode (uncomment to turn on)
-#undef DEBUG
+
 
 // Display info of the approach
 #define INFO
@@ -50,11 +49,7 @@ public:
 
 void test1975() {
     #ifdef INFO
-    cout << "\033[35m=========== INFO ===========\033[0m" << endl;
-    cout << "FILE: " << __FILE__ << endl;
-    cout << "APPROACH " << APR << ": " << apr_idea << endl;
-    cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
-    cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
+    printInfo(__FILE__, APR, apr_idea, time_cmplx, space_cmplx);
     #endif
 
     cout << "\033[35m========== TESTCASE ========\033[0m\n";

@@ -1,60 +1,48 @@
 #include "../inc/global.h"
 using namespace std;
 
-
-
 // Display info of the approach
 #define INFO
 #define APR 1
 #ifdef INFO
 #if APR == 1
-string apr_idea = "Expand from centers";
-string time_cmplx = "n^2";
+string apr_idea = "In-place";
+string time_cmplx = "n";
 string space_cmplx = "1";
 #endif
 #endif
 
 /**
- * Problem 5: Longest Palindromic Substring
- * LeetCode: https://leetcode.com/problems/longest-palindromic-substring/
+ * Problem 443: String Compression
+ * LeetCode: https://leetcode.com/problems/string-compression/
 */
 class Solution {
 public:
     #if APR == 1
-    string longestPalindrome(string s) {
-        string ans = "";
-
-        for (size_t i = 0; i < s.size(); ++i) {
-            string odd = expand(s, i, i); // Check an odd-size palindrome expaned from i
-            if (odd.size() > ans.size()) {
-                ans = odd;
+    int compress(vector<char>& chars) {
+        int i = 0, res = 0;
+        while (i < (int)chars.size()) {
+            int group_len = 1;
+            while (i + group_len < (int)chars.size() && chars[i + group_len] == chars[i]) {
+                ++group_len;
             }
 
-            string even = expand(s, i, i + 1); // Check an even-size palindrome expanded from i and i+1
-            if (even.size() > ans.size()) {
-                ans = even;
+            chars[res++] = chars[i];
+            if (group_len > 1) {
+                for (char c : to_string(group_len)) {
+                    chars[res++] = c;
+                }
             }
+            i += group_len;
         }
-
-        return ans;
-    }
-private:
-    string expand(string s, int i, int j) {
-        int l = i;
-        int r = j;
-
-        while (l >= 0 && r < (int)s.size() && s[l] == s[r]) {
-            --l;
-            ++r;
-        }
-
-        return s.substr(l + 1, r - l - 1);
+        chars.resize(res);
+        return res;
     }
     #endif
 };
 
 
-void test5() {
+void test443() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
     cout << "FILE: " << __FILE__ << endl;
@@ -66,25 +54,29 @@ void test5() {
     cout << "\033[35m========== TESTCASE ========\033[0m\n";
     struct Case {
         // Inputs
-        string s;
+        vector<char> chars;
         // Expect
-        string exp;
+        vector<char> exp;
     };
 
     vector<Case> cases = {
         // {{}}
-        {"babad", "bab"},
-        {"cbbd", "bb"}
+        {{'a','a','b','b','c','c','c'}, {'a','2','b','2','c','3'}},
+        {{'a'}, {'a'}},
+        {{'a','b','b','b','b','b','b','b','b','b','b','b','b'}, {'a','b','1','2'}},
+        {{'a','b','c'}, {'a','b','c'}}
     };
+
 
     for (int i = 0; i < (int)cases.size(); ++i) {
         Solution sol = Solution();
         Case c = cases[i];
         // Inputs
-        auto in1 = c.
+        auto &in1 = c.chars;
 
         // Result
-        auto res = sol.
+        sol.compress(in1);
+        auto res = in1;
 
         if(assertTest(res, c.exp, i) == false) {
             cout << "   Input    : " << in1 << endl;

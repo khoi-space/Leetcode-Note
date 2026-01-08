@@ -2,9 +2,6 @@
 #include "../inc/test.h"
 #include "../utils/compare.h"
 #include "../utils/print.h"
-
-// Debug mode
-#define DEBUG
 #include "../inc/debug.h"
 
 // Display info of the approach

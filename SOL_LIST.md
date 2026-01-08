@@ -1,8 +1,10 @@
 # 📃 LIST OF SOLUTIONS
-**Total solved problems: 12**
+**Total solved problems: 69**
 ## 🔴Hard
 * [4] Median of Two Sorted Arrays [[https://leetcode.com/problems/median-of-two-sorted-arrays/](https://leetcode.com/problems/median-of-two-sorted-arrays/)]
     * [C++](src/cpp/solutions/4.cpp)
+* [10] Regular Expression Matching [[https://leetcode.com/problems/regular-expression-matching/](https://leetcode.com/problems/regular-expression-matching/)]
+    * [C++](src/cpp/solutions/10.cpp)
 
 ## 🟡Medium
 * [2] Add Two Numbers [[https://leetcode.com/problems/add-two-numbers/](https://leetcode.com/problems/add-two-numbers/)]
@@ -15,26 +17,139 @@
     * [C++](src/cpp/solutions/5.cpp)
 * [6] Zigzag Conversion [[https://leetcode.com/problems/zigzag-conversion/](https://leetcode.com/problems/zigzag-conversion/)]
     * [C++](src/cpp/solutions/6.cpp)
+* [7] Reverse Integer [[https://leetcode.com/problems/reverse-integer/](https://leetcode.com/problems/reverse-integer/)]
+    * [C++](src/cpp/solutions/7.cpp)
+* [8] String to Integer (atoi) [[https://leetcode.com/problems/string-to-integer-atoi/](https://leetcode.com/problems/string-to-integer-atoi/)]
+    * [C++](src/cpp/solutions/8.cpp)
+* [11] Container With Most Water [[https://leetcode.com/problems/container-with-most-water/](https://leetcode.com/problems/container-with-most-water/)]
+    * [C++](src/cpp/solutions/11.cpp)
+* [12] Integer to Roman [[https://leetcode.com/problems/integer-to-roman/](https://leetcode.com/problems/integer-to-roman/)]
+    * [C++](src/cpp/solutions/12.cpp)
+* [15] 3Sum [[https://leetcode.com/problems/3sum/](https://leetcode.com/problems/3sum/)]
+    * [C++](src/cpp/solutions/15.cpp)
+* [16] 3Sum Closest [[https://leetcode.com/problems/3sum-closest/](https://leetcode.com/problems/3sum-closest/)]
+    * [C++](src/cpp/solutions/16.cpp)
+* [17] Letter Combinations of a Phone Number [[https://leetcode.com/problems/letter-combinations-of-a-phone-number/](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)]
+    * [C++](src/cpp/solutions/17.cpp)
+    * [Python](src/python/solutions/17.py)
+* [18] 4Sum [[https://leetcode.com/problems/4sum/](https://leetcode.com/problems/4sum/)]
+    * [C++](src/cpp/solutions/18.cpp)
+* [19] Remove Nth Node From End of List [[https://leetcode.com/problems/remove-nth-node-from-end-of-list/](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)]
+    * [C++](src/cpp/solutions/19.cpp)
+* [151] Reverse Words in a String [[https://leetcode.com/problems/reverse-words-in-a-string/](https://leetcode.com/problems/reverse-words-in-a-string/)]
+    * [C++](src/cpp/solutions/151.cpp)
+* [162] Find Peak Element [[https://leetcode.com/problems/find-peak-element/](https://leetcode.com/problems/find-peak-element/)]
+    * [C++](src/cpp/solutions/162.cpp)
+* [238] Product of Array Except Self [[https://leetcode.com/problems/product-of-array-except-self/](https://leetcode.com/problems/product-of-array-except-self/)]
+    * [C++](src/cpp/solutions/238.cpp)
+* [334] Increasing Triplet Subsequence [[https://leetcode.com/problems/increasing-triplet-subsequence/](https://leetcode.com/problems/increasing-triplet-subsequence/)]
+    * [C++](src/cpp/solutions/334.cpp)
+* [443] String Compression [[https://leetcode.com/problems/string-compression/](https://leetcode.com/problems/string-compression/)]
+    * [C++](src/cpp/solutions/443.cpp)
+* [840] Magic Squares In Grid [[https://leetcode.com/problems/magic-squares-in-grid/](https://leetcode.com/problems/magic-squares-in-grid/)]
+    * [C++](src/cpp/solutions/840.cpp)
+* [955] Delete Columns to Make Sorted II [[https://leetcode.com/problems/delete-columns-to-make-sorted-ii/](https://leetcode.com/problems/delete-columns-to-make-sorted-ii/)]
+    * [C++](src/cpp/solutions/955.cpp)
+* [1004] Max Consecutive Ones III [[https://leetcode.com/problems/max-consecutive-ones-iii/](https://leetcode.com/problems/max-consecutive-ones-iii/)]
+    * [C++](src/cpp/solutions/1004.cpp)
 * [1161] Maximum Level Sum of a Binary Tree [[https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/](https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/)]
     * [C++](src/cpp/solutions/1161.cpp)
 * [1339] Maximum Product of Splitted Binary Tree [[https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/](https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/)]
     * [C++](src/cpp/solutions/1339.cpp)
     * [Python](src/python/solutions/1339.py)
     * [C](src/c/solutions/1339.c)
+* [1390] Four Divisors [[https://leetcode.com/problems/four-divisors/](https://leetcode.com/problems/four-divisors/)]
+    * [C++](src/cpp/solutions/1390.cpp)
+* [1456] Maximum Number of Vowels in a Substring of Given Length [[https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/](https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)]
+    * [C++](src/cpp/solutions/1456.cpp)
+* [1493] Longest Subarray of 1's After Deleting One Element [[https://leetcode.com/problems/longest-subarray-of-1-s-after-deleting-one-element/](https://leetcode.com/problems/longest-subarray-of-1-s-after-deleting-one-element/)]
+    * [C++](src/cpp/solutions/1493.cpp)
+* [1657] Determine if Two Strings Are Close [[https://leetcode.com/problems/determine-if-two-strings-are-close/](https://leetcode.com/problems/determine-if-two-strings-are-close/)]
+    * [C++](src/cpp/solutions/1657.cpp)
+* [1679] Max Number of K-Sum Pairs [[https://leetcode.com/problems/max-number-of-k-sum-pairs/](https://leetcode.com/problems/max-number-of-k-sum-pairs/)]
+    * [C++](src/cpp/solutions/1679.cpp)
 * [1975] Maximum Matrix Sum [[https://leetcode.com/problems/maximum-matrix-sum/](https://leetcode.com/problems/maximum-matrix-sum/)]
     * [C++](src/cpp/solutions/1975.cpp)
     * [Python](src/python/solutions/1975.py)
+* [2110] Number of Smooth Descent Periods of a Stock [[https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/](https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/)]
+    * [C++](src/cpp/solutions/2110.cpp)
+* [2211] Count Collision on a Road [[https://leetcode.com/problems/count-collision-on-a-road/](https://leetcode.com/problems/count-collision-on-a-road/)]
+    * [C++](src/cpp/solutions/2211.cpp)
+* [2352] Equal Row and Column Pairs [[https://leetcode.com/problems/equal-row-and-column-pairs/](https://leetcode.com/problems/equal-row-and-column-pairs/)]
+    * [C++](src/cpp/solutions/2352.cpp)
+* [2390] Removing Stars From a String [[https://leetcode.com/problems/removing-stars-from-a-string/](https://leetcode.com/problems/removing-stars-from-a-string/)]
+    * [C++](src/cpp/solutions/2390.cpp)
+* [3433] Count Mentions Per User [[https://leetcode.com/problems/count-mentions-per-user/](https://leetcode.com/problems/count-mentions-per-user/)]
+    * [C++](src/cpp/solutions/3433.cpp)
 
 ## 🟢Easy
 * [1] Two Sum [[https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)]
     * [Python](src/python/solutions/1.py)
     * [C](src/c/solutions/1.c)
     * [C++](src/cpp/solutions/1.cpp)
+* [9] Palindrome Number [[https://leetcode.com/problems/palindrome-number/](https://leetcode.com/problems/palindrome-number/)]
+    * [C++](src/cpp/solutions/9.cpp)
+* [13] Roman to Integer [[https://leetcode.com/problems/roman-to-integer/](https://leetcode.com/problems/roman-to-integer/)]
+    * [C++](src/cpp/solutions/13.cpp)
+* [14] Longest Common Prefix [[https://leetcode.com/problems/longest-common-prefix/](https://leetcode.com/problems/longest-common-prefix/)]
+    * [C++](src/cpp/solutions/14.cpp)
+* [20] Valid Parentheses [[https://leetcode.com/problems/valid-parentheses/](https://leetcode.com/problems/valid-parentheses/)]
+    * [C++](src/cpp/solutions/20.cpp)
 * [21] Merge Two Sorted Lists [[https://leetcode.com/problems/merge-two-sorted-lists/](https://leetcode.com/problems/merge-two-sorted-lists/)]
     * [C++](src/cpp/solutions/21.cpp)
     * [Python](src/python/solutions/21.py)
+* [27] Remove Element [[https://leetcode.com/problems/remove-element/](https://leetcode.com/problems/remove-element/)]
+    * [C++](src/cpp/solutions/27.cpp)
 * [28] Find the Index of the First Occurrence in a String [[https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)]
     * [C++](src/cpp/solutions/28.cpp)
     * [Python](src/python/solutions/28.py)
 * [58] Length of Last Word [[https://leetcode.com/problems/length-of-last-word/](https://leetcode.com/problems/length-of-last-word/)]
     * [Python](src/python/solutions/58.py)
+* [66] Plus One [[https://leetcode.com/problems/plus-one/](https://leetcode.com/problems/plus-one/)]
+    * [C++](src/cpp/solutions/66.cpp)
+* [67] Add Binary [[https://leetcode.com/problems/add-binary/](https://leetcode.com/problems/add-binary/)]
+    * [C++](src/cpp/solutions/67.cpp)
+* [283] Move Zeroes [[https://leetcode.com/problems/move-zeroes/](https://leetcode.com/problems/move-zeroes/)]
+    * [C++](src/cpp/solutions/283.cpp)
+* [345] Reverse Vowels of a String [[https://leetcode.com/problems/reverse-vowels-of-a-string/](https://leetcode.com/problems/reverse-vowels-of-a-string/)]
+    * [C++](src/cpp/solutions/345.cpp)
+* [392] Is Subsequence [[https://leetcode.com/problems/is-subsequence/](https://leetcode.com/problems/is-subsequence/)]
+    * [C++](src/cpp/solutions/392.cpp)
+* [605] Can Place Flowers [[https://leetcode.com/problems/can-place-flowers/](https://leetcode.com/problems/can-place-flowers/)]
+    * [C++](src/cpp/solutions/605.cpp)
+* [643] Maximum Average Subarray I [[https://leetcode.com/problems/maximum-average-subarray-i/](https://leetcode.com/problems/maximum-average-subarray-i/)]
+    * [C++](src/cpp/solutions/643.cpp)
+* [724] Find Pivot Index [[https://leetcode.com/problems/find-pivot-index/](https://leetcode.com/problems/find-pivot-index/)]
+    * [C++](src/cpp/solutions/724.cpp)
+* [944] Delete Columns to Make Sorted [[https://leetcode.com/problems/delete-columns-to-make-sorted/](https://leetcode.com/problems/delete-columns-to-make-sorted/)]
+    * [C++](src/cpp/solutions/944.cpp)
+* [1071] Greatest Common Divisor of Strings [[https://leetcode.com/problems/greatest-common-divisor-of-strings/](https://leetcode.com/problems/greatest-common-divisor-of-strings/)]
+    * [C++](src/cpp/solutions/1071.cpp)
+* [1207] Unique Number of Occurrences [[https://leetcode.com/problems/unique-number-of-occurrences/](https://leetcode.com/problems/unique-number-of-occurrences/)]
+    * [C++](src/cpp/solutions/1207.cpp)
+* [1351] Count Negative Numbers in a Sorted Matrix [[https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/](https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/)]
+    * [C++](src/cpp/solutions/1351.cpp)
+* [1431] Kids With the Greatest Number of Candies [[https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/)]
+    * [C++](src/cpp/solutions/1431.cpp)
+* [1523] Count Odd Numbers in an Interval Range [[https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/)]
+    * [C++](src/cpp/solutions/1523.cpp)
+* [1732] Find the Highest Altitude [[https://leetcode.com/problems/find-the-highest-altitude/](https://leetcode.com/problems/find-the-highest-altitude/)]
+    * [C++](src/cpp/solutions/1732.cpp)
+* [1768] Merge Strings Alternately [[https://leetcode.com/problems/merge-strings-alternately/](https://leetcode.com/problems/merge-strings-alternately/)]
+    * [C++](src/cpp/solutions/1768.cpp)
+* [1925] Count Square Sum Triples [[https://leetcode.com/problems/count-square-sum-triples/](https://leetcode.com/problems/count-square-sum-triples/)]
+    * [C++](src/cpp/solutions/1925.cpp)
+* [1957] Delete Characters to Make Fancy String [[https://leetcode.com/problems/delete-characters-to-make-fancy-string/](https://leetcode.com/problems/delete-characters-to-make-fancy-string/)]
+    * [C++](src/cpp/solutions/1957.cpp)
+* [2210] Count Hills and Valleys in an Array [[https://leetcode.com/problems/count-hills-and-valleys-in-an-array/](https://leetcode.com/problems/count-hills-and-valleys-in-an-array/)]
+    * [C++](src/cpp/solutions/2210.cpp)
+* [2215] Find the Difference of Two Arrays [[https://leetcode.com/problems/find-the-difference-of-two-arrays/](https://leetcode.com/problems/find-the-difference-of-two-arrays/)]
+    * [C++](src/cpp/solutions/2215.cpp)
+* [3090] Maximum Length Substring With Two Occurrences [[https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/](https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/)]
+    * [C++](src/cpp/solutions/3090.cpp)
+* [3432] Count Partitions with Even Sum Difference [[https://leetcode.com/problems/count-partitions-with-even-sum-difference/](https://leetcode.com/problems/count-partitions-with-even-sum-difference/)]
+    * [C++](src/cpp/solutions/3432.cpp)
+* [3487] Maximum Unique Subarray Sum After Deletion [[https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/](https://leetcode.com/problems/maximum-unique-subarray-sum-after-deletion/)]
+    * [C++](src/cpp/solutions/3487.cpp)
+* [3606] Coupon Code Validator [[https://leetcode.com/problems/coupon-code-validator/](https://leetcode.com/problems/coupon-code-validator/)]
+    * [C++](src/cpp/solutions/3606.cpp)

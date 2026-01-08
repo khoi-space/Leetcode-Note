@@ -3,9 +3,6 @@
 #include "../inc/test.h"
 #include "../utils/compare.h"
 #include "../utils/print.h"
-
-// Debug mode
-#define DEBUG
 #include "../inc/debug.h"
 
 // Display info of the approach
@@ -59,11 +56,7 @@ int maxProduct(struct TreeNode* root) {
 
 void test1339() {
     #ifdef INFO
-    printf("\033[35m=========== INFO ===========\033[0m\n");
-    printf("FILE: %s", __FILE__);
-    printf("APPROACH %d: %s\n", APR, apr_idea);
-    printf("  + Time Complexity: O(%s)\n", time_cmplx);
-    printf("  + Space Complexity: O(%s)\n", space_cmplx);
+    printInfo(__FILE__, APR, apr_idea, time_cmplx, space_cmplx);
     #endif
     
     printf("\033[35m========== TESTCASE ========\033[0m\n");

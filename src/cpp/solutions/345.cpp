@@ -1,60 +1,51 @@
 #include "../inc/global.h"
 using namespace std;
 
-
-
 // Display info of the approach
 #define INFO
 #define APR 1
 #ifdef INFO
 #if APR == 1
-string apr_idea = "Expand from centers";
-string time_cmplx = "n^2";
-string space_cmplx = "1";
+string apr_idea = "";
+string time_cmplx = "";
+string space_cmplx = "";
 #endif
 #endif
 
 /**
- * Problem 5: Longest Palindromic Substring
- * LeetCode: https://leetcode.com/problems/longest-palindromic-substring/
+ * Problem 345: Reverse Vowels of a String
+ * LeetCode: https://leetcode.com/problems/reverse-vowels-of-a-string/
+ * @explain: vowels are 'a', 'e', 'i', 'o' and 'u' in both lower and upper cases
 */
 class Solution {
 public:
     #if APR == 1
-    string longestPalindrome(string s) {
-        string ans = "";
-
-        for (size_t i = 0; i < s.size(); ++i) {
-            string odd = expand(s, i, i); // Check an odd-size palindrome expaned from i
-            if (odd.size() > ans.size()) {
-                ans = odd;
-            }
-
-            string even = expand(s, i, i + 1); // Check an even-size palindrome expanded from i and i+1
-            if (even.size() > ans.size()) {
-                ans = even;
+    string reverseVowels(string s) {
+        unordered_set<char> vowels_set = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        int l = 0;
+        int r = s.length() - 1;
+        while (l < r) {
+            if (vowels_set.find(s[l]) == vowels_set.end()) {
+                ++l;
+            } else if (vowels_set.find(s[r]) == vowels_set.end()) {
+                --r;
+            } else {
+                // swap s[l] and s[r]
+                swap(s.at(l), s.at(r));
+                // db_var(s);
+        
+                // Move the pointer to the next
+                ++l;
+                --r;
             }
         }
-
-        return ans;
-    }
-private:
-    string expand(string s, int i, int j) {
-        int l = i;
-        int r = j;
-
-        while (l >= 0 && r < (int)s.size() && s[l] == s[r]) {
-            --l;
-            ++r;
-        }
-
-        return s.substr(l + 1, r - l - 1);
+        return s;
     }
     #endif
 };
 
 
-void test5() {
+void test345() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
     cout << "FILE: " << __FILE__ << endl;
@@ -73,18 +64,19 @@ void test5() {
 
     vector<Case> cases = {
         // {{}}
-        {"babad", "bab"},
-        {"cbbd", "bb"}
+        {"IceCreAm", "AceCreIm"},
+        {"leetcode", "leotcede"}
     };
+
 
     for (int i = 0; i < (int)cases.size(); ++i) {
         Solution sol = Solution();
         Case c = cases[i];
         // Inputs
-        auto in1 = c.
+        auto &in1 = c.s;
 
         // Result
-        auto res = sol.
+        auto res = sol.reverseVowels(in1);
 
         if(assertTest(res, c.exp, i) == false) {
             cout << "   Input    : " << in1 << endl;

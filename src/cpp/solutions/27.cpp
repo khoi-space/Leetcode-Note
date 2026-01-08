@@ -1,77 +1,82 @@
 #include "../inc/global.h"
 using namespace std;
 
-
+// Turn on/off debug mode
+#undef DEBUG
 
 // Display info of the approach
 #define INFO
 #define APR 1
 #ifdef INFO
 #if APR == 1
-string apr_idea = "Slicing";
-string time_cmplx = "m*n";
-string space_cmplx = "m";
+string apr_idea = "";
+string time_cmplx = "";
+string space_cmplx = "";
 #endif
 #endif
 
 /**
- * Problem 28: Find the Index of the First Occurrence in a String
- * LeetCode: https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
- * @input: string haystack and needle
- * @output: idx of the first occurrence of needle (-1 if not)
+ * Problem 27: Remove Element
+ * LeetCode: https://leetcode.com/problems/remove-element/
+ * @require: in-place
+ * @explain: remove val in nums and return 
 */
 class Solution {
 public:
     #if APR == 1
-    int strStr(string haystack, string needle) {
-        if (haystack.length() < needle.length()) return -1;
+    int removeElement(vector<int>& nums, int val) {
+        int k = 0;
 
-        for (size_t i = 0; i <= haystack.length() - needle.length(); ++i) {
-            if (haystack.substr(i, needle.length()) == needle) {
-                return i;
+        // Shift left other elements to head (skip val)
+        for (int i = 0; i < (int)nums.size(); ++i) {
+            if (nums[i] != val) {
+                nums[k] = nums[i];
+                ++k;
             }
         }
-
-        return -1;
+        
+        nums.resize(k);
+        return k;
     }
     #endif
 };
 
 
-void test28() {
+void test27() {
     #ifdef INFO
     cout << "\033[35m=========== INFO ===========\033[0m" << endl;
     cout << "FILE: " << __FILE__ << endl;
     cout << "APPROACH " << APR << ": " << apr_idea << endl;
     cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
     cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
-    #endifS
+    #endif
 
     cout << "\033[35m========== TESTCASE ========\033[0m\n";
     struct Case {
         // Inputs
-        string haystack;
-        string needle;
+        vector<int> nums;
+        int val;
         // Expect
         int exp;
     };
 
     vector<Case> cases = {
         // {{}}
-        {"sadbutsad", "sad", 0},
-        {"leetcode", "leeto", -1}
+        {{3,2,2,3}, 3, 2},
+        {{0,1,2,2,3,0,4,2}, 2, 5}
     };
+
 
     for (int i = 0; i < (int)cases.size(); ++i) {
         Solution sol = Solution();
         Case c = cases[i];
         // Inputs
-        auto in1 = c.haystack;
-        auto in2 = c.needle;
+        auto& in1 = c.nums;
+        auto& in2 = c.val;
 
         // Result
-        auto res = sol.strStr(c.haystack, c.needle);
-
+        auto res = sol.removeElement(in1, in2);
+        db_var(c.nums);
         if(assertTest(res, c.exp, i) == false) {
             cout << "   Input    : " << in1 << " " << in2 << endl;
         }
