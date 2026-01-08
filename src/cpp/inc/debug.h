@@ -5,7 +5,6 @@
 #include <fstream>
 #include <string>
 
-//Turn on debug mode
 #define DEBUG
 
 #ifdef DEBUG

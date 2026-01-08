@@ -30,7 +30,7 @@ def dump(*args, endl=True, **kwargs):
             print(*args, **kwargs, end=" | ")
 
 def log(*args, endl=True, **kwargs):
-    """Print the value with short expression into debug.log"""
+    """Same with dump but print into file debug.log"""
     if globals().get('DEBUG', False):
         with open('debug.log', 'a', encoding='utf-8') as f:
             if endl:
