@@ -1,13 +1,9 @@
-## 📖 LIST OF SOLUTIONS
->[Click here to view SOL_LIST.md](SOL_LIST.md)
-
 ## 📂 STRUCTURE
 ```
 Leetcode/
 ├── README.md
 ├── SOL_LIST.md              # Table of contents (use to review or summarize)
 ├── Makefile                 # Build/run targets for C++, Python, and C
-|── update_list.py           # Update entries, links, counts
 ├── scripts/
 |   └── templates/           # Init code templates
 └── src/
@@ -34,6 +30,7 @@ Leetcode/
     └── csharp/
         └── solutions/
 ```
+>[Click here to view SOL_LIST.md](SOL_LIST.md)
 
 ## 📃 USER GUIDE (Windows)
 
@@ -43,10 +40,10 @@ Leetcode/
 
 Quick check environment is ready: `mingw32-make doctor`
 
-### ✨ Create a problem
+### ✨ Create A Problem
 Interactive helper (add new problem, add language, or update counts): `python .\update_list.py` or `mingw32-make update`
 
-### 🐞 Run solutions
+### 🧐 Run Solutions
 **(Recommended)** By problem id (dispatch via language entry points):
 ```
 mingw32-make py   id=11
@@ -59,18 +56,18 @@ Run a file by name (searched under `src/` recursively):
 mingw32-make run file=testing.py
 ```
 
-### 🧪 Tests
-The generated code includes a minimal test harness. Edit the language-specific entry files to adjust tests:
-- C++: `src/cpp/main.cpp`
-- C:   `src/c/main.c`
-- Python: individual files in `src/python/solutions/`
+### 🐞 Debug Mode
+Every language has a simple debug mode. Please see these files for more information:
+| C++ | C | Python |
+|-----|---|--------|
+|[debug.h](src/cpp/inc/debug.h)|[debug.h](src/cpp/inc/debug.h)|[debug.py](src/python/inc/debug.py)|
 
+### 🧪 Tests
+Each solution file has its own testcase function. It's just a framework so please modify and add testcases if needed.
 ### 🧹 Clean
 ```
 mingw32-make clean
 ```
----
-Tips: `mingw32-make help` lists available targets and usage.
 
 ## 🚀 FUTURE PLANS:
 - [ ] Handle with other languages (such as python, java,...)
