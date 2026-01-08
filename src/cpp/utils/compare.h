@@ -16,7 +16,7 @@ inline bool isEqual(const T& lhs, const T& rhs, bool unorder_cmp = false) {
 }
 
 // Compare vectors
-inline bool isEqual(vector<int> lhs, vector<int> rhs, bool unorder_cmp = false) {
+inline bool isEqual(vector<int> &lhs, vector<int> &rhs, bool unorder_cmp = false) {
     if (unorder_cmp) {
         std::sort(lhs.begin(), lhs.end());
         std::sort(lhs.begin(), rhs.end());

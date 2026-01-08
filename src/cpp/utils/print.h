@@ -29,4 +29,13 @@ inline ostream& operator<<(ostream& os, TreeNode* root) {
     return os;
 }
 
+/* Using to print info of solution */
+inline void printInfo(const string &file, const int APR, const string &apr_idea, const string &time_cmplx, const string &space_cmplx) {
+    cout << "\033[35m=========== INFO ===========\033[0m" << endl;
+    cout << "FILE: " << file << endl;
+    cout << "APPROACH " << APR << ": " << apr_idea << endl;
+    cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
+    cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
+}
+
 #endif // CONVERT_H

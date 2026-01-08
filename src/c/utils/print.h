@@ -45,4 +45,13 @@ static inline void print_tree(TreeNode* root) {
     printf(")");
 }
 
+/* Print info of solution */
+static inline void printInfo(const char file[40], const int APR, const char apr_idea[40], const char time_cmplx[10], const char space_cmplx[10]) {
+    printf("\033[35m=========== INFO ===========\033[0m\n");
+    printf("FILE: %s\n", __FILE__);
+    printf("APPROACH %d: %s\n", APR, apr_idea);
+    printf("  + Time Complexity: O(%s)\n", time_cmplx);
+    printf("  + Space Complexity: O(%s)\n", space_cmplx);
+}
+
 #endif // PRINT_H
