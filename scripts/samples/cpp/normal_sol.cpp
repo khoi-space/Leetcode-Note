@@ -1,8 +1,7 @@
 #include "../inc/global.h"
 using namespace std;
 
-// Turn off debug mode (uncomment to turn on)
-#undef DEBUG
+
 
 // Display info of the approach
 #define INFO

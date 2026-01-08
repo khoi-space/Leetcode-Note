@@ -1,9 +1,6 @@
 #include "../inc/global.h"
 using namespace std;
 
-// Turn on/off debug mode
-#undef DEBUG
-
 // Display info of the approach
 #define INFO
 #define APR 1
@@ -20,6 +17,7 @@ string space_cmplx = "";
  * LeetCode: {leetcode}
 */
 class Solution {
+public:
     #if APR == 1
     
     #endif
@@ -28,11 +26,7 @@ class Solution {
 
 void test{num}() {
     #ifdef INFO
-    cout << "\033[35m=========== INFO ===========\033[0m" << endl;
-    cout << "FILE: " << __FILE__ << endl;
-    cout << "APPROACH " << APR << ": " << apr_idea << endl;
-    cout << "  + Time Complexity: O(" << time_cmplx << ")" << endl;
-    cout << "  + Space Complexity: O(" << space_cmplx << ")" << endl;
+    printInfo(__FILE__, APR, apr_idea, time_cmplx, space_cmplx);
     #endif
 
     cout << "\033[35m========== TESTCASE ========\033[0m\n";
@@ -51,7 +45,7 @@ void test{num}() {
         Solution sol = Solution();
         Case c = cases[i];
         // Inputs
-        auto in1 = c.
+        auto &in1 = c.
 
         // Result
         auto res = sol.
