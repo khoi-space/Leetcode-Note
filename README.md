@@ -6,6 +6,7 @@ Leetcode/
 ├── Makefile                 # Build/run targets for C++, Python, and C
 ├── scripts/
 |   └── templates/           # Init code templates
+|   └── samples/             # Sample of how to handle with problem (ListNode, TreeNode,...)
 └── src/
     ├── cpp/
     │   ├── inc/             # C++ headers
